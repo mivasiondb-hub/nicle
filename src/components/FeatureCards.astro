@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import { products } from '../data/site';
-import cardSocial from '../assets/images/card-social.png';
-import cardAi from '../assets/images/card-ai.png';
-import cardSecurity from '../assets/images/card-security.png';
+import cardSocial from '../assets/images/card-social.webp';
+import cardAi from '../assets/images/card-ai.webp';
+import cardSecurity from '../assets/images/card-security.webp';
 
 const highlights = [
   {
@@ -52,10 +52,12 @@ const highlights = [
               src={card.image}
               alt={card.alt}
               class="cardImage"
-              widths={[400, 640, 800]}
+              widths={[360, 540, 720]}
               sizes="(max-width: 1024px) 100vw, 400px"
-              quality={80}
-              loading={index === 0 ? 'eager' : 'lazy'}
+              formats={['avif', 'webp']}
+              quality={72}
+              loading="lazy"
+              decoding="async"
             />
             <div class="cardShade" aria-hidden="true"></div>
           </div>

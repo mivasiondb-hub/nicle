@@ -221,5 +221,27 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
       min-height: 52vh;
       padding: calc(var(--headerHeight) + 3rem) 1.25rem 5rem;
     }
+
+    .orb {
+      will-change: auto;
+      animation: none;
+      filter: none;
+    }
+
+    .orbB,
+    .orbC {
+      display: none;
+    }
+
+    .pageHeroInner {
+      will-change: auto;
+    }
+
+    .pageBadge,
+    .pageTitle,
+    .pageSubtitle,
+    .pageActions {
+      animation: none;
+    }
   }
 </style>

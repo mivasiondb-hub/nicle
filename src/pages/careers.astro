@@ -114,11 +114,51 @@ const careersSchema = {
       </div>
     </section>
 
-    <section class="valuesSection" data-scroll-reveal>
+    <section class="valuesSection">
       <div class="valuesInner">
-        <span class="sectionLabel">Why Nicle</span>
-        <h2 class="sectionTitle">Work that compounds</h2>
-        <div class="valuesGrid" data-stagger>
+        <div class="valuesTop">
+          <div class="valuesCopy" data-scroll-reveal="left">
+            <span class="sectionLabel">Why Nicle</span>
+            <h2 class="sectionTitle">Work that compounds</h2>
+            <p>
+              Every product, hire, and design decision stacks on the last — so the work you do here
+              keeps paying forward across the Nicer Ecosystem.
+            </p>
+          </div>
+
+          <div class="valuesVisual" aria-hidden="true">
+            <div class="compoundPanel">
+              <div class="compoundGlow"></div>
+              <div class="compoundHeader">
+                <span class="compoundEyebrow">Impact over time</span>
+                <strong>Build once. Grow forever.</strong>
+              </div>
+              <div class="compoundBars">
+                <div class="compoundBar" style="--h: 38%; --d: 0s">
+                  <span>Year 1</span>
+                </div>
+                <div class="compoundBar" style="--h: 58%; --d: 0.12s">
+                  <span>Year 2</span>
+                </div>
+                <div class="compoundBar" style="--h: 78%; --d: 0.24s">
+                  <span>Year 3</span>
+                </div>
+                <div class="compoundBar compoundBarAccent" style="--h: 100%; --d: 0.36s">
+                  <span>You</span>
+                </div>
+              </div>
+              <div class="compoundChips">
+                <span>worldnicer</span>
+                <span>nicerapp</span>
+                <span>Mivasion</span>
+                <span>nicer ai plus</span>
+                <span>Chatnicer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="valuesGrid" data-scroll-reveal data-stagger>
           {values.map((item) => (
             <article>
               <h3>{item.title}</h3>
@@ -484,8 +524,192 @@ const careersSchema = {
     background: var(--colorSurface);
   }
 
+  .valuesTop {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .valuesCopy {
+    max-width: 420px;
+  }
+
+  .valuesCopy .sectionTitle {
+    margin-bottom: 0.85rem;
+  }
+
+  .valuesCopy p {
+    color: var(--colorTextMuted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+
+  .valuesVisual {
+    min-height: 280px;
+    width: 100%;
+  }
+
+  .compoundPanel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    padding: 1.5rem 1.4rem 1.35rem;
+    border-radius: 22px;
+    background:
+      linear-gradient(155deg, #0f1a14 0%, #1a2e22 48%, #122018 100%);
+    color: #fff;
+    box-shadow: 0 22px 48px rgba(15, 26, 20, 0.22);
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .compoundGlow {
+    position: absolute;
+    inset: auto -20% -40% 30%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(52, 168, 83, 0.35), transparent 65%);
+    pointer-events: none;
+    animation: compoundGlow 5.5s ease-in-out infinite;
+  }
+
+  .compoundHeader {
+    position: relative;
+    z-index: 1;
+  }
+
+  .compoundEyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(167, 232, 189, 0.85);
+    margin-bottom: 0.4rem;
+  }
+
+  .compoundHeader strong {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .compoundBars {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: end;
+    gap: 0.65rem;
+    /* Explicit height so % bar heights resolve on mobile Safari */
+    height: 140px;
+    min-height: 140px;
+    padding-top: 0.5rem;
+  }
+
+  .compoundBar {
+    position: relative;
+    width: 100%;
+    height: var(--h, 50%);
+    min-height: 36px;
+    border-radius: 10px 10px 6px 6px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08));
+    transform-origin: bottom;
+    animation: compoundRise 1.1s var(--easeOutExpo) both;
+    animation-delay: var(--d, 0s);
+  }
+
+  .compoundBarAccent {
+    background: linear-gradient(180deg, #ed3542 0%, #c62828 100%);
+    box-shadow: 0 10px 28px rgba(237, 53, 66, 0.35);
+  }
+
+  .compoundBar span {
+    position: absolute;
+    left: 50%;
+    bottom: 0.55rem;
+    transform: translateX(-50%);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+  }
+
+  .compoundChips {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .compoundChips span {
+    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    animation: compoundChip 4.5s ease-in-out infinite;
+  }
+
+  .compoundChips span:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .compoundChips span:nth-child(3) {
+    animation-delay: 0.8s;
+  }
+  .compoundChips span:nth-child(4) {
+    animation-delay: 1.2s;
+  }
+  .compoundChips span:nth-child(5) {
+    animation-delay: 1.6s;
+  }
+
+  @keyframes compoundRise {
+    from {
+      transform: scaleY(0.35);
+      opacity: 0.35;
+    }
+    to {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes compoundGlow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: translateY(0);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes compoundChip {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
   .valuesGrid {
-    margin-top: 2rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
@@ -726,9 +950,22 @@ const careersSchema = {
   @media (max-width: 960px) {
     .applyShell,
     .rolesGrid,
+    .valuesTop,
     .valuesGrid,
     .processInner {
       grid-template-columns: 1fr;
+    }
+
+    .valuesCopy {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .compoundBar,
+    .compoundGlow,
+    .compoundChips span {
+      animation: none !important;
     }
   }
 
@@ -743,6 +980,20 @@ const careersSchema = {
 
     .applyShell {
       padding: 1.15rem;
+    }
+
+    .valuesVisual,
+    .compoundPanel {
+      min-height: 260px;
+    }
+
+    .compoundBars {
+      height: 120px;
+      min-height: 120px;
+    }
+
+    .compoundBar {
+      min-height: 32px;
     }
   }
 </style>

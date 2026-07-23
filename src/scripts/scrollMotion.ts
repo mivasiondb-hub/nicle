@@ -16,28 +16,35 @@ if (window.__nicleMotion) {
 }
 
 function bootMotion() {
-  initPageEnter();
   initScrollProgress();
   initScrollMotion();
   initStaggerGroups();
-  initRevealObserver();
   initMagneticButtons();
   initTiltCards();
-  initImageReveal();
   initLinkRipple();
   initHashFocus();
   initDetailsMotion();
+  // Prepare reveals before motionReady so above-fold content never flashes white
+  initImageReveal();
+  initRevealObserver();
 }
 
 function isCoarsePointer(): boolean {
   return window.matchMedia('(pointer: coarse)').matches;
 }
 
-function initPageEnter() {
-  document.documentElement.classList.add('jsReady');
-  requestAnimationFrame(() => {
-    document.body.classList.add('pageEntered');
-  });
+function isNearViewport(el: Element): boolean {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  // Treat as above-the-fold if any part sits in (or just under) the viewport
+  return rect.top < vh * 0.97 && rect.bottom > 0;
+}
+
+function revealElement(el: HTMLElement) {
+  el.classList.add('scrollRevealed');
+  if (el.hasAttribute('data-stagger')) {
+    el.classList.add('staggerActive');
+  }
 }
 
 function initScrollProgress() {
@@ -72,6 +79,7 @@ function initScrollMotion() {
   const hero = document.querySelector('[data-hero]');
   const heroContent = document.querySelector('[data-hero-content]');
   const parallaxEls = document.querySelectorAll('[data-parallax]');
+  const allowParallax = !prefersReducedMotion() && !isCoarsePointer();
 
   let ticking = false;
 
@@ -86,7 +94,7 @@ function initScrollMotion() {
         header.classList.toggle('headerScrolled', scrollY > 24);
       }
 
-      if (!prefersReducedMotion() && hero && heroContent) {
+      if (allowParallax && hero && heroContent) {
         const heroHeight = hero.clientHeight || 600;
         const progress = Math.min(scrollY / heroHeight, 1);
         const contentY = scrollY * 0.28;
@@ -98,7 +106,7 @@ function initScrollMotion() {
         (heroContent as HTMLElement).style.opacity = String(contentOpacity);
       }
 
-      if (!prefersReducedMotion()) {
+      if (allowParallax) {
         parallaxEls.forEach((el) => {
           const speed = parseFloat(el.getAttribute('data-parallax') ?? '0.2');
           (el as HTMLElement).style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
@@ -113,14 +121,31 @@ function initScrollMotion() {
   onScroll();
 }
 
-function initRevealObserver() {
-  const revealEls = document.querySelectorAll('[data-scroll-reveal]');
-  if (!revealEls.length) return;
+function isMobileViewport(): boolean {
+  return window.matchMedia('(max-width: 900px)').matches || isCoarsePointer();
+}
 
-  if (prefersReducedMotion()) {
-    revealEls.forEach((el) => el.classList.add('scrollRevealed'));
+function initRevealObserver() {
+  const revealEls = document.querySelectorAll<HTMLElement>('[data-scroll-reveal]');
+  if (!revealEls.length) {
+    document.documentElement.classList.add('motionReady');
     return;
   }
+
+  // Mobile / touch: show everything immediately — no white flash while scrolling
+  if (prefersReducedMotion() || isMobileViewport()) {
+    revealEls.forEach((el) => revealElement(el));
+    document.documentElement.classList.add('motionReady');
+    return;
+  }
+
+  // Mark above-the-fold content revealed BEFORE enabling hide styles,
+  // so write-ups never flash white on first paint.
+  revealEls.forEach((el) => {
+    if (isNearViewport(el)) revealElement(el);
+  });
+
+  document.documentElement.classList.add('motionReady');
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -128,19 +153,17 @@ function initRevealObserver() {
         if (!entry.isIntersecting) return;
 
         const el = entry.target as HTMLElement;
-        el.classList.add('scrollRevealed');
-
-        if (el.hasAttribute('data-stagger')) {
-          el.classList.add('staggerActive');
-        }
-
+        revealElement(el);
         observer.unobserve(el);
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+    // Reveal early so content is visible as it enters the viewport
+    { threshold: 0.01, rootMargin: '120px 0px 80px 0px' }
   );
 
-  revealEls.forEach((el) => observer.observe(el));
+  revealEls.forEach((el) => {
+    if (!el.classList.contains('scrollRevealed')) observer.observe(el);
+  });
 }
 
 function initStaggerGroups() {
@@ -219,11 +242,22 @@ function initTiltCards() {
 
 function initImageReveal() {
   const images = document.querySelectorAll(
-    '.cardVisual img, .psLogo, .leaderPhoto img, .productFloat .productLogo'
+    '.cardVisual img, .psLogo, .leaderPhoto, .teamPhoto, .productFloat .productLogo'
   );
   if (!images.length || prefersReducedMotion()) return;
 
-  images.forEach((img) => img.classList.add('mediaReveal'));
+  // Mobile: never hide photos behind a late reveal
+  if (isMobileViewport()) {
+    images.forEach((img) => {
+      img.classList.add('mediaReveal', 'mediaRevealed');
+    });
+    return;
+  }
+
+  images.forEach((img) => {
+    img.classList.add('mediaReveal');
+    if (isNearViewport(img)) img.classList.add('mediaRevealed');
+  });
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -233,10 +267,12 @@ function initImageReveal() {
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.2, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.01, rootMargin: '80px 0px 40px 0px' }
   );
 
-  images.forEach((img) => observer.observe(img));
+  images.forEach((img) => {
+    if (!img.classList.contains('mediaRevealed')) observer.observe(img);
+  });
 }
 
 function initLinkRipple() {

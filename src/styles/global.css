@@ -52,19 +52,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-html.jsReady body {
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    opacity 0.7s var(--easeOutExpo),
-    transform 0.7s var(--easeOutExpo);
-}
-
-html.jsReady body.pageEntered {
-  opacity: 1;
-  transform: none;
-}
-
 img {
   display: block;
   max-width: 100%;
@@ -226,78 +213,67 @@ h1, h2, h3, h4 {
 }
 
 [data-scroll-reveal] {
-  opacity: 0;
-  transform: translateY(48px);
-  filter: blur(0);
   transition:
-    opacity 0.9s var(--easeOutExpo),
-    transform 0.9s var(--easeOutExpo),
-    filter 0.9s var(--easeOutExpo);
+    opacity 0.65s var(--easeOutExpo),
+    transform 0.65s var(--easeOutExpo),
+    filter 0.65s var(--easeOutExpo);
   transition-delay: var(--revealDelay, 0s);
+}
+
+/* Hide only after JS boots, and only for not-yet-revealed (below-fold) items */
+html.motionReady [data-scroll-reveal]:not(.scrollRevealed) {
+  opacity: 0;
+  transform: translateY(36px);
+  filter: blur(0);
   will-change: opacity, transform;
+}
+
+html.motionReady [data-scroll-reveal="left"]:not(.scrollRevealed) {
+  transform: translateX(-36px);
+}
+
+html.motionReady [data-scroll-reveal="right"]:not(.scrollRevealed) {
+  transform: translateX(36px);
+}
+
+html.motionReady [data-scroll-reveal="scale"]:not(.scrollRevealed) {
+  transform: scale(0.96);
+}
+
+html.motionReady [data-scroll-reveal="blur"]:not(.scrollRevealed) {
+  transform: translateY(22px);
+  filter: blur(8px);
+}
+
+html.motionReady [data-scroll-reveal="clip"]:not(.scrollRevealed) {
+  transform: translateY(20px);
+  clip-path: inset(0 0 28% 0);
 }
 
 [data-scroll-reveal].scrollRevealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
   filter: none;
-}
-
-[data-scroll-reveal="left"] {
-  transform: translateX(-48px);
-}
-
-[data-scroll-reveal="left"].scrollRevealed {
-  transform: translateX(0);
-}
-
-[data-scroll-reveal="right"] {
-  transform: translateX(48px);
-}
-
-[data-scroll-reveal="right"].scrollRevealed {
-  transform: translateX(0);
-}
-
-[data-scroll-reveal="scale"] {
-  transform: scale(0.92);
-}
-
-[data-scroll-reveal="scale"].scrollRevealed {
-  transform: scale(1);
-}
-
-[data-scroll-reveal="blur"] {
-  transform: translateY(28px);
-  filter: blur(10px);
-}
-
-[data-scroll-reveal="blur"].scrollRevealed {
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-[data-scroll-reveal="clip"] {
-  transform: translateY(24px);
-  clip-path: inset(0 0 28% 0);
+  clip-path: inset(0 0 0 0);
 }
 
 [data-scroll-reveal="clip"].scrollRevealed {
-  transform: none;
-  clip-path: inset(0 0 0 0);
   transition:
-    opacity 0.9s var(--easeOutExpo),
-    transform 0.9s var(--easeOutExpo),
-    clip-path 1s var(--easeOutExpo);
+    opacity 0.65s var(--easeOutExpo),
+    transform 0.65s var(--easeOutExpo),
+    clip-path 0.75s var(--easeOutExpo);
 }
 
 [data-stagger] > * {
-  opacity: 0;
-  transform: translateY(22px);
   transition:
-    opacity 0.7s var(--easeOutExpo),
-    transform 0.7s var(--easeOutExpo);
+    opacity 0.55s var(--easeOutExpo),
+    transform 0.55s var(--easeOutExpo);
   transition-delay: calc(var(--staggerIndex, 0) * 0.07s + var(--revealDelay, 0s));
+}
+
+html.motionReady [data-stagger]:not(.staggerActive):not(.scrollRevealed) > * {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 [data-stagger].staggerActive > *,
@@ -354,13 +330,16 @@ h1, h2, h3, h4 {
 }
 
 .mediaReveal {
-  opacity: 0;
-  transform: scale(1.06);
-  filter: blur(6px);
   transition:
-    opacity 1s var(--easeOutExpo),
-    transform 1.1s var(--easeOutExpo),
-    filter 1s var(--easeOutExpo);
+    opacity 0.75s var(--easeOutExpo),
+    transform 0.85s var(--easeOutExpo),
+    filter 0.75s var(--easeOutExpo);
+}
+
+html.motionReady .mediaReveal:not(.mediaRevealed) {
+  opacity: 0;
+  transform: scale(1.04);
+  filter: blur(4px);
 }
 
 .mediaReveal.mediaRevealed {
@@ -429,13 +408,9 @@ h1, h2, h3, h4 {
     scroll-behavior: auto !important;
   }
 
-  body,
-  html.jsReady body,
-  html.jsReady body.pageEntered {
-    opacity: 1;
-    transform: none;
-  }
-
+  html.motionReady [data-scroll-reveal]:not(.scrollRevealed),
+  html.motionReady [data-stagger]:not(.staggerActive):not(.scrollRevealed) > *,
+  html.motionReady .mediaReveal:not(.mediaRevealed),
   [data-scroll-reveal],
   [data-stagger] > *,
   .mediaReveal {
@@ -456,5 +431,38 @@ h1, h2, h3, h4 {
     background: none;
     -webkit-background-clip: unset;
     background-clip: unset;
+  }
+}
+
+/* Skip layout/paint for offscreen sections on desktop */
+.cardsSection,
+footer.siteFooter {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+/* Mobile / touch: never leave content invisible while scrolling */
+@media (max-width: 900px), (pointer: coarse) {
+  html.motionReady [data-scroll-reveal]:not(.scrollRevealed),
+  html.motionReady [data-stagger]:not(.staggerActive):not(.scrollRevealed) > *,
+  html.motionReady .mediaReveal:not(.mediaRevealed) {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+
+  [data-scroll-reveal],
+  [data-stagger] > *,
+  .mediaReveal {
+    transition: none !important;
+    transition-delay: 0s !important;
+  }
+
+  /* Avoid deferred paint that flashes white on mobile scroll */
+  .cardsSection,
+  footer.siteFooter {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
   }
 }

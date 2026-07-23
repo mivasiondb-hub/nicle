@@ -28,7 +28,7 @@ const team = leadership.filter((p) => !p.featured);
     />
 
     <section class="leaderSection">
-      <div class="leaderCard ceoCard" data-scroll-reveal="scale">
+      <div class="leaderCard ceoCard">
         <div class="leaderBadge">Leadership</div>
         <div class="leaderGrid">
           <div class="leaderAvatarWrap">
@@ -58,7 +58,7 @@ const team = leadership.filter((p) => !p.featured);
         </div>
 
         <div class="ceoDetail">
-          <div class="ceoBlock" data-scroll-reveal>
+          <div class="ceoBlock">
             <h3>Companies founded</h3>
             <div class="companyGrid">
               {ceo.companies?.map((company) => (
@@ -71,7 +71,7 @@ const team = leadership.filter((p) => !p.featured);
             </div>
           </div>
 
-          <div class="ceoBlock" data-scroll-reveal>
+          <div class="ceoBlock">
             <h3>Legendary platforms developed</h3>
             <p class="ceoBlockLead">
               Chinedu has personally developed and written code for numerous revolutionary platforms that have
@@ -84,7 +84,7 @@ const team = leadership.filter((p) => !p.featured);
             </div>
           </div>
 
-          <div class="ceoBlock" data-scroll-reveal>
+          <div class="ceoBlock">
             <h3>The Nicer City &amp; Nicer City Networks</h3>
             <p>{ceo.cityNote}</p>
             <p class="ceoSubhead">Notable AI characters &amp; beings</p>
@@ -98,7 +98,7 @@ const team = leadership.filter((p) => !p.featured);
           </div>
 
           <div class="ceoSplit">
-            <div class="ceoBlock" data-scroll-reveal>
+            <div class="ceoBlock">
               <h3>Music &amp; entertainment</h3>
               <p>
                 As a talented singer, songwriter, and record producer, Chinedu brings artistic vision to the
@@ -108,7 +108,7 @@ const team = leadership.filter((p) => !p.featured);
                 {ceo.music?.map((item) => <span>{item}</span>)}
               </div>
             </div>
-            <div class="ceoBlock" data-scroll-reveal style="--revealDelay: 0.08s">
+            <div class="ceoBlock">
               <h3>Film &amp; production</h3>
               <p>
                 Through Hc Studios Picture, Chinedu explores storytelling and visual arts as an actor,
@@ -120,14 +120,14 @@ const team = leadership.filter((p) => !p.featured);
             </div>
           </div>
 
-          <div class="ceoLegacy" data-scroll-reveal>
+          <div class="ceoLegacy">
             <h3>Legacy &amp; vision</h3>
             <p>{ceo.legacy}</p>
           </div>
         </div>
       </div>
 
-      <div class="teamIntro" data-scroll-reveal>
+      <div class="teamIntro">
         <span class="sectionLabel">Leadership team</span>
         <h2 class="sectionTitle">The people building Nicle with vision</h2>
         <p class="sectionLead">
@@ -137,11 +137,9 @@ const team = leadership.filter((p) => !p.featured);
       </div>
 
       <div class="teamGrid">
-        {team.map((person, i) => (
+        {team.map((person) => (
           <article
             class:list={['teamCard', { teamCardWide: person.wide }]}
-            data-scroll-reveal
-            style={`--revealDelay: ${i * 0.1}s`}
           >
             <div
               class:list={['teamAvatar', { teamAvatarPhoto: !!person.photo }]}
@@ -215,9 +213,6 @@ const team = leadership.filter((p) => !p.featured);
   <Footer />
 </BaseLayout>
 
-<script>
-  import '../scripts/scrollMotion.ts';
-</script>
 
 <style>
   .leaderSection {

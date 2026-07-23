@@ -38,9 +38,12 @@ const related = product.related
         src={logo}
         alt={`${product.name} logo`}
         class="plImage"
-        widths={[320, 480, 640]}
+        widths={[240, 360, 480]}
         sizes="(max-width: 900px) 180px, 220px"
-        quality={95}
+        formats={['avif', 'webp']}
+        quality={78}
+        loading="lazy"
+        decoding="async"
       />
     </div>
     <div class="plCopy" data-scroll-reveal="right">

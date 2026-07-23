@@ -153,9 +153,12 @@ const faqSchema = {
               src={nicerappImage}
               alt="nicerapp logo"
               class="naLogo"
-              widths={[320, 480, 640]}
+              widths={[240, 360, 480]}
               sizes="(max-width: 900px) 200px, 260px"
-              quality={95}
+              formats={['avif', 'webp']}
+              quality={78}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -332,9 +335,6 @@ const faqSchema = {
   <Footer />
 </BaseLayout>
 
-<script>
-  import '../scripts/scrollMotion.ts';
-</script>
 
 <style>
   .naHero {

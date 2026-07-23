@@ -369,5 +369,57 @@
     .heroSection {
       padding: calc(var(--headerHeight) + 2rem) 1.25rem 8.5rem;
     }
+
+    .heroOrb {
+      will-change: auto;
+      animation: none;
+      filter: none;
+    }
+
+    .heroOrbPrimary {
+      opacity: 0.85;
+      background: radial-gradient(circle, rgba(237, 53, 66, 0.18) 0%, transparent 70%);
+    }
+
+    .heroOrbAccent,
+    .heroOrbBrand {
+      display: none;
+    }
+
+    .heroContent {
+      will-change: auto;
+    }
+
+    .brandWord {
+      filter: none;
+    }
+
+    .brandWordShine {
+      display: none;
+    }
+
+    .brandWordWater {
+      animation: none;
+      background-size: 100% 100%;
+      background-position: 40% 50%;
+    }
+
+    .heroBadge,
+    .heroTitle,
+    .heroSubtitle,
+    .heroActions {
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .heroOrb {
+      animation: none;
+      will-change: auto;
+    }
+
+    .heroContent {
+      will-change: auto;
+    }
   }
 </style>

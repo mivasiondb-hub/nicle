@@ -65,9 +65,12 @@ const hub = serviceHubSeo.social;
                 src={images[product.id]}
                 alt={product.name}
                 class="hubImage"
-                widths={[400, 640]}
+                widths={[360, 540]}
                 sizes="(max-width: 900px) 100vw, 360px"
-                quality={85}
+                formats={['avif', 'webp']}
+                quality={72}
+                loading="lazy"
+                decoding="async"
               />
               <div class="hubShade"></div>
             </div>
@@ -88,9 +91,6 @@ const hub = serviceHubSeo.social;
   <Footer />
 </BaseLayout>
 
-<script>
-  import '../scripts/scrollMotion.ts';
-</script>
 
 <style>
   .hubSection {

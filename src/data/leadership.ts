@@ -43,7 +43,7 @@ export const leadership: LeadershipPerson[] = [
     ],
     tags: ['Entrepreneur', 'Software engineer', 'Music & film', 'AI innovation'],
     featured: true,
-    photo: '/images/highness-hc.png',
+    photo: '/images/highness-hc.webp',
     gradient: 'linear-gradient(145deg, #ED3542, #7c5cfc 60%, #5b7cfa)',
     companies: [
       {

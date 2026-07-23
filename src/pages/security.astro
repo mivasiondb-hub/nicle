@@ -59,9 +59,12 @@ const pillars = [
             src={nicerappImage}
             alt="nicerapp logo"
             class="secImage"
-            widths={[480, 720]}
+            widths={[360, 540]}
             sizes="(max-width: 900px) 100vw, 480px"
-            quality={90}
+            formats={['avif', 'webp']}
+            quality={75}
+            loading="lazy"
+            decoding="async"
           />
           <div class="secGlow" aria-hidden="true"></div>
         </div>
@@ -116,9 +119,6 @@ const pillars = [
   <Footer />
 </BaseLayout>
 
-<script>
-  import '../scripts/scrollMotion.ts';
-</script>
 
 <style>
   .secSection {

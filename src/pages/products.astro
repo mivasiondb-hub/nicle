@@ -64,9 +64,12 @@ const afterAi = standardProducts.slice(3);
                 src={productImages[product.id]}
                 alt={product.name}
                 class="floatLogo"
-                widths={[128, 160, 192]}
+                widths={[96, 128, 160]}
                 sizes="72px"
-                quality={95}
+                formats={['avif', 'webp']}
+                quality={75}
+                loading="lazy"
+                decoding="async"
               />
             </span>
             <span class="floatName">{product.name}</span>
@@ -89,9 +92,12 @@ const afterAi = standardProducts.slice(3);
                 src={productImages[product.id]}
                 alt={`${product.name} logo`}
                 class="productLogo"
-                widths={[240, 320, 400]}
+                widths={[180, 240, 320]}
                 sizes="148px"
-                quality={95}
+                formats={['avif', 'webp']}
+                quality={78}
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <div class="productCopy">
@@ -137,9 +143,12 @@ const afterAi = standardProducts.slice(3);
                 src={productImages[product.id]}
                 alt={`${product.name} logo`}
                 class="productLogo"
-                widths={[240, 320, 400]}
+                widths={[180, 240, 320]}
                 sizes="148px"
-                quality={95}
+                formats={['avif', 'webp']}
+                quality={78}
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <div class="productCopy">
@@ -195,9 +204,6 @@ const afterAi = standardProducts.slice(3);
   <Footer />
 </BaseLayout>
 
-<script>
-  import '../scripts/scrollMotion.ts';
-</script>
 
 <style>
   .floatStrip {
@@ -380,7 +386,7 @@ const afterAi = standardProducts.slice(3);
     align-items: center;
     gap: 0.55rem;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--colorInk);
   }
 
