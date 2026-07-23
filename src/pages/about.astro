@@ -1,0 +1,990 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+
+const principles = [
+  {
+    title: 'Innovation',
+    text: 'Developing advanced AI technologies that push the boundaries of what is possible.',
+  },
+  {
+    title: 'Practicality',
+    text: 'Building products that solve real-world challenges instead of chasing benchmarks alone.',
+  },
+  {
+    title: 'Independence',
+    text: 'Owning our technology stack from infrastructure to AI models.',
+  },
+];
+
+const leaders = [
+  {
+    name: 'Mr. Highness HC',
+    role: 'Founder & Chief Executive Officer',
+    text: 'Founder and CEO of both All Things Web Technology Inc. and Nicle Inc. He leads strategic vision, product direction, and engineering, remaining actively involved in design and development as a self-taught full-stack developer who began coding at age 14.',
+  },
+  {
+    name: 'Mr. Justice Friday',
+    role: 'Co-Founder, Manager & Software Engineer',
+    text: 'Co-Founder of Nicle Inc. and Manager of All Things Web Technology Inc. He partners with the CEO on product development, software engineering, and technical strategy, helping shape Nicle’s growing portfolio.',
+  },
+  {
+    name: 'Mrs. Kiowa Assing George',
+    role: 'Chief Financial Officer',
+    text: 'Oversees financial strategy, operations, and long-term financial planning, ensuring disciplined and sustainable growth.',
+  },
+  {
+    name: 'Divine Amadi',
+    role: 'Project Manager & Software Engineer',
+    text: 'Coordinates product execution across Nicle Inc. and All Things Web Technology Inc. while contributing to software engineering initiatives that drive innovation.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Nicle Inc | Building the Future of Artificial Intelligence"
+  description="Nicle Inc is a subsidiary of All Things Web Technology Inc. Founded in May 2026 by Mr. Highness HC and Mr. Justice Friday. Learn our mission, culture, and Nicer Ecosystem vision."
+  activeNav="about"
+  image="/og-default.png"
+  canonical="/about"
+  keywords="About Nicle Inc, All Things Web Technology, Highness HC, Justice Friday, Nicer Ecosystem, AI company"
+>
+  <Header active="about" />
+  <main>
+    <PageHero
+      label="About Nicle"
+      title='Building the future of <span class="accent">artificial intelligence</span>'
+      subtitle="Nicle Inc is an artificial intelligence and software company dedicated to creating next-generation AI models and intelligent software for individuals, businesses, and developers around the world."
+      primaryCta={{ label: 'View products', href: '/products' }}
+      secondaryCta={{ label: 'Meet the team', href: '/team' }}
+    />
+
+    <section class="introSection">
+      <div class="introInner" data-scroll-reveal>
+        <p>
+          As a subsidiary of <strong>All Things Web Technology Inc.</strong>, Nicle develops
+          cutting-edge language models, productivity platforms, and AI-powered applications that form
+          the <strong>Nicer Ecosystem</strong>.
+        </p>
+        <p>
+          Founded with a vision of making advanced artificial intelligence more capable, accessible,
+          and practical, Nicle combines world-class engineering with an unwavering commitment to
+          building technology entirely in-house.
+        </p>
+        <p>
+          Today, our products serve users across multiple domains — from conversational AI and
+          productivity to creative tools and specialized applications — while laying the foundation
+          for the future of enterprise AI.
+        </p>
+      </div>
+    </section>
+
+    <section class="storySection">
+      <div class="storyGrid">
+        <div class="storyCopy" data-scroll-reveal="left">
+          <span class="sectionLabel">Our story</span>
+          <h2 class="sectionTitle">A wholly owned subsidiary</h2>
+          <p>
+            Nicle Inc. operates as a wholly owned subsidiary of
+            <strong>All Things Web Technology Inc.</strong>, a technology company founded on
+            <strong>July 5, 2019</strong> by <strong>Mr. Highness HC</strong>.
+          </p>
+          <p>
+            <strong>Nicle Inc</strong> was founded in <strong>May 2026</strong> by
+            <strong>Mr. Highness HC</strong> and <strong>Mr. Justice Friday</strong>, focused on
+            proprietary AI models, productivity platforms, and intelligent applications that scale
+            with users and enterprises worldwide.
+          </p>
+        </div>
+        <div class="storyVisual" data-scroll-reveal="right">
+          <div class="visualCard">
+            <div class="visualGlow"></div>
+            <div class="visualStat">
+              <span class="big">2026</span>
+              <span class="small">Nicle Inc founded by Mr. Highness HC &amp; Mr. Justice Friday</span>
+            </div>
+            <div class="visualRow">
+              <div>
+                <strong>Parent</strong>
+                <span>All Things Web Technology Inc.</span>
+              </div>
+              <div>
+                <strong>Parent founded</strong>
+                <span>July 5, 2019</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="missionSection">
+      <div class="missionInner">
+        <div class="missionHeader" data-scroll-reveal>
+          <span class="sectionLabel">Our mission</span>
+          <h2 class="sectionTitle">Intelligent systems that empower people</h2>
+          <p>
+            Our mission is to build intelligent systems that empower people to think, create, solve
+            problems, and accomplish more.
+          </p>
+          <p>
+            We believe artificial intelligence should go beyond impressive demonstrations. It should
+            become a reliable partner that helps individuals and organizations work smarter, make
+            better decisions, and unlock new possibilities.
+          </p>
+          <p class="missionNote">Everything we build is designed around three principles:</p>
+        </div>
+        <div class="principlesGrid">
+          {principles.map((item, i) => (
+            <article class="principleCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <span class="principleIndex">0{i + 1}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="independenceSection">
+      <div class="independenceInner" data-scroll-reveal>
+        <span class="sectionLabel">Independent by design</span>
+        <h2 class="sectionTitle">True innovation comes from building it ourselves</h2>
+        <p>
+          Nicle was founded on the belief that true innovation comes from building technology
+          ourselves. Our AI models, software platforms, infrastructure, and product ecosystem are
+          developed internally by our engineering teams.
+        </p>
+        <p>
+          This independence enables us to innovate rapidly, maintain full control over our
+          technology, and deliver experiences tailored to our users. Rather than relying on external
+          AI providers, we focus on creating proprietary technologies that reflect our long-term
+          vision and engineering standards.
+        </p>
+      </div>
+    </section>
+
+    <section class="orgSection">
+      <div class="orgInner">
+        <div class="orgHeader" data-scroll-reveal>
+          <span class="sectionLabel">Structure</span>
+          <h2 class="sectionTitle">How Nicle fits in the holding company</h2>
+        </div>
+
+        <div class="orgTree">
+          <div class="orgNode parentNode" data-scroll-reveal>
+            <span class="nodeLabel">Parent</span>
+            <h3>All Things Web Technology Inc.</h3>
+            <p>
+              Technology company founded on July 5, 2019 by Mr. Highness HC, managing Nicle’s
+              long-term ventures and core internet services.
+            </p>
+          </div>
+
+          <div class="orgConnector" aria-hidden="true" data-scroll-reveal>
+            <span class="powerRail"></span>
+            <span class="powerGlow"></span>
+            <span class="powerBolt"></span>
+            <span class="powerSpark sparkA"></span>
+            <span class="powerSpark sparkB"></span>
+            <span class="powerSpark sparkC"></span>
+          </div>
+
+          <div class="orgNode childNode" data-scroll-reveal style="--revealDelay: 0.12s">
+            <span class="nodeLabel">Subsidiary</span>
+            <h3>Nicle Inc</h3>
+            <p>
+              Founded in May 2026 by Mr. Highness HC and Mr. Justice Friday. Building language
+              models, productivity platforms, and the Nicer Ecosystem.
+            </p>
+          </div>
+        </div>
+
+        <div class="factGrid">
+          {[
+            { label: 'Parent founded', value: 'July 5, 2019' },
+            { label: 'Nicle founded', value: 'May 2026' },
+            { label: 'Ecosystem', value: 'Nicer Ecosystem' },
+            { label: 'Approach', value: 'Built in-house' },
+          ].map((fact, i) => (
+            <div class="factCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <span>{fact.label}</span>
+              <strong>{fact.value}</strong>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="leadershipSection">
+      <div class="leadershipInner">
+        <div class="leadershipHeader" data-scroll-reveal>
+          <span class="sectionLabel">Leadership</span>
+          <h2 class="sectionTitle">The people guiding Nicle</h2>
+          <p class="sectionLead">
+            A lean leadership team focused on strategy, engineering, finance, and delivery.
+          </p>
+        </div>
+        <div class="leadershipGrid">
+          {leaders.map((person, i) => (
+            <article class="leaderCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <h3>{person.name}</h3>
+              <p class="leaderRole">{person.role}</p>
+              <p>{person.text}</p>
+            </article>
+          ))}
+        </div>
+        <div class="leadershipCta" data-scroll-reveal>
+          <a href="/team" class="btnPrimary">View full team profiles</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cultureSection">
+      <div class="cultureInner" data-scroll-reveal>
+        <span class="sectionLabel">Our culture</span>
+        <h2 class="sectionTitle">Lean, engineering-driven, built for impact</h2>
+        <p>
+          We’re a lean, engineering-driven company focused on building exceptional products. Our
+          team values curiosity, craftsmanship, continuous learning, and rapid execution.
+        </p>
+        <p>
+          Rather than pursuing research for its own sake, we prioritize delivering technologies that
+          create meaningful value for users and organizations. Every product we launch reflects our
+          commitment to thoughtful engineering, practical innovation, and long-term impact.
+        </p>
+      </div>
+    </section>
+
+    <section class="presenceSection">
+      <div class="presenceInner">
+        <div class="presenceCopy" data-scroll-reveal="left">
+          <span class="sectionLabel">Looking ahead</span>
+          <h2 class="sectionTitle">Where intelligence meets innovation</h2>
+          <p>
+            Artificial intelligence is transforming how people work, learn, communicate, and create.
+            At Nicle, we’re building the technologies that will help define that future.
+          </p>
+          <p>
+            As we continue expanding the Miva model family and the Nicer Ecosystem, our focus remains
+            unchanged: creating intelligent software that is powerful, trustworthy, and genuinely
+            useful.
+          </p>
+          <p>
+            We believe the future of AI belongs to companies that build with purpose, innovate
+            independently, and put users first.
+          </p>
+          <a href="/products" class="btnPrimary">Explore the Nicer Ecosystem</a>
+        </div>
+        <div class="presenceMap" data-scroll-reveal="right">
+          <div class="mapCopy">
+            <strong>Welcome to Nicle Inc.</strong>
+            <span>Where intelligence meets innovation.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .introSection {
+    padding: 3rem 2rem 4rem;
+    background: var(--colorWhite);
+  }
+
+  .introInner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .introInner p {
+    color: var(--colorTextMuted);
+    font-size: 1.05rem;
+    margin-bottom: 1.1rem;
+    line-height: 1.75;
+  }
+
+  .introInner strong {
+    color: var(--colorInk);
+    font-weight: 700;
+  }
+
+  .storySection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .storyGrid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .storyCopy p {
+    margin-bottom: 1.1rem;
+    color: var(--colorTextMuted);
+    font-size: 1.05rem;
+  }
+
+  .storyCopy strong {
+    color: var(--colorInk);
+  }
+
+  .storyVisual {
+    perspective: 900px;
+  }
+
+  .visualCard {
+    position: relative;
+    padding: 2.5rem;
+    border-radius: var(--radiusLg);
+    background: linear-gradient(160deg, #10141f, #1a2233);
+    color: white;
+    overflow: hidden;
+    box-shadow: var(--shadowLift);
+    transform-origin: center center;
+    animation:
+      cardFloat 4.5s ease-in-out infinite,
+      cardShake 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .visualCard:hover {
+    animation-play-state: paused;
+    transform: translateY(-6px) rotateX(2deg) scale(1.02);
+    box-shadow:
+      0 24px 48px rgba(16, 20, 31, 0.35),
+      0 0 40px rgba(237, 53, 66, 0.18);
+    transition: transform 0.45s var(--easeOutExpo), box-shadow 0.45s ease;
+  }
+
+  .visualGlow {
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(237, 53, 66, 0.35), transparent 70%);
+    filter: blur(20px);
+    animation: glowPulse 3.2s ease-in-out infinite;
+  }
+
+  .visualStat {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .big {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(120deg, #fff, #ED3542);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: yearPulse 3.8s ease-in-out infinite;
+  }
+
+  @keyframes cardFloat {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-0.4deg);
+    }
+    50% {
+      transform: translateY(-14px) rotate(0.6deg);
+    }
+  }
+
+  @keyframes cardShake {
+    0%,
+    82%,
+    100% {
+      translate: 0 0;
+    }
+    84% {
+      translate: -3px 1px;
+    }
+    86% {
+      translate: 4px -2px;
+    }
+    88% {
+      translate: -2px 2px;
+    }
+    90% {
+      translate: 3px 0;
+    }
+    92% {
+      translate: -1px -1px;
+    }
+    94% {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+  }
+
+  @keyframes yearPulse {
+    0%,
+    100% {
+      filter: brightness(1);
+      letter-spacing: 0;
+    }
+    50% {
+      filter: brightness(1.15);
+      letter-spacing: 0.02em;
+    }
+  }
+
+  .small {
+    display: block;
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+  }
+
+  .visualRow {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .visualRow strong {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.3rem;
+  }
+
+  .visualRow span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .missionSection {
+    padding: 5rem 2rem;
+    background: var(--colorWhite);
+  }
+
+  .missionInner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .missionHeader {
+    max-width: 760px;
+    margin-bottom: 2.5rem;
+  }
+
+  .missionHeader p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .missionNote {
+    margin-top: 1.5rem !important;
+    font-weight: 600;
+    color: var(--colorInk) !important;
+  }
+
+  .principlesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .principleCard {
+    padding: 2rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    transition:
+      transform 0.45s var(--easeOutExpo),
+      box-shadow 0.45s ease,
+      border-color 0.35s ease;
+  }
+
+  .principleCard:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadowSoft);
+    border-color: rgba(237, 53, 66, 0.2);
+    background: var(--colorWhite);
+  }
+
+  .principleIndex {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+    margin-bottom: 0.85rem;
+  }
+
+  .principleCard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .principleCard p {
+    color: var(--colorTextMuted);
+    font-size: 0.95rem;
+  }
+
+  .independenceSection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .independenceInner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .independenceInner p {
+    color: var(--colorTextMuted);
+    font-size: 1.05rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .orgSection {
+    padding: 5rem 2rem;
+    background: var(--colorWhite);
+  }
+
+  .orgInner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .orgHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .orgHeader .sectionTitle {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .orgTree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .orgNode {
+    width: min(100%, 520px);
+    padding: 1.75rem;
+    border-radius: var(--radiusMd);
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    text-align: center;
+    transition: transform 0.4s var(--easeOutExpo), box-shadow 0.4s ease;
+  }
+
+  .orgNode:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .parentNode {
+    border-color: rgba(91, 124, 250, 0.25);
+    position: relative;
+  }
+
+  .parentNode::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: #5b7cfa;
+    box-shadow: 0 0 12px rgba(91, 124, 250, 0.8);
+    z-index: 2;
+  }
+
+  .childNode {
+    border-color: rgba(237, 53, 66, 0.25);
+    position: relative;
+    animation: childCharge 2.4s ease-in-out infinite;
+  }
+
+  .childNode::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: #ED3542;
+    box-shadow: 0 0 12px rgba(237, 53, 66, 0.85);
+    z-index: 2;
+  }
+
+  @keyframes childCharge {
+    0%, 70%, 100% {
+      box-shadow: 0 0 0 rgba(237, 53, 66, 0);
+    }
+    82% {
+      box-shadow: 0 0 28px rgba(237, 53, 66, 0.28);
+    }
+  }
+
+  .nodeLabel {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--colorBrand);
+  }
+
+  .orgNode h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .orgNode p {
+    font-size: 0.92rem;
+    color: var(--colorTextMuted);
+  }
+
+  .orgConnector {
+    position: relative;
+    width: 28px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .powerRail {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    margin-left: -1.5px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #5b7cfa 0%, #7c5cfc 45%, #ED3542 100%);
+    box-shadow:
+      0 0 10px rgba(91, 124, 250, 0.45),
+      0 0 18px rgba(237, 53, 66, 0.25);
+  }
+
+  .powerGlow {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 18px;
+    height: 100%;
+    margin-left: -9px;
+    background: linear-gradient(
+      180deg,
+      rgba(91, 124, 250, 0.35),
+      rgba(124, 92, 252, 0.18),
+      rgba(237, 53, 66, 0.35)
+    );
+    filter: blur(8px);
+    opacity: 0.7;
+    animation: powerPulse 2.4s ease-in-out infinite;
+  }
+
+  .powerBolt {
+    position: absolute;
+    left: 50%;
+    top: -8%;
+    width: 8px;
+    height: 22px;
+    margin-left: -4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffffff 0%, #8ec5ff 30%, #c4b5fd 55%, #ED3542 100%);
+    box-shadow:
+      0 0 12px rgba(255, 255, 255, 0.95),
+      0 0 22px rgba(91, 124, 250, 0.9),
+      0 0 34px rgba(237, 53, 66, 0.65);
+    animation: powerTravel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .powerSpark {
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px #fff, 0 0 14px #5b7cfa;
+    opacity: 0;
+    animation: sparkBurst 2.4s ease-in-out infinite;
+  }
+
+  .sparkA { animation-delay: 0s; --sparkX: -12px; }
+  .sparkB {
+    animation-delay: 0.15s;
+    box-shadow: 0 0 8px #fff, 0 0 14px #ED3542;
+    --sparkX: 14px;
+  }
+  .sparkC {
+    animation-delay: 0.3s;
+    box-shadow: 0 0 8px #fff, 0 0 14px #7c5cfc;
+    --sparkX: -6px;
+  }
+
+  @keyframes powerTravel {
+    0% { top: -8%; opacity: 0; transform: scaleY(0.7); }
+    12% { opacity: 1; transform: scaleY(1); }
+    78% { opacity: 1; transform: scaleY(1.05); }
+    100% { top: 92%; opacity: 0; transform: scaleY(0.65); }
+  }
+
+  @keyframes powerPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.85; }
+  }
+
+  @keyframes sparkBurst {
+    0%, 65% {
+      top: 10%;
+      opacity: 0;
+      transform: translateX(0) scale(0.4);
+    }
+    72% {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    100% {
+      top: 88%;
+      opacity: 0;
+      transform: translateX(var(--sparkX, 10px)) scale(0.2);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .powerBolt,
+    .powerGlow,
+    .powerSpark,
+    .childNode,
+    .visualCard,
+    .visualGlow,
+    .big {
+      animation: none;
+    }
+
+    .visualCard:hover {
+      transform: none;
+    }
+
+    .powerBolt {
+      top: 40%;
+      opacity: 0.7;
+    }
+  }
+
+  .factGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .factCard {
+    padding: 1.35rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    text-align: center;
+  }
+
+  .factCard span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--colorTextMuted);
+    margin-bottom: 0.4rem;
+  }
+
+  .factCard strong {
+    font-family: var(--fontDisplay);
+    font-size: 1.05rem;
+    color: var(--colorInk);
+  }
+
+  .leadershipSection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .leadershipInner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .leadershipHeader {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .leadershipGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .leaderCard {
+    padding: 1.75rem;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    transition:
+      transform 0.45s var(--easeOutExpo),
+      box-shadow 0.45s ease;
+  }
+
+  .leaderCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .leaderCard h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .leaderRole {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--colorBrand);
+    margin-bottom: 0.85rem !important;
+  }
+
+  .leaderCard p {
+    color: var(--colorTextMuted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .leadershipCta {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .cultureSection {
+    padding: 5rem 2rem;
+    background: var(--colorWhite);
+  }
+
+  .cultureInner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .cultureInner p {
+    color: var(--colorTextMuted);
+    font-size: 1.05rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .presenceSection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .presenceInner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .presenceCopy p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+  }
+
+  .presenceCopy .btnPrimary {
+    margin-top: 0.75rem;
+  }
+
+  .presenceMap {
+    position: relative;
+    min-height: 280px;
+    border-radius: var(--radiusLg);
+    background:
+      radial-gradient(circle at 30% 35%, rgba(237, 53, 66, 0.18), transparent 40%),
+      radial-gradient(circle at 70% 60%, rgba(91, 124, 250, 0.16), transparent 35%),
+      linear-gradient(160deg, #0e1420, #1a2233);
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .mapCopy {
+    text-align: center;
+    color: white;
+  }
+
+  .mapCopy strong {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .mapCopy span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .storyGrid,
+    .principlesGrid,
+    .factGrid,
+    .leadershipGrid,
+    .presenceInner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

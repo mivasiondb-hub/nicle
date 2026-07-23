@@ -1,0 +1,221 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/site';
+import { serviceHubSeo, productSeo } from '../data/productSeo';
+import mivasionImage from '../assets/images/mivasion-fit.jpeg';
+import worldnicerImage from '../assets/images/worldnicer-fit.jpeg';
+import chatnicerImage from '../assets/images/chatnicer-fit.webp';
+
+const socialProducts = products.filter((p) =>
+  ['mivasion', 'worldnicer', 'chatnicer'].includes(p.id)
+);
+
+const images: Record<string, ImageMetadata> = {
+  mivasion: mivasionImage,
+  worldnicer: worldnicerImage,
+  chatnicer: chatnicerImage,
+};
+
+const productPaths = Object.fromEntries(productSeo.map((p) => [p.id, p.path]));
+const hub = serviceHubSeo.social;
+---
+
+<BaseLayout
+  title={hub.title}
+  description={hub.description}
+  activeNav="products"
+  image="/og-worldnicer.jpeg"
+  imageAlt="worldnicer and Nicle social platforms"
+  canonical={hub.path}
+  keywords={hub.keywords}
+>
+  <Header active="products" />
+  <main>
+    <PageHero
+      label="Social & creative"
+      title='Platforms built for <span class="accent">creators and communities</span>'
+      subtitle="Mivasion, worldnicer, and Chatnicer bring creative AI, positive social spaces, and rich media sharing into one connected ecosystem."
+      primaryCta={{ label: 'View all products', href: '/products' }}
+      secondaryCta={{ label: 'Explore AI', href: '/intelligence' }}
+    />
+
+    <section class="hubSection">
+      <div class="hubIntro" data-scroll-reveal>
+        <span class="sectionLabel">Three platforms</span>
+        <h2 class="sectionTitle">Create. Connect. Share.</h2>
+        <p class="sectionLead">
+          Each product has a clear job — studio craft, social positivity, or moments through photos and Reels.
+        </p>
+      </div>
+
+      <div class="hubGrid">
+        {socialProducts.map((product, i) => (
+          <a
+            href={productPaths[product.id] || `/products#${product.id}`}
+            class="hubCard"
+            data-scroll-reveal
+            style={`--revealDelay: ${i * 0.1}s; --accent: ${product.accent}`}
+          >
+            <div class="hubVisual">
+              <Image
+                src={images[product.id]}
+                alt={product.name}
+                class="hubImage"
+                widths={[400, 640]}
+                sizes="(max-width: 900px) 100vw, 360px"
+                quality={85}
+              />
+              <div class="hubShade"></div>
+            </div>
+            <div class="hubBody">
+              <span class="hubTag">{product.tagline}</span>
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <ul>
+                {product.features.map((f) => <li>{f}</li>)}
+              </ul>
+              <span class="hubLink">Open on products →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .hubSection {
+    padding: 3rem 2rem 5rem;
+    background: var(--colorWhite);
+  }
+
+  .hubIntro {
+    max-width: 640px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .hubIntro .sectionLead {
+    margin: 0 auto;
+  }
+
+  .hubGrid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.35rem;
+  }
+
+  .hubCard {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radiusLg);
+    overflow: hidden;
+    border: 1px solid var(--colorBorder);
+    background: var(--colorWhite);
+    transition:
+      transform 0.45s var(--easeOutExpo),
+      box-shadow 0.45s ease,
+      border-color 0.3s ease;
+  }
+
+  .hubCard:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadowSoft);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--colorBorder));
+  }
+
+  .hubVisual {
+    position: relative;
+    height: 220px;
+    background: #050508;
+    overflow: hidden;
+  }
+
+  .hubImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 1.5rem;
+    transition: transform 0.6s var(--easeOutExpo);
+  }
+
+  .hubCard:hover .hubImage {
+    transform: scale(1.05);
+  }
+
+  .hubShade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.35));
+    pointer-events: none;
+  }
+
+  .hubBody {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .hubTag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+  }
+
+  .hubBody h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .hubBody p {
+    font-size: 0.92rem;
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .hubBody ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .hubBody li {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent) 12%, white);
+    color: var(--colorInk);
+  }
+
+  .hubLink {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+  }
+
+  @media (max-width: 960px) {
+    .hubGrid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+  }
+</style>

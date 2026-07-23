@@ -1,0 +1,692 @@
+---
+const capabilities = [
+  { title: 'Chat & voice', text: 'Type or speak. Get fluent, human like answers in real time.', icon: 'chat' },
+  { title: 'Code generation', text: 'Write, debug, and explain code across languages and stacks.', icon: 'code' },
+  { title: 'Documents', text: 'Summarize, draft, and create polished documents instantly.', icon: 'docs' },
+  { title: 'Image generation', text: 'Turn prompts into visuals for product, brand, and content.', icon: 'image' },
+];
+
+const chatLines = [
+  { role: 'user', text: 'Build a secure messaging feature with end to end encryption.' },
+  { role: 'ai', text: 'Here is a privacy first approach with key exchange, sealed sessions, and no server readable payloads…' },
+  { role: 'user', text: 'Also generate a product hero image for nicer ai plus.' },
+  { role: 'ai', text: 'Done. A luminous assistant interface with soft violet depth and brand red accents is ready.' },
+];
+---
+
+<section class="aiShowcase" id="niceraiplus" data-ai-showcase>
+  <div class="aiGlow" aria-hidden="true"></div>
+  <div class="aiGlowAlt" aria-hidden="true"></div>
+
+  <div class="aiInner">
+    <div class="aiIntro" data-scroll-reveal>
+      <div class="aiBadge">
+        <img src="/images/nicer-ai-plus-fit.jpeg" alt="" class="aiBadgeLogo" width="28" height="28" />
+        nicer ai plus
+      </div>
+      <h2 class="aiTitle">
+        Intelligence that
+        <span class="aiAccent">thinks with you</span>
+      </h2>
+      <p class="aiLead">
+        An advanced conversational assistant from Nicle Inc. Prompt with text or voice —
+        it writes code, summarizes documents, creates files, and generates images with
+        human like fluency.
+      </p>
+      <div class="aiActions">
+        <a href="#aiDemo" class="btnPrimary aiCta">
+          See it in action
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 3V13M8 13L4 9M8 13L12 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <a href="/about" class="aiGhost">Why we built it</a>
+      </div>
+    </div>
+
+    <div class="aiStage" id="aiDemo">
+      <div class="chatPanel" data-scroll-reveal="left">
+        <div class="chatChrome">
+          <div class="chromeDots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="chromeTitle">nicer ai plus</span>
+          <span class="chromeLive">
+            <i></i> Live
+          </span>
+        </div>
+
+        <div class="chatBody" data-chat-body>
+          {chatLines.map((line, i) => (
+            <div
+              class:list={['chatBubble', line.role === 'user' ? 'bubbleUser' : 'bubbleAi']}
+              data-chat-line
+              style={`--lineDelay: ${0.2 + i * 0.35}s`}
+            >
+              {line.role === 'ai' && (
+                <span class="aiAvatar" aria-hidden="true">
+                  <img src="/images/nicer-ai-plus-fit.jpeg" alt="" width="28" height="28" />
+                </span>
+              )}
+              <p>{line.text}</p>
+            </div>
+          ))}
+          <div class="typingRow" data-typing>
+            <span class="aiAvatar" aria-hidden="true">
+              <img src="/images/nicer-ai-plus-fit.jpeg" alt="" width="28" height="28" />
+            </span>
+            <div class="typingDots">
+              <i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="chatInput">
+          <span class="inputPlaceholder">Ask nicer ai plus anything…</span>
+          <button class="sendBtn" type="button" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="capPanel" data-scroll-reveal="right">
+        {capabilities.map((cap, i) => (
+          <article class="capCard" style={`--capDelay: ${0.15 + i * 0.1}s`} data-cap-card>
+            <div class="capIcon" aria-hidden="true">
+              {cap.icon === 'chat' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v9a2 2 0 01-2 2H9l-5 4V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              )}
+              {cap.icon === 'code' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 4l-4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              )}
+              {cap.icon === 'docs' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="1.6"/><path d="M14 3v5h5M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              )}
+              {cap.icon === 'image' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><path d="M3 16l5-4 4 3 3-2 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              )}
+            </div>
+            <h3>{cap.title}</h3>
+            <p>{cap.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="aiStrip" data-scroll-reveal>
+      <div class="stripItem">
+        <strong>Multimodal</strong>
+        <span>Text · Voice · Images</span>
+      </div>
+      <div class="stripDivider"></div>
+      <div class="stripItem">
+        <strong>Built by Nicle</strong>
+        <span>Large scale AI models</span>
+      </div>
+      <div class="stripDivider"></div>
+      <div class="stripItem">
+        <strong>Ready for teams</strong>
+        <span>Create · Code · Summarize</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAiShowcase() {
+    const showcase = document.querySelector('[data-ai-showcase]');
+    if (!showcase) return;
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lines = showcase.querySelectorAll('[data-chat-line]');
+    const typing = showcase.querySelector('[data-typing]');
+    const caps = showcase.querySelectorAll('[data-cap-card]');
+
+    const play = () => {
+      showcase.classList.add('aiActive');
+      lines.forEach((line) => line.classList.add('lineVisible'));
+      caps.forEach((cap) => cap.classList.add('capVisible'));
+
+      if (typing && !reduce) {
+        typing.classList.add('typingVisible');
+        window.setTimeout(() => typing.classList.add('typingHide'), 2200);
+      } else if (typing) {
+        typing.classList.add('typingHide');
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            play();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(showcase);
+
+    if (window.location.hash === '#niceraiplus') {
+      window.requestAnimationFrame(() => {
+        showcase.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        showcase.classList.add('aiHashFocus');
+        window.setTimeout(() => showcase.classList.remove('aiHashFocus'), 1600);
+        play();
+      });
+    }
+  }
+
+  initAiShowcase();
+</script>
+
+<style>
+  .aiShowcase {
+    position: relative;
+    margin: 2rem 0 1rem;
+    padding: 5rem 2rem;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 15% 20%, rgba(124, 92, 252, 0.16), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 90% 80%, rgba(237, 53, 66, 0.12), transparent 50%),
+      linear-gradient(180deg, #07090f 0%, #0e1220 50%, #0a0d16 100%);
+    border-radius: 0;
+    scroll-margin-top: calc(var(--headerHeight) + 12px);
+    transition: box-shadow 0.8s var(--easeOutExpo);
+  }
+
+  .aiShowcase.aiHashFocus {
+    box-shadow:
+      inset 0 0 0 1px rgba(124, 92, 252, 0.35),
+      0 0 80px rgba(124, 92, 252, 0.18);
+  }
+
+  .aiGlow,
+  .aiGlowAlt {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .aiGlow {
+    width: 420px;
+    height: 420px;
+    top: -80px;
+    right: 10%;
+    background: rgba(124, 92, 252, 0.28);
+    animation: glowDrift 10s ease-in-out infinite alternate;
+  }
+
+  .aiGlowAlt {
+    width: 320px;
+    height: 320px;
+    bottom: -40px;
+    left: 5%;
+    background: rgba(237, 53, 66, 0.18);
+    animation: glowDrift 12s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes glowDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(20px, -18px) scale(1.08); }
+  }
+
+  .aiInner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .aiIntro {
+    max-width: 720px;
+    margin-bottom: 3rem;
+  }
+
+  .aiBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.95rem;
+    margin-bottom: 1.15rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+  }
+
+  .aiBadgeLogo {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #0a0a0c;
+    display: block;
+  }
+
+  .aiBadgeDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #a78bfa;
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.8);
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .aiTitle {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.08;
+  }
+
+  .aiAccent {
+    display: block;
+    background: linear-gradient(120deg, #fff 10%, #a78bfa 45%, #ED3542 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .aiLead {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.68);
+    margin-bottom: 1.75rem;
+  }
+
+  .aiActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .aiCta svg {
+    transition: transform 0.3s var(--easeOutExpo);
+  }
+
+  .aiCta:hover svg {
+    transform: translateY(3px);
+  }
+
+  .aiGhost {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.25s ease;
+  }
+
+  .aiGhost:hover {
+    color: white;
+  }
+
+  .aiStage {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-bottom: 2.5rem;
+  }
+
+  .chatPanel {
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    min-height: 460px;
+  }
+
+  .chatChrome {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.15rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .chromeDots {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .chromeDots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .chromeDots span:nth-child(1) { background: #ED3542; }
+  .chromeDots span:nth-child(2) { background: #f5c542; }
+  .chromeDots span:nth-child(3) { background: #34c759; }
+
+  .chromeTitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .chromeLive {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #86efac;
+  }
+
+  .chromeLive i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px #22c55e;
+    animation: pulseDot 1.6s ease-in-out infinite;
+  }
+
+  .chatBody {
+    flex: 1;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    overflow: hidden;
+  }
+
+  .chatBubble {
+    max-width: 88%;
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    transition:
+      opacity 0.55s var(--easeOutExpo),
+      transform 0.55s var(--easeOutExpo);
+    transition-delay: var(--lineDelay, 0s);
+  }
+
+  .aiActive .chatBubble.lineVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .bubbleUser {
+    align-self: flex-end;
+  }
+
+  .bubbleUser p {
+    padding: 0.85rem 1rem;
+    background: linear-gradient(135deg, #ED3542, #c42b36);
+    color: white;
+    border-radius: 16px 16px 4px 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    box-shadow: 0 8px 24px rgba(237, 53, 66, 0.25);
+  }
+
+  .bubbleAi {
+    align-self: flex-start;
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-end;
+  }
+
+  .bubbleAi p {
+    padding: 0.85rem 1rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.88);
+    border-radius: 16px 16px 16px 4px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .aiAvatar {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(237, 80, 160, 0.35);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+
+  .aiAvatar img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .typingRow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .typingRow.typingVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .typingRow.typingHide {
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+  }
+
+  .typingDots {
+    display: flex;
+    gap: 4px;
+    padding: 0.75rem 0.95rem;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+  }
+
+  .typingDots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    animation: typingBounce 1.1s ease-in-out infinite;
+  }
+
+  .typingDots i:nth-child(2) { animation-delay: 0.15s; }
+  .typingDots i:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  .chatInput {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 1rem 1rem;
+    padding: 0.75rem 0.85rem 0.75rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .inputPlaceholder {
+    flex: 1;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .sendBtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: var(--colorBrand);
+    transition: transform 0.3s var(--easeOutExpo), background 0.25s ease;
+  }
+
+  .sendBtn:hover {
+    transform: scale(1.08);
+    background: var(--colorBrandHover);
+  }
+
+  .capPanel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+
+  .capCard {
+    padding: 1.25rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s var(--easeOutExpo),
+      transform 0.6s var(--easeOutExpo),
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.35s ease;
+    transition-delay: var(--capDelay, 0s);
+  }
+
+  .aiActive .capCard.capVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .capCard:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(167, 139, 250, 0.35);
+    box-shadow: 0 12px 36px rgba(124, 92, 252, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .capIcon {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 0.85rem;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    color: #c4b5fd;
+    background: rgba(124, 92, 252, 0.18);
+  }
+
+  .capCard h3 {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+
+  .capCard p {
+    font-size: 0.84rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .aiStrip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1.35rem 2rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stripItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+  }
+
+  .stripItem strong {
+    font-family: var(--fontDisplay);
+    font-size: 1rem;
+    color: white;
+  }
+
+  .stripItem span {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .stripDivider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  @media (max-width: 960px) {
+    .aiStage {
+      grid-template-columns: 1fr;
+    }
+
+    .capPanel {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .aiStrip {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stripDivider {
+      width: 48px;
+      height: 1px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .aiShowcase {
+      padding: 3.5rem 1.25rem;
+    }
+
+    .capPanel {
+      grid-template-columns: 1fr;
+    }
+
+    .chatPanel {
+      min-height: 400px;
+    }
+  }
+</style>

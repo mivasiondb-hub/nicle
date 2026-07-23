@@ -1,0 +1,285 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/site';
+import { serviceHubSeo, getProductSeo, buildProductSchema } from '../data/productSeo';
+import nicerappImage from '../assets/images/nicerapp-fit.jpeg';
+
+const app = products.find((p) => p.id === 'nicerapp')!;
+const nicerappSeo = getProductSeo('nicerapp')!;
+const hub = serviceHubSeo.security;
+
+const pillars = [
+  {
+    title: 'End to end encryption',
+    text: 'Messages stay sealed between people. Servers cannot read your conversations.',
+  },
+  {
+    title: 'No backdoors',
+    text: 'A transparent system with no hidden access paths — privacy is not a marketing line.',
+  },
+  {
+    title: 'True ownership',
+    text: 'Users keep ownership of conversations. Security is designed in from the first message.',
+  },
+  {
+    title: 'Private groups',
+    text: 'Talk in trusted circles with the same encryption and clarity you expect one to one.',
+  },
+];
+---
+
+<BaseLayout
+  title={hub.title}
+  description={hub.description}
+  activeNav="products"
+  image={nicerappSeo.image}
+  imageAlt={nicerappSeo.imageAlt}
+  canonical={hub.path}
+  keywords={hub.keywords}
+  jsonLd={buildProductSchema(nicerappSeo)}
+>
+  <Header active="products" />
+  <main>
+    <PageHero
+      label="Security"
+      title='Messaging with <span class="accent">zero compromise</span>'
+      subtitle="nicerapp is Nicle’s privacy first messenger — end to end encryption, no backdoors, and transparent security for every conversation."
+      primaryCta={{ label: 'Open nicerapp', href: '/nicerapp' }}
+      secondaryCta={{ label: 'Explore AI', href: '/intelligence' }}
+    />
+
+    <section class="secSection">
+      <div class="secLayout">
+        <div class="secVisual" data-scroll-reveal="left">
+          <Image
+            src={nicerappImage}
+            alt="nicerapp logo"
+            class="secImage"
+            widths={[480, 720]}
+            sizes="(max-width: 900px) 100vw, 480px"
+            quality={90}
+          />
+          <div class="secGlow" aria-hidden="true"></div>
+        </div>
+
+        <div class="secCopy" data-scroll-reveal="right">
+          <span class="sectionLabel">{app.tagline}</span>
+          <h2 class="sectionTitle">{app.name}</h2>
+          <p>{app.description}</p>
+          <ul class="secFeatures">
+            {app.features.map((f) => (
+              <li>
+                <span class="dot"></span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href="/nicerapp" class="btnPrimary">Learn more about nicerapp</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillarSection">
+      <div class="pillarInner">
+        <div class="pillarHeader" data-scroll-reveal>
+          <span class="sectionLabel">Why this hub is different</span>
+          <h2 class="sectionTitle">Security first. Not social. Not AI studio.</h2>
+          <p class="sectionLead">
+            This page focuses only on private messaging — the promises that make nicerapp distinct in the Nicle stack.
+          </p>
+        </div>
+        <div class="pillarGrid">
+          {pillars.map((item, i) => (
+            <article class="pillarCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <span class="pillarIndex">0{i + 1}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="secBand" data-scroll-reveal>
+      <h2>Continue through the ecosystem</h2>
+      <p>Jump to social platforms or intelligence — each hub shows different products and stories.</p>
+      <div class="secBandActions">
+        <a href="/social" class="btnOutline">Social & creative</a>
+        <a href="/intelligence" class="btnPrimary">Intelligence</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .secSection {
+    padding: 3rem 2rem 4rem;
+    background: var(--colorWhite);
+  }
+
+  .secLayout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .secVisual {
+    position: relative;
+    min-height: 380px;
+    border-radius: var(--radiusLg);
+    background: radial-gradient(circle at 50% 40%, #2a1848 0%, #120a1c 55%, #08050e 100%);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    box-shadow: var(--shadowLift);
+  }
+
+  .secImage {
+    width: min(70%, 280px);
+    height: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .secGlow {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(237, 53, 66, 0.22);
+    filter: blur(50px);
+  }
+
+  .secCopy p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+
+  .secFeatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .secFeatures li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--colorBrand);
+    flex-shrink: 0;
+  }
+
+  .pillarSection {
+    padding: 4rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .pillarInner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pillarHeader {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .pillarGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .pillarCard {
+    padding: 1.75rem;
+    border-radius: var(--radiusMd);
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    transition: transform 0.4s var(--easeOutExpo), box-shadow 0.4s ease;
+  }
+
+  .pillarCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .pillarIndex {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+    margin-bottom: 0.65rem;
+  }
+
+  .pillarCard h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .pillarCard p {
+    color: var(--colorTextMuted);
+    font-size: 0.92rem;
+  }
+
+  .secBand {
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: var(--radiusLg);
+    background: linear-gradient(135deg, #14080c, #2a1018 50%, #ED3542);
+    color: white;
+  }
+
+  .secBand h2 {
+    color: white;
+    margin-bottom: 0.65rem;
+  }
+
+  .secBand p {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .secBandActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .secLayout,
+    .pillarGrid,
+    .secFeatures {
+      grid-template-columns: 1fr;
+    }
+
+    .secVisual {
+      min-height: 300px;
+    }
+  }
+</style>

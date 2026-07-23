@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+import NicerAiPlusShowcase from '../components/NicerAiPlusShowcase.astro';
+import { products } from '../data/site';
+import { serviceHubSeo, getProductSeo, buildProductSchema } from '../data/productSeo';
+
+const ai = products.find((p) => p.id === 'niceraiplus')!;
+const aiSeo = getProductSeo('nicer-ai-plus')!;
+const hub = serviceHubSeo.intelligence;
+
+const useCases = [
+  {
+    title: 'Build with code',
+    text: 'Generate, explain, and refine software across languages — from scripts to full features.',
+  },
+  {
+    title: 'Ship documents faster',
+    text: 'Draft briefs, summarize long files, and create polished documents from a single prompt.',
+  },
+  {
+    title: 'Create visuals',
+    text: 'Turn ideas into images for product, marketing, and creative storytelling.',
+  },
+  {
+    title: 'Talk naturally',
+    text: 'Type or speak. nicer ai plus responds with fluent, human like conversation.',
+  },
+];
+---
+
+<BaseLayout
+  title={hub.title}
+  description={hub.description}
+  activeNav="products"
+  image={aiSeo.image}
+  imageAlt={aiSeo.imageAlt}
+  canonical={hub.path}
+  keywords={hub.keywords}
+  jsonLd={buildProductSchema(aiSeo)}
+>
+  <Header active="products" />
+  <main>
+    <PageHero
+      label="Intelligence"
+      title='AI that <span class="accent">creates with you</span>'
+      subtitle="nicer ai plus is Nicle’s advanced assistant for conversation, code, documents, and image generation — built for people and teams who ship."
+      primaryCta={{ label: 'See nicer ai plus', href: '/nicer-ai-plus' }}
+      secondaryCta={{ label: 'Social platforms', href: '/social' }}
+    />
+
+    <section class="aiMeta">
+      <div class="aiMetaInner" data-scroll-reveal>
+        <div class="aiMetaCard">
+          <span>Product</span>
+          <strong>{ai.name}</strong>
+        </div>
+        <div class="aiMetaCard">
+          <span>Focus</span>
+          <strong>{ai.tagline}</strong>
+        </div>
+        <div class="aiMetaCard">
+          <span>Capabilities</span>
+          <strong>{ai.features.length} core modes</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="useSection">
+      <div class="useInner">
+        <div class="useHeader" data-scroll-reveal>
+          <span class="sectionLabel">What you can do</span>
+          <h2 class="sectionTitle">Different from social. Built for intelligence.</h2>
+          <p class="sectionLead">
+            This hub is only about AI. Explore how nicer ai plus helps you create — then jump into the live showcase.
+          </p>
+        </div>
+        <div class="useGrid">
+          {useCases.map((item, i) => (
+            <article class="useCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div id="showcase">
+      <NicerAiPlusShowcase />
+    </div>
+
+    <section class="aiCta" data-scroll-reveal>
+      <h2>Want the full product map?</h2>
+      <p>See every platform in the Nicle ecosystem, or explore secure messaging next.</p>
+      <div class="aiCtaActions">
+        <a href="/nicer-ai-plus" class="btnPrimary">nicer ai plus</a>
+        <a href="/security" class="btnOutline darkOutline">Security hub</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .aiMeta {
+    padding: 0 2rem 2rem;
+    background: var(--colorWhite);
+  }
+
+  .aiMetaInner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .aiMetaCard {
+    padding: 1.35rem 1.5rem;
+    border-radius: var(--radiusMd);
+    border: 1px solid var(--colorBorder);
+    background: var(--colorSurface);
+  }
+
+  .aiMetaCard span {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--colorTextMuted);
+    margin-bottom: 0.35rem;
+  }
+
+  .aiMetaCard strong {
+    font-family: var(--fontDisplay);
+    font-size: 1.15rem;
+    color: var(--colorInk);
+  }
+
+  .useSection {
+    padding: 3rem 2rem 4rem;
+    background: var(--colorSurface);
+  }
+
+  .useInner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .useHeader {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .useGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .useCard {
+    padding: 1.75rem;
+    border-radius: var(--radiusMd);
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    transition: transform 0.4s var(--easeOutExpo), box-shadow 0.4s ease;
+  }
+
+  .useCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .useCard h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .useCard p {
+    color: var(--colorTextMuted);
+    font-size: 0.95rem;
+  }
+
+  .aiCta {
+    max-width: 900px;
+    margin: 0 auto 5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: var(--radiusLg);
+    background: linear-gradient(135deg, #0e1420, #1a1028 55%, #ED3542);
+    color: white;
+  }
+
+  .aiCta h2 {
+    color: white;
+    margin-bottom: 0.65rem;
+  }
+
+  .aiCta p {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .aiCtaActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .darkOutline {
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+
+  @media (max-width: 800px) {
+    .aiMetaInner,
+    .useGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

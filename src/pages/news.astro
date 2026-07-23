@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+import { newsItems } from '../data/site';
+---
+
+<BaseLayout
+  title="News | Nicle Inc Product & AI Updates"
+  description="Latest news from Nicle Inc — worldnicer, nicer ai plus, nicerapp security, Mivasion, and company milestones across the Nicer Ecosystem."
+  activeNav="news"
+  image="/og-default.png"
+  canonical="/news"
+  keywords="Nicle news, worldnicer news, AI updates, product launches"
+>
+  <Header active="news" />
+  <main>
+    <PageHero
+      label="News"
+      title='Stories from the <span class="accent">Nicle ecosystem</span>'
+      subtitle="Product launches, AI breakthroughs, security updates, and company milestones from Ontario to the world."
+      primaryCta={{ label: 'Explore products', href: '/products' }}
+      secondaryCta={{ label: 'Meet the team', href: '/team' }}
+    />
+
+    <section class="newsPage">
+      <div class="newsLayout">
+        <article class="featuredNews" data-scroll-reveal>
+          <span class="newsCategory">{newsItems[0].category}</span>
+          <time>{newsItems[0].date}</time>
+          <h2>{newsItems[0].title}</h2>
+          <p>{newsItems[0].excerpt}</p>
+          <a href="/products#niceraiplus" class="btnGhost">
+            Learn about nicer ai plus
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </article>
+
+        <div class="newsStream">
+          {newsItems.slice(1).map((item, i) => (
+            <article
+              class="newsItem"
+              data-scroll-reveal
+              style={`--revealDelay: ${i * 0.08}s`}
+            >
+              <div class="newsMeta">
+                <span class="newsCategory">{item.category}</span>
+                <time>{item.date}</time>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.excerpt}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletterBand" data-scroll-reveal="scale">
+      <div class="newsletterInner">
+        <h2>Stay close to what we ship next</h2>
+        <p>Follow Nicle across products, AI research, and global expansion.</p>
+        <div class="newsletterActions">
+          <a href="/about" class="btnOutline">About Nicle</a>
+          <a href="/about" class="btnPrimary">About Nicle</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .newsPage {
+    padding: 2rem 2rem 4rem;
+    background: var(--colorWhite);
+  }
+
+  .newsLayout {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .featuredNews {
+    position: sticky;
+    top: calc(var(--headerHeight) + 1.5rem);
+    padding: 2.5rem;
+    border-radius: var(--radiusLg);
+    background: linear-gradient(155deg, #0e1420, #1c1220 55%, #2a1018);
+    color: white;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadowLift);
+  }
+
+  .featuredNews .newsCategory {
+    color: #ff8a96;
+    background: rgba(237, 53, 66, 0.18);
+  }
+
+  .featuredNews time {
+    display: block;
+    margin: 1rem 0 0.75rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .featuredNews h2 {
+    color: white;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+
+  .featuredNews p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .featuredNews .btnGhost {
+    color: white;
+  }
+
+  .newsCategory {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--colorBrand);
+    background: var(--colorBrandSoft);
+    border-radius: 999px;
+  }
+
+  .newsStream {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .newsItem {
+    padding: 1.5rem 1.6rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    transition:
+      transform 0.4s var(--easeOutExpo),
+      box-shadow 0.4s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .newsItem:hover {
+    transform: translateY(-4px);
+    background: var(--colorWhite);
+    border-color: rgba(237, 53, 66, 0.18);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .newsMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .newsMeta time {
+    font-size: 0.8rem;
+    color: var(--colorTextMuted);
+    font-weight: 600;
+  }
+
+  .newsItem h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsItem p {
+    font-size: 0.92rem;
+    color: var(--colorTextMuted);
+  }
+
+  .newsletterBand {
+    margin: 0 2rem 5rem;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--radiusLg);
+    overflow: hidden;
+    background: linear-gradient(135deg, #0e1420, #ED3542);
+  }
+
+  .newsletterInner {
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+
+  .newsletterInner h2 {
+    color: white;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 0.65rem;
+  }
+
+  .newsletterInner p {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletterActions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 900px) {
+    .newsLayout {
+      grid-template-columns: 1fr;
+    }
+
+    .featuredNews {
+      position: static;
+      min-height: auto;
+    }
+  }
+</style>

@@ -1,0 +1,168 @@
+<footer class="siteFooter">
+  <div class="footerTop" data-scroll-reveal data-stagger>
+    <div class="footerBrand">
+      <img
+        src="/nicle-logo.png"
+        alt="Nicle Inc"
+        class="footerLogo"
+        width="110"
+        height="36"
+        loading="lazy"
+      />
+      <p class="footerTagline">
+        Building the future of human connection through AI, social platforms, and secure communication.
+      </p>
+      <a href="/products" class="btnPrimary footerCta">Explore products</a>
+    </div>
+
+    <div class="footerLinks">
+      <div class="footerCol">
+        <h4 class="footerHeading">Navigate</h4>
+        <a href="/about">About</a>
+        <a href="/products">Products</a>
+        <a href="/team">Team</a>
+        <a href="/news">News</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="footerCol">
+        <h4 class="footerHeading">Products</h4>
+        <a href="/mivasion">Mivasion</a>
+        <a href="/worldnicer">worldnicer</a>
+        <a href="/nicerapp">nicerapp</a>
+        <a href="/nicer-ai-plus">nicer ai plus</a>
+        <a href="/chatnicer">Chatnicer</a>
+      </div>
+      <div class="footerCol">
+        <h4 class="footerHeading">Company</h4>
+        <a href="/team">Leadership</a>
+        <a href="/about">Our story</a>
+        <a href="/contact">Help Center</a>
+        <a href="/careers">Careers</a>
+        <a href="mailto:we@nicleinc.com">we@nicleinc.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footerBottom">
+    <p>
+      &copy; {new Date().getFullYear()} Nicle Inc. A subsidiary of
+      <a
+        href="https://www.allthingswebtechnology.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footerParentLink"
+      >All Things Web Technology Inc.</a>
+    </p>
+    <p>Ontario, Canada · Africa · Australia</p>
+  </div>
+</footer>
+
+<style>
+  .siteFooter {
+    background: var(--colorInk);
+    color: rgba(255, 255, 255, 0.65);
+    padding: 5rem 2rem 2rem;
+  }
+
+  .footerTop {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    gap: 4rem;
+    max-width: 1280px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .footerLogo {
+    height: 34px;
+    width: auto;
+    margin-bottom: 1.15rem;
+  }
+
+  .footerTagline {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 320px;
+    margin-bottom: 1.5rem;
+  }
+
+  .footerCta {
+    padding: 0.7rem 1.35rem;
+    font-size: 0.8125rem;
+  }
+
+  .footerLinks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .footerCol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footerHeading {
+    font-family: var(--fontDisplay);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--colorWhite);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .footerCol a {
+    font-size: 0.9rem;
+    transition: color 0.25s ease, transform 0.25s var(--easeOutExpo);
+  }
+
+  .footerCol a:hover {
+    color: var(--colorBrand);
+    transform: translateX(3px);
+  }
+
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8125rem;
+  }
+
+  .footerParentLink {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.25s ease;
+  }
+
+  .footerParentLink:hover {
+    color: var(--colorBrand);
+  }
+
+  @media (max-width: 900px) {
+    .footerTop {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footerLinks {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footerLinks {
+      grid-template-columns: 1fr;
+    }
+
+    .footerBottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

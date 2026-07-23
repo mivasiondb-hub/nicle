@@ -1,0 +1,116 @@
+---
+import { siteUrl, siteName, defaultSeo, organizationSchema, websiteSchema } from '../data/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activeNav?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article' | 'product';
+  canonical?: string;
+  noindex?: boolean;
+  keywords?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = defaultSeo.title,
+  description = defaultSeo.description,
+  activeNav = '',
+  image = defaultSeo.image,
+  imageAlt = defaultSeo.imageAlt,
+  type = defaultSeo.type,
+  canonical,
+  noindex = false,
+  keywords = 'Nicle Inc, worldnicer, nicerapp, Mivasion, nicer ai plus, Chatnicer, AI software, social network, All Things Web Technology',
+  jsonLd = [],
+} = Astro.props;
+
+const canonicalUrl = canonical
+  ? canonical.startsWith('http')
+    ? canonical
+    : `${siteUrl}${canonical}`
+  : `${siteUrl}${Astro.url.pathname === '/' ? '' : Astro.url.pathname.replace(/\/$/, '')}`;
+
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const pageTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+
+const structuredData = [
+  organizationSchema,
+  websiteSchema,
+  ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]).filter(Boolean),
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Nicle Inc" />
+    <meta name="publisher" content="Nicle Inc" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="theme-color" content="#ED3542" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/nicle-logo.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type === 'product' ? 'website' : type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:type" content={ogImage.endsWith('.jpeg') || ogImage.endsWith('.jpg') ? 'image/jpeg' : 'image/png'} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!-- LinkedIn / general social -->
+    <meta property="article:publisher" content={siteName} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body>
+    <div class="scrollProgress" data-scroll-progress aria-hidden="true"></div>
+    <slot />
+  </body>
+</html>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<script define:vars={{ activeNav }}>
+  document.documentElement.dataset.activeNav = activeNav;
+</script>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

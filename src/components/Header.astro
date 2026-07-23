@@ -1,0 +1,193 @@
+---
+interface Props {
+  active?: string;
+}
+
+const { active = '' } = Astro.props;
+
+const navItems = [
+  { label: 'About', href: '/about', key: 'about' },
+  { label: 'Products', href: '/products', key: 'products' },
+  { label: 'Team', href: '/team', key: 'team' },
+  { label: 'News', href: '/news', key: 'news' },
+  { label: 'Contact', href: '/contact', key: 'contact' },
+];
+---
+
+<header class="siteHeader" data-header>
+  <div class="headerInner">
+    <a href="/" class="logoLink" aria-label="Nicle Inc home">
+      <img
+        src="/nicle-logo.png"
+        alt="Nicle Inc"
+        class="logoImage"
+        width="90"
+        height="26"
+        fetchpriority="high"
+      />
+    </a>
+
+    <nav class="mainNav" aria-label="Main navigation">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={['navLink', { navLinkActive: active === item.key }]}
+          data-nav-link={item.href}
+        >
+          {item.label}
+          <span class="navUnderline" aria-hidden="true"></span>
+        </a>
+      ))}
+    </nav>
+
+    <a href="/products" class="headerCta">Get started</a>
+  </div>
+</header>
+
+<style>
+  .siteHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--headerHeight);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid transparent;
+    transition:
+      background 0.4s var(--easeOutQuart),
+      border-color 0.4s var(--easeOutQuart),
+      box-shadow 0.4s var(--easeOutQuart);
+  }
+
+  .siteHeader.headerScrolled {
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom-color: var(--colorBorder);
+    box-shadow: 0 8px 32px rgba(10, 10, 11, 0.06);
+  }
+
+  .headerInner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding: 0 1.25rem 0 0;
+  }
+
+  .logoLink {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 0 0 0 12px;
+    margin: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .logoLink:hover {
+    opacity: 0.88;
+  }
+
+  .logoImage {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .mainNav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: 0.5rem;
+  }
+
+  .navLink {
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--colorTextMuted);
+    padding: 0.55rem 0;
+    transition: color 0.25s var(--easeOutQuart);
+  }
+
+  .navLink:hover,
+  .navLink.navLinkActive {
+    color: var(--colorInk);
+  }
+
+  .navUnderline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--colorBrand);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s var(--easeOutExpo);
+  }
+
+  .navLinkActive .navUnderline,
+  .navLink:hover .navUnderline {
+    transform: scaleX(1);
+  }
+
+  .headerCta {
+    position: relative;
+    margin-left: auto;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--colorWhite);
+    background: var(--colorBrand);
+    border-radius: 999px;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      background 0.25s ease,
+      transform 0.3s var(--easeOutExpo),
+      box-shadow 0.3s ease;
+  }
+
+  .headerCta:hover {
+    background: var(--colorBrandHover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px var(--colorBrandGlow);
+  }
+
+  @media (max-width: 860px) {
+    .headerCta {
+      display: none;
+    }
+
+    .headerInner {
+      padding: 0 0.75rem 0 0;
+      gap: 0.75rem;
+    }
+
+    .logoLink {
+      padding-left: 10px;
+    }
+
+    .logoImage {
+      height: 24px;
+    }
+
+    .mainNav {
+      gap: 1rem;
+      overflow-x: auto;
+      margin-left: auto;
+    }
+
+    .navLink {
+      font-size: 0.8125rem;
+      white-space: nowrap;
+    }
+  }
+</style>

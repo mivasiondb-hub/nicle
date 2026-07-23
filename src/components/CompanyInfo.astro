@@ -1,0 +1,105 @@
+<section class="companySection">
+  <div class="companyInner">
+    <div class="companyHeader" data-scroll-reveal>
+      <span class="sectionLabel">Company</span>
+      <h2 class="sectionTitle">Building the future of artificial intelligence</h2>
+      <p class="sectionLead">
+        Nicle Inc is a subsidiary of All Things Web Technology Inc. Nicle was founded in May 2026 by
+        Mr. Highness HC and Mr. Justice Friday. The parent company was founded on July 5, 2019 by
+        Mr. Highness HC.
+      </p>
+    </div>
+
+    <div class="companyGrid">
+      <a href="/team" class="infoBlock" data-scroll-reveal style="--revealDelay: 0s">
+        <h3 class="infoTitle">Leadership</h3>
+        <p class="infoText">
+          Meet the founders and leaders guiding strategy, engineering, finance, and delivery.
+        </p>
+        <span class="infoLink">View Team →</span>
+      </a>
+
+      <a href="/products" class="infoBlock" data-scroll-reveal style="--revealDelay: 0.1s">
+        <h3 class="infoTitle">Platforms</h3>
+        <p class="infoText">
+          Language models, productivity tools, and AI applications across the Nicer Ecosystem.
+        </p>
+        <span class="infoLink">View products →</span>
+      </a>
+
+      <a href="/about" class="infoBlock" data-scroll-reveal style="--revealDelay: 0.2s">
+        <h3 class="infoTitle">Mission</h3>
+        <p class="infoText">
+          Build intelligent systems that empower people to think, create, solve problems, and accomplish more.
+        </p>
+        <span class="infoLink">About Nicle →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .companySection {
+    padding: 5rem 2rem;
+    background: var(--colorWhite);
+  }
+
+  .companyInner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .companyHeader {
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .companyGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .infoBlock {
+    display: block;
+    padding: 2rem;
+    background: var(--colorSurface);
+    border-radius: var(--radiusMd);
+    border: 1px solid var(--colorBorder);
+    transition:
+      transform 0.45s var(--easeOutExpo),
+      box-shadow 0.45s ease,
+      border-color 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .infoBlock:hover {
+    transform: translateY(-6px);
+    background: var(--colorWhite);
+    box-shadow: var(--shadowSoft);
+    border-color: rgba(237, 53, 66, 0.18);
+  }
+
+  .infoTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .infoText {
+    font-size: 0.95rem;
+    color: var(--colorTextMuted);
+    margin-bottom: 1.1rem;
+  }
+
+  .infoLink {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+  }
+
+  @media (max-width: 900px) {
+    .companyGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

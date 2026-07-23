@@ -1,0 +1,113 @@
+---
+import { newsItems } from '../data/site';
+
+const preview = newsItems.slice(0, 3);
+---
+
+<section class="newsSection">
+  <div class="newsInner">
+    <div class="newsHeader" data-scroll-reveal>
+      <span class="sectionLabel">News</span>
+      <h2 class="sectionTitle">Latest from Nicle Inc</h2>
+    </div>
+
+    <div class="newsGrid" data-scroll-reveal data-stagger>
+      {preview.map((item) => (
+        <a href="/news" class="newsCard">
+          <div class="newsMeta">
+            <span class="newsCat">{item.category}</span>
+            <time class="newsDate">{item.date}</time>
+          </div>
+          <h3 class="newsTitle">{item.title}</h3>
+          <p class="newsExcerpt">{item.excerpt}</p>
+        </a>
+      ))}
+    </div>
+
+    <div class="newsCta" data-scroll-reveal>
+      <a href="/news" class="btnGhost">View all news →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsSection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .newsInner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .newsHeader {
+    margin-bottom: 2.5rem;
+  }
+
+  .newsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .newsCard {
+    display: block;
+    padding: 1.75rem;
+    background: var(--colorWhite);
+    border-radius: var(--radiusMd);
+    border: 1px solid var(--colorBorder);
+    transition:
+      transform 0.45s var(--easeOutExpo),
+      box-shadow 0.45s ease,
+      border-color 0.35s ease;
+  }
+
+  .newsCard:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadowSoft);
+    border-color: rgba(237, 53, 66, 0.16);
+  }
+
+  .newsMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .newsCat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--colorBrand);
+  }
+
+  .newsDate {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--colorTextMuted);
+  }
+
+  .newsTitle {
+    font-size: 1.05rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .newsExcerpt {
+    font-size: 0.9rem;
+    color: var(--colorTextMuted);
+  }
+
+  .newsCta {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .newsGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

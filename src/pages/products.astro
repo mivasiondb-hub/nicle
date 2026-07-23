@@ -1,0 +1,477 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import PageHero from '../components/PageHero.astro';
+import Footer from '../components/Footer.astro';
+import NicerAiPlusShowcase from '../components/NicerAiPlusShowcase.astro';
+import { products } from '../data/site';
+import { productItemListSchema, productSeo } from '../data/productSeo';
+import mivasionImage from '../assets/images/mivasion-fit.jpeg';
+import worldnicerImage from '../assets/images/worldnicer-fit.jpeg';
+import nicerappImage from '../assets/images/nicerapp-fit.jpeg';
+import chatnicerImage from '../assets/images/chatnicer-fit.webp';
+import nicerAiPlusImage from '../assets/images/nicer-ai-plus-fit.jpeg';
+
+const productImages: Record<string, ImageMetadata> = {
+  mivasion: mivasionImage,
+  worldnicer: worldnicerImage,
+  nicerapp: nicerappImage,
+  chatnicer: chatnicerImage,
+  niceraiplus: nicerAiPlusImage,
+};
+
+const productPaths: Record<string, string> = Object.fromEntries(
+  productSeo.map((p) => [p.id, p.path])
+);
+
+const floatProducts = products.filter((p) => productImages[p.id]);
+const standardProducts = products.filter((p) => p.id !== 'niceraiplus');
+const beforeAi = standardProducts.slice(0, 3);
+const afterAi = standardProducts.slice(3);
+---
+
+<BaseLayout
+  title="Products | worldnicer, nicerapp, Mivasion, nicer ai plus & Chatnicer"
+  description="Explore Nicle products and services: worldnicer privacy first social network, nicerapp encrypted messaging, Mivasion AI studio, nicer ai plus assistant, and Chatnicer photos & Reels."
+  activeNav="products"
+  image="/og-default.png"
+  canonical="/products"
+  keywords="Nicle products, worldnicer, nicerapp, Mivasion, nicer ai plus, Chatnicer, AI apps, social platforms, Nicle services"
+  jsonLd={productItemListSchema}
+>
+  <Header active="products" />
+  <main>
+    <PageHero
+      label="Products"
+      title='An ecosystem built for <span class="accent">creators, communities &amp; privacy</span>'
+      subtitle="Five platforms. One mission. From AI studios and social networks to encrypted messaging and intelligent assistants."
+      primaryCta={{ label: 'Talk to our AI', href: '/products#niceraiplus' }}
+      secondaryCta={{ label: 'Our story', href: '/about' }}
+    />
+
+    <section class="floatStrip" aria-label="Nicle products">
+      <div class="floatRow" data-scroll-reveal data-stagger>
+        {floatProducts.map((product, i) => (
+          <a
+            href={productPaths[product.id] || `#${product.id}`}
+            class="floatIcon"
+            style={`--floatDelay: ${i * 0.08}s; --floatAccent: ${product.accent}`}
+            title={product.name}
+          >
+            <span class="floatBubble">
+              <Image
+                src={productImages[product.id]}
+                alt={product.name}
+                class="floatLogo"
+                widths={[128, 160, 192]}
+                sizes="72px"
+                quality={95}
+              />
+            </span>
+            <span class="floatName">{product.name}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="productsSection">
+      <div class="productsList">
+        {beforeAi.map((product, index) => (
+          <article
+            class:list={['productBlock', { reverse: index % 2 === 1 }]}
+            id={product.id}
+            data-scroll-reveal
+            style={`--revealDelay: ${index * 0.05}s`}
+          >
+            <a href={productPaths[product.id] || `#${product.id}`} class="productFloat" aria-label={product.name}>
+              <Image
+                src={productImages[product.id]}
+                alt={`${product.name} logo`}
+                class="productLogo"
+                widths={[240, 320, 400]}
+                sizes="148px"
+                quality={95}
+              />
+            </a>
+            <div class="productCopy">
+              <span class="productAccent" style={`color: ${product.accent}`}>{product.tagline}</span>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+              <ul class="featureList">
+                {product.features.map((feature) => (
+                  <li>
+                    <span class="check" style={`background: ${product.accent}`}></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div class="productLinks">
+                <a href={productPaths[product.id] || `#${product.id}`} class="btnPrimary">
+                  Learn more
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a href="/about" class="btnGhost">Why Nicle builds this</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <NicerAiPlusShowcase />
+
+    <section class="productsSection productsSectionAfter">
+      <div class="productsList">
+        {afterAi.map((product, index) => (
+          <article
+            class:list={['productBlock', { reverse: (index + beforeAi.length) % 2 === 1 }]}
+            id={product.id}
+            data-scroll-reveal
+            style={`--revealDelay: ${index * 0.05}s`}
+          >
+            <a href={productPaths[product.id] || `#${product.id}`} class="productFloat" aria-label={product.name}>
+              <Image
+                src={productImages[product.id]}
+                alt={`${product.name} logo`}
+                class="productLogo"
+                widths={[240, 320, 400]}
+                sizes="148px"
+                quality={95}
+              />
+            </a>
+            <div class="productCopy">
+              <span class="productAccent" style={`color: ${product.accent}`}>{product.tagline}</span>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+              <ul class="featureList">
+                {product.features.map((feature) => (
+                  <li>
+                    <span class="check" style={`background: ${product.accent}`}></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div class="productLinks">
+                <a href={productPaths[product.id] || `#${product.id}`} class="btnPrimary">
+                  Learn more
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+                <a href="/about" class="btnGhost">Why Nicle builds this</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="stackSection" data-scroll-reveal>
+      <div class="stackInner">
+        <span class="sectionLabel">Together</span>
+        <h2 class="sectionTitle">One company. One connected stack.</h2>
+        <p class="sectionLead">
+          Social, messaging, creative AI, and intelligent assistance — designed to work as a
+          coherent digital ecosystem under Nicle Inc.
+        </p>
+        <div class="stackRow">
+          {products.map((p, i) => (
+            <a
+              href={productPaths[p.id] || `#${p.id}`}
+              class:list={['stackChip', { stackChipHot: p.id === 'niceraiplus' }]}
+              style={`--revealDelay: ${i * 0.08}s`}
+              data-scroll-reveal
+            >
+              {p.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .floatStrip {
+    padding: 2.25rem 1.5rem 1.25rem;
+    background: var(--colorWhite);
+  }
+
+  .floatRow {
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(1.25rem, 4vw, 2.75rem);
+    flex-wrap: wrap;
+  }
+
+  .floatIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    width: 88px;
+    text-align: center;
+    transition: transform 0.35s var(--easeOutExpo);
+    animation: floatBob 4.5s ease-in-out infinite;
+    animation-delay: var(--floatDelay);
+  }
+
+  .floatIcon:hover {
+    transform: translateY(-6px) scale(1.05);
+  }
+
+  .floatBubble {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 10px 22px rgba(10, 10, 11, 0.14),
+      0 0 0 1px rgba(10, 10, 11, 0.06);
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .floatLogo {
+    width: 100%;
+    height: 100%;
+    max-width: none !important;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .floatName {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--colorTextMuted);
+    line-height: 1.2;
+  }
+
+  .floatIcon:hover .floatName {
+    color: var(--colorInk);
+  }
+
+  @keyframes floatBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floatIcon {
+      animation: none;
+    }
+  }
+
+  .productsSection {
+    padding: 2rem 2rem 4rem;
+    background: var(--colorWhite);
+  }
+
+  .productsSectionAfter {
+    padding-top: 4rem;
+  }
+
+  .productsList {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .productBlock {
+    display: grid;
+    grid-template-columns: 168px minmax(0, 1fr);
+    gap: 2.25rem;
+    align-items: center;
+    scroll-margin-top: calc(var(--headerHeight) + 16px);
+  }
+
+  .productBlock.reverse {
+    direction: rtl;
+  }
+
+  .productBlock.reverse > * {
+    direction: ltr;
+  }
+
+  .productBlock.reverse .productFloat {
+    justify-self: end;
+  }
+
+  .productFloat {
+    display: block;
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 16px 34px rgba(10, 10, 11, 0.16),
+      0 0 0 1px rgba(10, 10, 11, 0.06);
+    transition: transform 0.4s var(--easeOutExpo), box-shadow 0.4s ease;
+    flex-shrink: 0;
+  }
+
+  .productFloat:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow:
+      0 22px 40px rgba(10, 10, 11, 0.2),
+      0 0 0 1px rgba(10, 10, 11, 0.08);
+  }
+
+  .productLogo {
+    width: 100%;
+    height: 100%;
+    max-width: none !important;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    background: #000;
+  }
+
+  .productCopy h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin: 0.4rem 0 1rem;
+  }
+
+  .productAccent {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .productCopy p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1.35rem;
+    font-size: 1.02rem;
+  }
+
+  .productLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+  }
+
+  .featureList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .featureList li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--colorInk);
+  }
+
+  .check {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stackSection {
+    padding: 5rem 2rem;
+    background: var(--colorSurface);
+  }
+
+  .stackInner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .stackInner .sectionLead {
+    margin: 0 auto 2rem;
+  }
+
+  .stackRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .stackChip {
+    padding: 0.7rem 1.2rem;
+    font-family: var(--fontDisplay);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--colorInk);
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    transition:
+      transform 0.35s var(--easeOutExpo),
+      border-color 0.3s ease,
+      box-shadow 0.35s ease,
+      color 0.25s ease,
+      background 0.3s ease;
+  }
+
+  .stackChip:hover {
+    transform: translateY(-3px);
+    color: var(--colorBrand);
+    border-color: rgba(237, 53, 66, 0.3);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .stackChipHot {
+    color: white;
+    background: linear-gradient(135deg, #7c5cfc, #ED3542);
+    border-color: transparent;
+  }
+
+  .stackChipHot:hover {
+    color: white;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(124, 92, 252, 0.3);
+  }
+
+  @media (max-width: 900px) {
+    .productBlock,
+    .productBlock.reverse {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      text-align: center;
+    }
+
+    .productFloat {
+      margin-inline: auto;
+    }
+
+    .productBlock.reverse .productFloat {
+      justify-self: center;
+    }
+
+    .productLinks {
+      justify-content: center;
+    }
+
+    .featureList {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+  }
+</style>

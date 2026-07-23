@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProductLanding from '../components/ProductLanding.astro';
+import { getProductSeo, buildProductSchema, buildProductFaqSchema } from '../data/productSeo';
+import nicerAiPlusImage from '../assets/images/nicer-ai-plus-fit.jpeg';
+
+const product = getProductSeo('nicer-ai-plus')!;
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.description}
+  activeNav="products"
+  image={product.image}
+  imageAlt={product.imageAlt}
+  type="product"
+  canonical={product.path}
+  keywords={product.keywords}
+  jsonLd={[buildProductSchema(product), buildProductFaqSchema(product)]}
+>
+  <Header active="products" />
+  <main>
+    <ProductLanding product={product} logo={nicerAiPlusImage} />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>

@@ -1,0 +1,748 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const contactEmail = 'we@nicleinc.com';
+
+const roles = [
+  {
+    title: 'Engineering',
+    text: 'Full-stack, mobile, infrastructure, and AI systems across the Nicer Ecosystem.',
+    tags: ['TypeScript', 'Mobile', 'AI systems'],
+  },
+  {
+    title: 'Product & design',
+    text: 'Shape experiences for social, messaging, creative tools, and intelligent assistants.',
+    tags: ['Product', 'UX', 'Systems'],
+  },
+  {
+    title: 'Operations & growth',
+    text: 'Help Nicle scale across Ontario, Africa, Australia, and new markets.',
+    tags: ['Ops', 'Partnerships', 'Growth'],
+  },
+  {
+    title: 'Open application',
+    text: 'Don’t see an exact fit? Tell us how you want to contribute — we still want to hear from you.',
+    tags: ['General', 'Internship'],
+  },
+];
+
+const values = [
+  {
+    title: 'Privacy by design',
+    text: 'We build products people can trust — from nicerapp encryption to user-owned social graphs.',
+  },
+  {
+    title: 'Ship with craft',
+    text: 'Speed matters, but quality and clarity matter more. We care about what users actually feel.',
+  },
+  {
+    title: 'Global mindset',
+    text: 'Nicle is a subsidiary of All Things Web Technology Inc., working across Canada, Africa, and Australia.',
+  },
+];
+
+const steps = [
+  { step: '01', title: 'Apply', text: 'Complete the form. We generate a reference number and open your email with your application ready to send.' },
+  { step: '02', title: 'Review', text: 'Our team reviews applications on a rolling basis and routes them to the right hiring lead.' },
+  { step: '03', title: 'Conversation', text: 'Strong fits move to intro chats about craft, product sense, and how you want to grow with Nicle.' },
+];
+
+const careersSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Careers at Nicle',
+  url: 'https://nicleinc.com/careers',
+  description:
+    'Apply to join Nicle Inc. Open roles in engineering, product, design, and operations. Email applications to we@nicleinc.com with a reference number.',
+  about: {
+    '@type': 'Organization',
+    name: 'Nicle Inc',
+    email: contactEmail,
+    url: 'https://nicleinc.com',
+  },
+};
+---
+
+<BaseLayout
+  title="Careers at Nicle | Apply to Join the Team"
+  description="Apply for careers at Nicle Inc. Open roles in engineering, product, design, and operations. Submit the application form and email we@nicleinc.com with your reference number."
+  activeNav="contact"
+  image="/og-default.png"
+  canonical="/careers"
+  keywords="careers at Nicle, Nicle jobs, Nicle careers, apply Nicle, we@nicleinc.com, Nicle hiring"
+  jsonLd={careersSchema}
+>
+  <Header active="contact" />
+  <main>
+    <section class="careersHero">
+      <div class="careersHeroInner" data-scroll-reveal>
+        <span class="heroEyebrow">Careers at Nicle</span>
+        <h1>Build the future of <span class="accent">human connection</span></h1>
+        <p>
+          Join the team behind worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer.
+          Privacy-first products. Global ambition. Real craft.
+        </p>
+        <div class="heroActions">
+          <a href="#apply" class="btnPrimary">Apply now</a>
+          <a href="/team" class="btnGhost">Meet the team</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rolesSection">
+      <div class="rolesInner">
+        <div class="rolesHeader" data-scroll-reveal>
+          <span class="sectionLabel">Open paths</span>
+          <h2 class="sectionTitle">Where you can make an impact</h2>
+          <p class="sectionLead">
+            We’re hiring builders who care about privacy, product quality, and people — not just demos.
+          </p>
+        </div>
+        <div class="rolesGrid" data-scroll-reveal data-stagger>
+          {roles.map((role) => (
+            <article class="roleCard">
+              <h3>{role.title}</h3>
+              <p>{role.text}</p>
+              <div class="roleTags">
+                {role.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="valuesSection" data-scroll-reveal>
+      <div class="valuesInner">
+        <span class="sectionLabel">Why Nicle</span>
+        <h2 class="sectionTitle">Work that compounds</h2>
+        <div class="valuesGrid" data-stagger>
+          {values.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="processSection">
+      <div class="processInner" data-scroll-reveal data-stagger>
+        {steps.map((item) => (
+          <article>
+            <span>{item.step}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="applySection" id="apply">
+      <div class="applyShell" data-scroll-reveal>
+        <div class="applyIntro">
+          <span class="sectionLabel">Application</span>
+          <h2 class="sectionTitle">Tell us about you</h2>
+          <p>
+            Fill out the form below. When you submit, we’ll generate a unique reference number and open your email
+            client with everything filled in — ready to send to <strong>{contactEmail}</strong>.
+          </p>
+          <ul class="applyNotes">
+            <li>Keep your reference number — use it in follow-ups</li>
+            <li>Attach your résumé in the email after it opens</li>
+            <li>Applications are reviewed on a rolling basis</li>
+          </ul>
+        </div>
+
+        <form class="careersForm" id="careers-form" novalidate>
+          <div class="formGrid">
+            <label class="field">
+              <span>Full name</span>
+              <input type="text" name="fullName" autocomplete="name" required placeholder="Your full name" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" autocomplete="email" required placeholder="you@example.com" />
+            </label>
+            <label class="field">
+              <span>Phone</span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="+1 …" />
+            </label>
+            <label class="field">
+              <span>Location</span>
+              <input type="text" name="location" autocomplete="country-name" required placeholder="City, country" />
+            </label>
+            <label class="field">
+              <span>Role interest</span>
+              <select name="role" required>
+                <option value="">Select a path</option>
+                <option>Engineering</option>
+                <option>Product &amp; design</option>
+                <option>Operations &amp; growth</option>
+                <option>Internship</option>
+                <option>Open application</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Product focus</span>
+              <select name="productFocus">
+                <option value="">Any / open</option>
+                <option>worldnicer</option>
+                <option>nicerapp</option>
+                <option>Mivasion</option>
+                <option>nicer ai plus</option>
+                <option>Chatnicer</option>
+                <option>Platform / infrastructure</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Years of experience</span>
+              <select name="experience" required>
+                <option value="">Select</option>
+                <option>0–1</option>
+                <option>1–3</option>
+                <option>3–5</option>
+                <option>5–8</option>
+                <option>8+</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Availability</span>
+              <select name="availability" required>
+                <option value="">Select</option>
+                <option>Immediately</option>
+                <option>Within 2 weeks</option>
+                <option>Within 1 month</option>
+                <option>1–3 months</option>
+                <option>Exploring</option>
+              </select>
+            </label>
+            <label class="field fieldWide">
+              <span>Portfolio / LinkedIn / GitHub</span>
+              <input type="url" name="portfolio" placeholder="https://" />
+            </label>
+            <label class="field fieldWide">
+              <span>Current company or school</span>
+              <input type="text" name="currentOrg" placeholder="Optional" />
+            </label>
+            <label class="field fieldWide">
+              <span>Why Nicle?</span>
+              <textarea name="whyNicle" rows="5" required placeholder="What draws you to Nicle, and what do you want to build with us?"></textarea>
+            </label>
+            <label class="field fieldWide">
+              <span>Anything else we should know?</span>
+              <textarea name="notes" rows="3" placeholder="Optional notes, links, or context"></textarea>
+            </label>
+          </div>
+
+          <div class="formFooter">
+            <p class="formHint" id="form-hint" aria-live="polite">
+              Submitting opens your email app with a prefilled application and reference number.
+            </p>
+            <button type="submit" class="btnPrimary formSubmit">
+              Submit application
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="refBanner" id="ref-banner" hidden>
+            <div>
+              <span class="refLabel">Your reference number</span>
+              <strong id="ref-value"></strong>
+            </div>
+            <p>Save this code. It’s included in your email subject and body so we can track your application.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="careersCta" data-scroll-reveal="scale">
+      <div class="careersCtaInner">
+        <h2>Questions before you apply?</h2>
+        <p>Reach us at {contactEmail} or visit the Help Center.</p>
+        <div class="heroActions">
+          <a href={`mailto:${contactEmail}`} class="btnPrimary">Email we@nicleinc.com</a>
+          <a href="/contact" class="btnGhost">Back to Contact</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  const CONTACT_EMAIL = 'we@nicleinc.com';
+
+  function makeRefNumber() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+    const stamp = String(now.getTime()).slice(-4);
+    return `NCL-${y}${m}${d}-${rand}${stamp}`;
+  }
+
+  function val(form: HTMLFormElement, name: string) {
+    const el = form.elements.namedItem(name);
+    if (!el || !('value' in el)) return '';
+    return String((el as HTMLInputElement).value).trim();
+  }
+
+  function buildBody(data: Record<string, string>, ref: string) {
+    return [
+      'Nicle Inc — Career Application',
+      '================================',
+      `Reference: ${ref}`,
+      `Submitted: ${new Date().toISOString()}`,
+      '',
+      `Full name: ${data.fullName}`,
+      `Email: ${data.email}`,
+      `Phone: ${data.phone || '—'}`,
+      `Location: ${data.location}`,
+      `Role interest: ${data.role}`,
+      `Product focus: ${data.productFocus || 'Any / open'}`,
+      `Experience: ${data.experience}`,
+      `Availability: ${data.availability}`,
+      `Portfolio / LinkedIn / GitHub: ${data.portfolio || '—'}`,
+      `Current company or school: ${data.currentOrg || '—'}`,
+      '',
+      'Why Nicle?',
+      data.whyNicle,
+      '',
+      'Additional notes:',
+      data.notes || '—',
+      '',
+      '--------------------------------',
+      'Please attach your résumé/CV to this email before sending.',
+      `Reference to quote in follow-ups: ${ref}`,
+    ].join('\n');
+  }
+
+  const form = document.getElementById('careers-form') as HTMLFormElement | null;
+  const hint = document.getElementById('form-hint');
+  const banner = document.getElementById('ref-banner');
+  const refValue = document.getElementById('ref-value');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      if (hint) hint.textContent = 'Please complete the required fields before submitting.';
+      return;
+    }
+
+    const data = {
+      fullName: val(form, 'fullName'),
+      email: val(form, 'email'),
+      phone: val(form, 'phone'),
+      location: val(form, 'location'),
+      role: val(form, 'role'),
+      productFocus: val(form, 'productFocus'),
+      experience: val(form, 'experience'),
+      availability: val(form, 'availability'),
+      portfolio: val(form, 'portfolio'),
+      currentOrg: val(form, 'currentOrg'),
+      whyNicle: val(form, 'whyNicle'),
+      notes: val(form, 'notes'),
+    };
+
+    const ref = makeRefNumber();
+    const subject = `Careers at Nicle — ${data.role} — ${ref}`;
+    const body = buildBody(data, ref);
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (refValue) refValue.textContent = ref;
+    if (banner) banner.hidden = false;
+    if (hint) {
+      hint.textContent = `Reference ${ref} is ready. Your email app should open next — attach your résumé, then send.`;
+    }
+
+    banner?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    window.location.href = mailto;
+  });
+</script>
+
+<style>
+  .careersHero {
+    padding: calc(var(--headerHeight) + 5rem) 1.5rem 3.5rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -10%, rgba(52, 168, 83, 0.12), transparent 60%),
+      radial-gradient(ellipse 45% 40% at 90% 10%, rgba(237, 53, 66, 0.08), transparent 50%),
+      var(--colorWhite);
+  }
+
+  .careersHeroInner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .heroEyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #137333;
+    margin-bottom: 1rem;
+  }
+
+  .careersHero h1 {
+    font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+
+  .careersHero p {
+    color: var(--colorTextMuted);
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+  }
+
+  .heroActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+  }
+
+  .rolesSection,
+  .applySection {
+    padding: 4.5rem 1.5rem;
+    background: var(--colorWhite);
+  }
+
+  .rolesInner,
+  .applyShell,
+  .valuesInner,
+  .processInner,
+  .careersCtaInner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .rolesHeader {
+    max-width: 640px;
+    margin-bottom: 2.25rem;
+  }
+
+  .rolesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .roleCard {
+    padding: 1.5rem 1.4rem;
+    border-radius: 16px;
+    background: #e6f4ea;
+    transition: transform 0.35s var(--easeOutExpo), box-shadow 0.35s ease;
+  }
+
+  .roleCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(20, 20, 24, 0.08);
+  }
+
+  .roleCard h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .roleCard p {
+    color: #3c4043;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .roleTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .roleTags span {
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #137333;
+  }
+
+  .valuesSection {
+    padding: 4.5rem 1.5rem;
+    background: var(--colorSurface);
+  }
+
+  .valuesGrid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .valuesGrid article {
+    padding: 1.35rem 1.25rem;
+    border-radius: 14px;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+  }
+
+  .valuesGrid h3 {
+    margin-bottom: 0.45rem;
+    font-size: 1.05rem;
+  }
+
+  .valuesGrid p {
+    color: var(--colorTextMuted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .processSection {
+    padding: 3.5rem 1.5rem;
+    background: var(--colorWhite);
+  }
+
+  .processInner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .processInner article {
+    padding: 1.4rem 1.25rem;
+    border-radius: 16px;
+    border: 1px solid var(--colorBorder);
+    background: var(--colorSurface);
+  }
+
+  .processInner span {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-weight: 700;
+    color: var(--colorBrand);
+    margin-bottom: 0.55rem;
+  }
+
+  .processInner h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+  }
+
+  .processInner p {
+    color: var(--colorTextMuted);
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .applyShell {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding: 2rem;
+    border-radius: 24px;
+    background:
+      linear-gradient(165deg, rgba(230, 244, 234, 0.65), rgba(255, 255, 255, 0.95)),
+      var(--colorWhite);
+    border: 1px solid #d7e7dc;
+    box-shadow: 0 20px 50px rgba(20, 20, 24, 0.06);
+  }
+
+  .applyIntro p {
+    color: var(--colorTextMuted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .applyIntro strong {
+    color: var(--colorBrand);
+  }
+
+  .applyNotes {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .applyNotes li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--colorTextMuted);
+    font-size: 0.94rem;
+  }
+
+  .applyNotes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34a853;
+  }
+
+  .careersForm {
+    background: var(--colorWhite);
+    border-radius: 18px;
+    padding: 1.5rem;
+    border: 1px solid var(--colorBorder);
+  }
+
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .fieldWide {
+    grid-column: 1 / -1;
+  }
+
+  .field span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--colorTextMuted);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 0.85rem 0.95rem;
+    border-radius: 12px;
+    border: 1px solid #dadce0;
+    background: #fafbfc;
+    color: var(--colorInk);
+    font: inherit;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: #34a853;
+    background: var(--colorWhite);
+    box-shadow: 0 0 0 4px rgba(52, 168, 83, 0.15);
+  }
+
+  .formFooter {
+    margin-top: 1.35rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .formHint {
+    flex: 1;
+    min-width: 200px;
+    font-size: 0.88rem;
+    color: var(--colorTextMuted);
+    line-height: 1.5;
+  }
+
+  .formSubmit {
+    flex-shrink: 0;
+  }
+
+  .refBanner {
+    margin-top: 1.25rem;
+    padding: 1.15rem 1.2rem;
+    border-radius: 14px;
+    background: #e8f0fe;
+    border: 1px solid #d2e3fc;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .refLabel {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1a73e8;
+    margin-bottom: 0.25rem;
+  }
+
+  .refBanner strong {
+    font-family: var(--fontDisplay);
+    font-size: 1.35rem;
+    color: var(--colorInk);
+    letter-spacing: 0.02em;
+  }
+
+  .refBanner p {
+    color: #3c4043;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .careersCta {
+    padding: 4rem 1.5rem 5rem;
+    background: var(--colorSurface);
+    text-align: center;
+  }
+
+  .careersCta h2 {
+    margin-bottom: 0.6rem;
+  }
+
+  .careersCta p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1.35rem;
+  }
+
+  @media (max-width: 960px) {
+    .applyShell,
+    .rolesGrid,
+    .valuesGrid,
+    .processInner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .formGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .careersForm {
+      padding: 1.1rem;
+    }
+
+    .applyShell {
+      padding: 1.15rem;
+    }
+  }
+</style>

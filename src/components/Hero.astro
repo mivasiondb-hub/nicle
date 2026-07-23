@@ -1,0 +1,373 @@
+<section class="heroSection" id="home" data-hero>
+  <div class="heroBg" data-hero-bg aria-hidden="true">
+    <div class="heroOrb heroOrbPrimary" data-parallax="0.35"></div>
+    <div class="heroOrb heroOrbAccent" data-parallax="0.18"></div>
+    <div class="heroOrb heroOrbBrand" data-parallax="0.12"></div>
+    <div class="heroGrid"></div>
+  </div>
+
+  <div class="heroContent" data-hero-content>
+    <div class="heroBadge">
+      <span class="badgeDot"></span>
+      Nicle Inc · Technology conglomerate
+    </div>
+
+    <h1 class="heroTitle">
+      <span class="brandWord" aria-label="Nicle">
+        <span class="brandWordWater" aria-hidden="true">Nicle</span>
+        <span class="brandWordShine" aria-hidden="true">Nicle</span>
+      </span>
+      <span class="titleLine">Building the future of</span>
+      <span class="titleAccent">human connection</span>
+    </h1>
+
+    <p class="heroSubtitle">
+      A subsidiary of All Things Web Technology Inc. We craft privacy first social platforms,
+      secure messaging, creative AI studios, and large scale intelligence for a connected world.
+    </p>
+
+    <div class="heroActions">
+      <a href="/products" class="btnPrimary heroCta">
+        Explore our ecosystem
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+      <a href="/about" class="btnOutline">Our mission</a>
+    </div>
+  </div>
+
+  <div class="heroCurve" aria-hidden="true"></div>
+
+  <svg class="waterFilterSvg" aria-hidden="true" focusable="false">
+    <filter id="nicleWaterRipple" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.012 0.03"
+        numOctaves="2"
+        seed="3"
+        result="noise"
+      >
+        <animate
+          attributeName="baseFrequency"
+          dur="9s"
+          values="0.012 0.03;0.02 0.045;0.012 0.03"
+          repeatCount="indefinite"
+        />
+      </feTurbulence>
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="noise"
+        scale="5"
+        xChannelSelector="R"
+        yChannelSelector="G"
+      />
+    </filter>
+  </svg>
+</section>
+
+<style>
+  .heroSection {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: calc(var(--headerHeight) + 2.5rem) 2rem 10rem;
+    background: linear-gradient(165deg, #060708 0%, #0c1014 48%, #08090c 100%);
+    overflow: hidden;
+  }
+
+  .heroBg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .heroOrb {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform;
+  }
+
+  .heroOrbPrimary {
+    top: -5%;
+    right: -5%;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(237, 53, 66, 0.14) 0%, transparent 68%);
+    filter: blur(52px);
+    animation: orbDrift 14s ease-in-out infinite alternate;
+  }
+
+  .heroOrbAccent {
+    bottom: 8%;
+    left: -8%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(180, 170, 150, 0.08) 0%, transparent 65%);
+    filter: blur(56px);
+    animation: orbDrift 11s ease-in-out infinite alternate-reverse;
+  }
+
+  .heroOrbBrand {
+    top: 40%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    margin-left: -140px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+    filter: blur(40px);
+  }
+
+  @keyframes orbDrift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(16px, -20px) scale(1.05); }
+  }
+
+  .heroGrid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 65% 50% at 50% 40%, black 10%, transparent 72%);
+  }
+
+  .heroContent {
+    position: relative;
+    z-index: 4;
+    max-width: 820px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+    margin-bottom: 1.5rem;
+    will-change: transform, opacity;
+  }
+
+  .heroBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    font-family: var(--fontBody);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(232, 228, 220, 0.72);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    animation: fadeUp 0.9s var(--easeOutExpo) both;
+  }
+
+  .badgeDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--colorBrand);
+    opacity: 0.9;
+  }
+
+  .heroTitle {
+    font-family: var(--fontDisplay);
+    font-size: clamp(2.35rem, 5.8vw, 4rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    color: #f2efe8;
+    animation: fadeUp 0.9s var(--easeOutExpo) 0.12s both;
+  }
+
+  .brandWord {
+    position: relative;
+    display: block;
+    font-size: clamp(3.2rem, 8.5vw, 5.75rem);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    margin-bottom: 0.2em;
+    line-height: 1.05;
+    filter: url(#nicleWaterRipple);
+  }
+
+  .waterFilterSvg {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .brandWordWater,
+  .brandWordShine {
+    display: block;
+  }
+
+  .brandWordShine {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .brandWordWater {
+    background-image: linear-gradient(
+      115deg,
+      #2f9bff 0%,
+      #4285f4 12%,
+      #7c5cfc 28%,
+      #c026d3 42%,
+      #ED3542 58%,
+      #ff5a45 72%,
+      #7c5cfc 86%,
+      #2f9bff 100%
+    );
+    background-size: 280% 280%;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: nicleWaterFlow 7s ease-in-out infinite;
+    filter: saturate(1.08);
+  }
+
+  .brandWordShine {
+    background-image: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 38%,
+      rgba(255, 255, 255, 0.55) 48%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(255, 255, 255, 0.55) 52%,
+      transparent 62%,
+      transparent 100%
+    );
+    background-size: 220% 100%;
+    background-position: 120% 0;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: soft-light;
+    animation: nicleWaterShine 4.5s ease-in-out infinite;
+  }
+
+  @keyframes nicleWaterFlow {
+    0% {
+      background-position: 0% 40%;
+    }
+    25% {
+      background-position: 55% 60%;
+    }
+    50% {
+      background-position: 100% 45%;
+    }
+    75% {
+      background-position: 40% 70%;
+    }
+    100% {
+      background-position: 0% 40%;
+    }
+  }
+
+  @keyframes nicleWaterShine {
+    0% {
+      background-position: 140% 0;
+      opacity: 0.35;
+    }
+    40% {
+      opacity: 0.85;
+    }
+    100% {
+      background-position: -60% 0;
+      opacity: 0.35;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brandWord {
+      filter: none;
+    }
+
+    .brandWordWater {
+      animation: none;
+      background-position: 40% 50%;
+    }
+
+    .brandWordShine {
+      animation: none;
+      opacity: 0;
+    }
+  }
+
+  .titleLine {
+    display: block;
+    font-weight: 400;
+    color: rgba(242, 239, 232, 0.88);
+  }
+
+  .titleAccent {
+    display: block;
+    margin-top: 0.08em;
+    font-weight: 500;
+    color: #e8a0a5;
+    letter-spacing: -0.03em;
+  }
+
+  .heroSubtitle {
+    font-family: var(--fontBody);
+    font-size: clamp(0.98rem, 1.8vw, 1.125rem);
+    font-weight: 400;
+    color: rgba(198, 194, 186, 0.82);
+    max-width: 560px;
+    line-height: 1.75;
+    letter-spacing: 0.01em;
+    animation: fadeUp 0.9s var(--easeOutExpo) 0.28s both;
+  }
+
+  .heroActions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 5;
+    animation: fadeUp 0.9s var(--easeOutExpo) 0.4s both;
+  }
+
+  .heroCta svg {
+    transition: transform 0.3s var(--easeOutExpo);
+  }
+
+  .heroCta:hover svg {
+    transform: translateX(4px);
+  }
+
+  .heroCurve {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: var(--colorSurface);
+    clip-path: ellipse(80% 100% at 50% 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .heroSection {
+      padding: calc(var(--headerHeight) + 2rem) 1.25rem 8.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,793 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { productSeo } from '../data/productSeo';
+
+const contactEmail = 'we@nicleinc.com';
+const mailtoSupport = `mailto:${contactEmail}?subject=${encodeURIComponent('Help with a Nicle product')}`;
+const mailtoGeneral = `mailto:${contactEmail}?subject=${encodeURIComponent('Contact Nicle Inc')}`;
+
+const helpTopics = [
+  {
+    title: 'Product support',
+    text: 'Report bugs, ask how a feature works, or get help signing in across worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer.',
+  },
+  {
+    title: 'Account & access',
+    text: 'Need help recovering access, updating account details, or understanding privacy controls? Start here.',
+  },
+  {
+    title: 'Partnerships',
+    text: 'Press, creators, enterprises, and collaborators can reach the team for ecosystem and product conversations.',
+  },
+  {
+    title: 'Security reports',
+    text: 'Responsible disclosure is welcome. Share vulnerability details securely and we will triage with priority.',
+  },
+];
+
+const careerAreas = [
+  {
+    title: 'Engineering',
+    text: 'Full-stack, mobile, infrastructure, and AI systems that power the Nicer Ecosystem.',
+  },
+  {
+    title: 'Product & design',
+    text: 'Shape experiences across social, messaging, creative tools, and intelligent assistants.',
+  },
+  {
+    title: 'Operations & growth',
+    text: 'Help Nicle scale responsibly across Canada, Africa, Australia, and beyond.',
+  },
+];
+
+const responseNotes = [
+  {
+    label: 'Support',
+    detail: 'We aim to acknowledge product help requests within 1–2 business days.',
+  },
+  {
+    label: 'Careers',
+    detail: 'Hiring outreach is reviewed on a rolling basis. Include links to work when possible.',
+  },
+  {
+    label: 'Press',
+    detail: 'Media and partnership notes are routed to leadership for timely follow-up.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is the best email for Nicle Inc?',
+    a: `Use ${contactEmail} for product support, careers, partnerships, press, and general company inquiries.`,
+  },
+  {
+    q: 'Can I get help with a specific product?',
+    a: 'Yes. Mention the product name in your subject line (for example, nicerapp or worldnicer) and include device, account handle if relevant, and steps to reproduce the issue.',
+  },
+  {
+    q: 'How do I apply for a role at Nicle?',
+    a: `Visit the Careers at Nicle page, complete the application form, and send the generated email to ${contactEmail}. Each application includes a unique reference number.`,
+  },
+  {
+    q: 'Where is Nicle based?',
+    a: 'Nicle Inc is a subsidiary of All Things Web Technology Inc., with presence across Ontario (Canada), Africa, and Australia.',
+  },
+];
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Nicle Inc',
+  url: 'https://nicleinc.com/contact',
+  description:
+    'Contact Nicle Inc for product support, careers, partnerships, and company questions. Email we@nicleinc.com.',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Nicle Inc',
+    email: contactEmail,
+    url: 'https://nicleinc.com',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'All Things Web Technology Inc.',
+    },
+  },
+};
+
+const productLinks = productSeo.map((p) => ({
+  name: p.name,
+  path: p.path,
+  host: p.externalHost,
+  href: p.externalUrl || p.path,
+  external: !!p.externalUrl,
+}));
+---
+
+<BaseLayout
+  title="Contact Us | Help Center & Careers at Nicle"
+  description="Contact Nicle Inc for product support, careers, and company questions. Email we@nicleinc.com — help with worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer."
+  activeNav="contact"
+  image="/og-default.png"
+  canonical="/contact"
+  keywords="contact Nicle, Nicle help center, careers at Nicle, we@nicleinc.com, Nicle support, Nicle jobs"
+  jsonLd={[
+    contactSchema,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    },
+  ]}
+>
+  <Header active="contact" />
+  <main>
+    <section class="contactHero">
+      <div class="contactHeroInner" data-scroll-reveal>
+        <h1>Hi, how can we help?</h1>
+        <p>From product support to career opportunities, we’ve got you covered.</p>
+      </div>
+    </section>
+
+    <section class="actionCards" aria-label="Contact options">
+      <div class="actionGrid" data-scroll-reveal data-stagger>
+        <a href={mailtoSupport} class="actionCard actionCardHelp">
+          <span class="actionLabel">Help Center</span>
+          <p>Ask questions or report an issue with a Nicle product or service.</p>
+          <span class="actionIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M14 5h5v5M19 5l-9 9M10 5H5v14h14v-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <a href="/careers" class="actionCard actionCardCareers">
+          <span class="actionLabel">Careers at Nicle</span>
+          <p>Learn more about our teams and job openings.</p>
+          <span class="actionIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M14 5h5v5M19 5l-9 9M10 5H5v14h14v-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="emailBand" data-scroll-reveal>
+      <div class="emailInner">
+        <span class="sectionLabel">Direct contact</span>
+        <h2 class="sectionTitle">Email the Nicle team</h2>
+        <p class="sectionLead">
+          One inbox for support, careers, press, and partnerships. Include your product name and as much detail as you can so we can help faster.
+        </p>
+        <a href={mailtoGeneral} class="emailChip">
+          <span class="emailMark" aria-hidden="true">@</span>
+          {contactEmail}
+        </a>
+        <div class="emailMeta">
+          {responseNotes.map((item) => (
+            <article>
+              <strong>{item.label}</strong>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="topicsSection">
+      <div class="topicsInner">
+        <div class="topicsHeader" data-scroll-reveal>
+          <span class="sectionLabel">Help Center</span>
+          <h2 class="sectionTitle">What we can help with</h2>
+          <p class="sectionLead">
+            Whether you need product guidance or want to flag an issue, start with the topic that fits — then email {contactEmail}.
+          </p>
+        </div>
+        <div class="topicsGrid" data-scroll-reveal data-stagger>
+          {helpTopics.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="productsHelp">
+      <div class="productsHelpInner">
+        <div class="productsHelpHeader" data-scroll-reveal>
+          <span class="sectionLabel">Product support</span>
+          <h2 class="sectionTitle">Get help by product</h2>
+          <p class="sectionLead">
+            Visit a product page for details, or email us and put the product name in the subject line.
+          </p>
+        </div>
+        <div class="productsHelpGrid" data-scroll-reveal data-stagger>
+          {productLinks.map((product) => (
+            <a
+              href={product.href}
+              class="productHelpCard"
+              target={product.external ? '_blank' : undefined}
+              rel={product.external ? 'noopener noreferrer' : undefined}
+            >
+              <strong>{product.name}</strong>
+              <span>{product.host || 'Learn more on Nicle'}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="careersSection" id="careers">
+      <div class="careersInner">
+        <div class="careersCopy" data-scroll-reveal="left">
+          <span class="sectionLabel">Careers at Nicle</span>
+          <h2 class="sectionTitle">Build the future of human connection</h2>
+          <p>
+            Nicle Inc is growing a connected stack across social platforms, private messaging, creative AI, and intelligent assistants.
+            We look for people who care about privacy, craft, and products people actually use.
+          </p>
+          <p>
+            Apply on the Careers page with a guided form — each application gets a unique reference number emailed to{' '}
+            <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+          </p>
+          <a href="/careers#apply" class="btnPrimary">Go to Careers</a>
+        </div>
+        <div class="careersGrid" data-scroll-reveal="right">
+          {careerAreas.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="regionsSection" data-scroll-reveal>
+      <div class="regionsInner">
+        <span class="sectionLabel">Where we work</span>
+        <h2 class="sectionTitle">A global team, one company</h2>
+        <p class="sectionLead">
+          Nicle Inc is a subsidiary of All Things Web Technology Inc., founded to build technology for real human connection.
+        </p>
+        <div class="regionsRow">
+          <article>
+            <strong>Ontario, Canada</strong>
+            <p>Company home base and leadership operations.</p>
+          </article>
+          <article>
+            <strong>Africa</strong>
+            <p>Product, engineering, and community growth.</p>
+          </article>
+          <article>
+            <strong>Australia</strong>
+            <p>Regional collaboration across the Nicer Ecosystem.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tipsSection">
+      <div class="tipsInner" data-scroll-reveal>
+        <span class="sectionLabel">Faster replies</span>
+        <h2 class="sectionTitle">What to include in your email</h2>
+        <ul>
+          <li>Your name and the best way to reach you</li>
+          <li>The product involved (worldnicer, nicerapp, Mivasion, nicer ai plus, or Chatnicer)</li>
+          <li>A clear description of the question, issue, or role you are interested in</li>
+          <li>Screenshots, links, or steps to reproduce for support requests</li>
+          <li>Résumé, portfolio, or LinkedIn for career applications</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faqSection">
+      <div class="faqInner" data-scroll-reveal>
+        <span class="sectionLabel">FAQ</span>
+        <h2 class="sectionTitle">Common contact questions</h2>
+        <div class="faqList">
+          {faqs.map((item, i) => (
+            <details open={i === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="finalCta" data-scroll-reveal="scale">
+      <div class="finalCtaInner">
+        <h2>Still need a hand?</h2>
+        <p>Write to {contactEmail} and the Nicle team will take it from there.</p>
+        <div class="finalActions">
+          <a href={mailtoGeneral} class="btnPrimary">Email we@nicleinc.com</a>
+          <a href="/products" class="btnGhost">Explore products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .contactHero {
+    padding: calc(var(--headerHeight) + 5.5rem) 1.5rem 2.5rem;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -10%, rgba(237, 53, 66, 0.08), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 20%, rgba(91, 124, 250, 0.08), transparent 55%),
+      var(--colorWhite);
+  }
+
+  .contactHeroInner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contactHero h1 {
+    font-family: var(--fontDisplay);
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--colorInk);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .contactHero p {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--colorTextMuted);
+    line-height: 1.55;
+  }
+
+  .actionCards {
+    padding: 1.5rem 1.5rem 3.5rem;
+    background: var(--colorWhite);
+  }
+
+  .actionGrid {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .actionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.75rem;
+    min-height: 240px;
+    padding: 2.5rem 2rem 2rem;
+    border-radius: 18px;
+    text-align: center;
+    transition: transform 0.35s var(--easeOutExpo), box-shadow 0.35s ease;
+  }
+
+  .actionCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(20, 20, 24, 0.08);
+  }
+
+  .actionCardHelp {
+    background: #e8f0fe;
+  }
+
+  .actionCardCareers {
+    background: #e6f4ea;
+  }
+
+  .actionLabel {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5f6368;
+  }
+
+  .actionCard p {
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--colorInk);
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+
+  .actionIcon {
+    color: #1a73e8;
+    display: grid;
+    place-items: center;
+  }
+
+  .emailBand {
+    padding: 4.5rem 1.5rem;
+    background: var(--colorSurface);
+  }
+
+  .emailInner {
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .emailInner .sectionLead {
+    margin: 0 auto 1.75rem;
+  }
+
+  .emailChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.95rem 1.4rem;
+    border-radius: 999px;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    color: var(--colorBrand);
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    box-shadow: var(--shadowSoft);
+    transition: transform 0.3s var(--easeOutExpo), border-color 0.25s ease;
+  }
+
+  .emailChip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(237, 53, 66, 0.35);
+  }
+
+  .emailMark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--colorBrandSoft);
+    color: var(--colorBrand);
+    font-size: 0.95rem;
+  }
+
+  .emailMeta {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .emailMeta article {
+    padding: 1.25rem 1.2rem;
+    border-radius: 14px;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+  }
+
+  .emailMeta strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--colorInk);
+    font-size: 0.95rem;
+  }
+
+  .emailMeta p {
+    color: var(--colorTextMuted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .topicsSection,
+  .productsHelp,
+  .tipsSection,
+  .faqSection {
+    padding: 5rem 1.5rem;
+    background: var(--colorWhite);
+  }
+
+  .topicsInner,
+  .productsHelpInner,
+  .tipsInner,
+  .faqInner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .topicsHeader,
+  .productsHelpHeader {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .topicsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.15rem;
+  }
+
+  .topicsGrid article {
+    padding: 1.5rem 1.4rem;
+    border-radius: 16px;
+    background: var(--colorSurface);
+    border: 1px solid transparent;
+    transition: border-color 0.25s ease, transform 0.3s var(--easeOutExpo);
+  }
+
+  .topicsGrid article:hover {
+    border-color: var(--colorBorder);
+    transform: translateY(-2px);
+  }
+
+  .topicsGrid h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.55rem;
+    color: var(--colorInk);
+  }
+
+  .topicsGrid p {
+    color: var(--colorTextMuted);
+    line-height: 1.6;
+  }
+
+  .productsHelp {
+    background: var(--colorSurface);
+  }
+
+  .productsHelpGrid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .productHelpCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.15rem 1rem;
+    border-radius: 14px;
+    background: var(--colorWhite);
+    border: 1px solid #dadce0;
+    transition: border-color 0.25s ease, transform 0.3s var(--easeOutExpo);
+  }
+
+  .productHelpCard:hover {
+    border-color: #1a73e8;
+    transform: translateY(-2px);
+  }
+
+  .productHelpCard strong {
+    color: var(--colorInk);
+    font-size: 0.98rem;
+  }
+
+  .productHelpCard span {
+    color: var(--colorTextMuted);
+    font-size: 0.8rem;
+  }
+
+  .careersSection {
+    padding: 5rem 1.5rem;
+    background: var(--colorWhite);
+  }
+
+  .careersInner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .careersCopy p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+    line-height: 1.65;
+  }
+
+  .careersCopy a:not(.btnPrimary) {
+    color: var(--colorBrand);
+    font-weight: 600;
+  }
+
+  .careersCopy .btnPrimary {
+    margin-top: 0.75rem;
+  }
+
+  .careersGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .careersGrid article {
+    padding: 1.25rem 1.3rem;
+    border-radius: 14px;
+    background: #e6f4ea;
+  }
+
+  .careersGrid h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+  }
+
+  .careersGrid p {
+    color: #3c4043;
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .regionsSection {
+    padding: 4.5rem 1.5rem;
+    background: linear-gradient(180deg, #0e1420 0%, #141824 100%);
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .regionsInner {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .regionsInner .sectionLabel {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .regionsInner .sectionTitle {
+    color: white;
+  }
+
+  .regionsInner .sectionLead {
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0 auto 2rem;
+  }
+
+  .regionsRow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .regionsRow article {
+    padding: 1.35rem 1.25rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .regionsRow strong {
+    display: block;
+    color: white;
+    margin-bottom: 0.4rem;
+  }
+
+  .tipsInner {
+    max-width: 760px;
+  }
+
+  .tipsInner ul {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .tipsInner li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--colorTextMuted);
+    line-height: 1.55;
+  }
+
+  .tipsInner li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--colorBrand);
+  }
+
+  .faqList {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faqList details {
+    border: 1px solid var(--colorBorder);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    background: var(--colorSurface);
+  }
+
+  .faqList summary {
+    cursor: pointer;
+    font-weight: 650;
+    color: var(--colorInk);
+    list-style: none;
+  }
+
+  .faqList summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faqList p {
+    margin-top: 0.75rem;
+    color: var(--colorTextMuted);
+    line-height: 1.6;
+  }
+
+  .finalCta {
+    padding: 4.5rem 1.5rem 5.5rem;
+    background: var(--colorSurface);
+  }
+
+  .finalCtaInner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .finalCta h2 {
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin-bottom: 0.75rem;
+    color: var(--colorInk);
+  }
+
+  .finalCta p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1.5rem;
+  }
+
+  .finalActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  @media (max-width: 960px) {
+    .productsHelpGrid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .careersInner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .actionGrid,
+    .topicsGrid,
+    .emailMeta,
+    .regionsRow {
+      grid-template-columns: 1fr;
+    }
+
+    .actionCard {
+      min-height: 210px;
+    }
+
+    .productsHelpGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

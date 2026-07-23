@@ -1,0 +1,706 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getProductSeo, buildProductSchema, buildProductFaqSchema } from '../data/productSeo';
+import nicerappImage from '../assets/images/nicerapp-fit.jpeg';
+
+const product = getProductSeo('nicerapp')!;
+
+const pillars = [
+  {
+    title: 'End to end encryption',
+    text: 'Every message is sealed between people. nicerapp is designed so conversation content stays private in transit and at rest on participating devices — not open for casual server reading.',
+  },
+  {
+    title: 'No backdoors',
+    text: 'Privacy is architecture, not a slogan. nicerapp rejects hidden access paths and undisclosed shortcuts that weaken encryption for convenience.',
+  },
+  {
+    title: 'Transparent security',
+    text: 'Security should be understandable. nicerapp is built around clear principles: encryption first, minimal exposure, and honest communication about how protection works.',
+  },
+  {
+    title: 'Private groups',
+    text: 'Talk in trusted circles with the same privacy expectations as one to one chat — coordination for teams, families, and communities without giving up ownership.',
+  },
+];
+
+const useCases = [
+  {
+    title: 'Personal conversations',
+    text: 'Keep everyday chats private with friends and family — fast messaging without trading confidentiality for features.',
+  },
+  {
+    title: 'Work and creators',
+    text: 'Coordinate projects, launches, and sensitive discussions with encryption designed for real collaboration.',
+  },
+  {
+    title: 'Community circles',
+    text: 'Run private groups where membership and message ownership stay clear, trusted, and intentional.',
+  },
+];
+
+const steps = [
+  {
+    step: '01',
+    title: 'Start a conversation',
+    text: 'Message someone you trust or create a private group. nicerapp keeps the experience simple from the first send.',
+  },
+  {
+    step: '02',
+    title: 'Stay sealed by default',
+    text: 'Encryption is not an optional mode buried in settings. Privacy is the default path for conversations.',
+  },
+  {
+    step: '03',
+    title: 'Own what you share',
+    text: 'Your conversations are yours. nicerapp is built so ownership and clarity remain part of the product — not afterthoughts.',
+  },
+];
+
+const principles = [
+  {
+    title: 'Privacy by design',
+    text: 'Protection is engineered into messaging flows from the start, not patched on later.',
+  },
+  {
+    title: 'User ownership',
+    text: 'People should control their conversations. nicerapp is built around that expectation.',
+  },
+  {
+    title: 'No dark patterns',
+    text: 'Security settings and defaults should be honest. Convenience never excuses hidden compromises.',
+  },
+  {
+    title: 'Part of Nicle',
+    text: 'nicerapp sits inside the Nicer Ecosystem — connected to Nicle’s broader vision for trusted digital life.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is nicerapp?',
+    a: 'nicerapp is Nicle Inc’s secure private messenger. It offers instant messaging with true end to end encryption, no backdoors, transparent security, and private groups — so people can communicate without giving up ownership of their conversations.',
+  },
+  {
+    q: 'Who builds nicerapp?',
+    a: 'nicerapp is built by Nicle Inc, a subsidiary of All Things Web Technology Inc. It is part of the Nicer Ecosystem alongside worldnicer, Mivasion, nicer ai plus, and Chatnicer.',
+  },
+  {
+    q: 'Is nicerapp end to end encrypted?',
+    a: 'Yes. nicerapp is designed around end to end encryption so message content stays sealed between participants rather than readable as a matter of course by servers.',
+  },
+  {
+    q: 'Does nicerapp have backdoors?',
+    a: 'No. nicerapp is built with a no backdoors philosophy — privacy is treated as a core product requirement, not a marketing claim.',
+  },
+  {
+    q: 'Can I use nicerapp for group chats?',
+    a: 'Yes. nicerapp supports private groups so teams, families, and communities can coordinate with the same privacy minded approach as one to one messaging.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.description}
+  activeNav="products"
+  image={product.image}
+  imageAlt={product.imageAlt}
+  type="product"
+  canonical={product.path}
+  keywords={product.keywords}
+  jsonLd={[buildProductSchema(product), faqSchema]}
+>
+  <Header active="products" />
+  <main>
+    <section class="naHero">
+      <div class="naHeroInner">
+        <div class="naHeroCopy" data-scroll-reveal="left">
+          <span class="naEyebrow">nicerapp by Nicle Inc</span>
+          <h1>
+            Private messaging
+            <span class="accent">built to stay private</span>
+          </h1>
+          <p>
+            nicerapp is Nicle’s secure messenger for people who want speed and clarity without
+            surrendering their conversations. End to end encryption. No backdoors. Transparent
+            security. Private groups. Real ownership.
+          </p>
+          <div class="naActions">
+            <a href="#features" class="btnPrimary">Explore features</a>
+            <a href="/security" class="btnGhost">Security hub</a>
+          </div>
+        </div>
+        <div class="naHeroVisual" data-scroll-reveal="right">
+          <div class="naLogoWrap">
+            <Image
+              src={nicerappImage}
+              alt="nicerapp logo"
+              class="naLogo"
+              widths={[320, 480, 640]}
+              sizes="(max-width: 900px) 200px, 260px"
+              quality={95}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="naStrip" data-scroll-reveal>
+      <div class="naStripInner">
+        {['End to end encryption', 'No backdoors', 'Transparent security', 'Private groups'].map((item) => (
+          <span>{item}</span>
+        ))}
+      </div>
+    </section>
+
+    <section class="naOverview">
+      <div class="naOverviewInner" data-scroll-reveal>
+        <span class="sectionLabel">Overview</span>
+        <h2 class="sectionTitle">Helpful messaging, designed around trust</h2>
+        <p class="naLead">
+          Google style product clarity meets Nicle’s privacy first engineering. nicerapp is not a
+          social feed and not an AI studio — it is a focused messenger for conversations that should
+          remain yours.
+        </p>
+        <div class="naOverviewGrid">
+          <article>
+            <h3>Simple to use</h3>
+            <p>
+              Instant messaging should feel effortless. nicerapp keeps the interface clear so privacy
+              never becomes a maze of settings.
+            </p>
+          </article>
+          <article>
+            <h3>Serious about security</h3>
+            <p>
+              Encryption, transparency, and a no backdoors stance are core product choices — not
+              optional upgrades.
+            </p>
+          </article>
+          <article>
+            <h3>Built for ownership</h3>
+            <p>
+              From one to one chats to private groups, nicerapp is designed so people keep ownership
+              of what they share.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="naFeatures" id="features">
+      <div class="naFeaturesInner">
+        <div class="naFeaturesHeader" data-scroll-reveal>
+          <span class="sectionLabel">Features</span>
+          <h2 class="sectionTitle">Everything that makes nicerapp different</h2>
+        </div>
+        <div class="naFeatureList">
+          {pillars.map((item, i) => (
+            <article class="naFeatureCard" data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <span class="naFeatureIndex">0{i + 1}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="naHow">
+      <div class="naHowInner">
+        <div class="naHowHeader" data-scroll-reveal>
+          <span class="sectionLabel">How it works</span>
+          <h2 class="sectionTitle">Private by default. Clear at every step.</h2>
+        </div>
+        <div class="naSteps">
+          {steps.map((item, i) => (
+            <article data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <span>{item.step}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="naUse">
+      <div class="naUseInner">
+        <div class="naUseHeader" data-scroll-reveal>
+          <span class="sectionLabel">Made for real life</span>
+          <h2 class="sectionTitle">Where nicerapp fits</h2>
+        </div>
+        <div class="naUseGrid">
+          {useCases.map((item, i) => (
+            <article data-scroll-reveal style={`--revealDelay: ${i * 0.08}s`}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="naPrinciples">
+      <div class="naPrinciplesInner">
+        <div class="naPrinciplesCopy" data-scroll-reveal="left">
+          <span class="sectionLabel">Our approach</span>
+          <h2 class="sectionTitle">Security without compromise</h2>
+          <p>
+            nicerapp exists because private communication should not require experts to configure
+            it. Nicle builds messaging that is fast enough for daily life and principled enough for
+            the moments that matter.
+          </p>
+          <a href="/about" class="btnPrimary">Why Nicle builds this</a>
+        </div>
+        <div class="naPrinciplesGrid" data-scroll-reveal="right">
+          {principles.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="naEcosystem" data-scroll-reveal>
+      <div class="naEcosystemInner">
+        <span class="sectionLabel">Nicer Ecosystem</span>
+        <h2 class="sectionTitle">One stack. Clear jobs.</h2>
+        <p>
+          nicerapp handles private messaging. worldnicer focuses on social community. Mivasion
+          powers creative AI. nicer ai plus assists with intelligence. Chatnicer shares photos,
+          Reels, and Stories. Together they form Nicle’s connected product family.
+        </p>
+        <div class="naEcoLinks">
+          <a href="/worldnicer">worldnicer</a>
+          <a href="/mivasion">Mivasion</a>
+          <a href="/nicer-ai-plus">nicer ai plus</a>
+          <a href="/chatnicer">Chatnicer</a>
+          <a href="/products">All products</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="naFaq">
+      <div class="naFaqInner" data-scroll-reveal>
+        <span class="sectionLabel">FAQ</span>
+        <h2 class="sectionTitle">Questions about nicerapp</h2>
+        <div class="naFaqList">
+          {faqs.map((item, i) => (
+            <details open={i === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="naCta" data-scroll-reveal="scale">
+      <div class="naCtaInner">
+        <h2>Ready to explore private messaging from Nicle?</h2>
+        <p>
+          Discover nicerapp’s place in the Nicer Ecosystem — and the principles behind secure
+          conversation.
+        </p>
+        <div class="naActions">
+          <a href="/products" class="btnPrimary">View all products</a>
+          <a href="/team" class="btnOutline">Meet the team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../scripts/scrollMotion.ts';
+</script>
+
+<style>
+  .naHero {
+    padding: calc(var(--headerHeight) + 3.5rem) 2rem 4rem;
+    background: linear-gradient(160deg, #120814, #1a0c18 45%, #2a1020);
+    color: white;
+  }
+
+  .naHeroInner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .naEyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .naHero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 1.15rem;
+    color: white;
+  }
+
+  .naHero h1 .accent {
+    display: block;
+    background: linear-gradient(120deg, #ff7a8a, #ED3542 45%, #c45cff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .naHero p {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 540px;
+    margin-bottom: 1.75rem;
+  }
+
+  .naActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  .naHeroVisual {
+    display: grid;
+    place-items: center;
+  }
+
+  .naLogoWrap {
+    width: min(100%, 280px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #000;
+    box-shadow:
+      0 30px 60px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .naLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    max-width: none !important;
+  }
+
+  .naStrip {
+    background: var(--colorWhite);
+    border-bottom: 1px solid var(--colorBorder);
+    padding: 1.1rem 1.5rem;
+  }
+
+  .naStripInner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .naStripInner span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--colorTextMuted);
+  }
+
+  .naOverview,
+  .naFeatures,
+  .naHow,
+  .naUse,
+  .naPrinciples,
+  .naEcosystem,
+  .naFaq {
+    padding: 5rem 2rem;
+  }
+
+  .naOverview,
+  .naHow,
+  .naPrinciples,
+  .naFaq {
+    background: var(--colorWhite);
+  }
+
+  .naFeatures,
+  .naUse,
+  .naEcosystem {
+    background: var(--colorSurface);
+  }
+
+  .naOverviewInner,
+  .naFeaturesInner,
+  .naHowInner,
+  .naUseInner,
+  .naPrinciplesInner,
+  .naEcosystemInner,
+  .naFaqInner {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .naLead {
+    max-width: 720px;
+    color: var(--colorTextMuted);
+    font-size: 1.08rem;
+    margin: 0.85rem 0 2.25rem;
+  }
+
+  .naOverviewGrid,
+  .naUseGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .naOverviewGrid article,
+  .naUseGrid article,
+  .naPrinciplesGrid article {
+    padding: 1.75rem;
+    border-radius: var(--radiusMd);
+    border: 1px solid var(--colorBorder);
+    background: var(--colorSurface);
+  }
+
+  .naUseGrid article,
+  .naPrinciplesGrid article {
+    background: var(--colorWhite);
+  }
+
+  .naOverviewGrid h3,
+  .naUseGrid h3,
+  .naPrinciplesGrid h3,
+  .naFeatureCard h3,
+  .naSteps h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .naOverviewGrid p,
+  .naUseGrid p,
+  .naPrinciplesGrid p,
+  .naFeatureCard p,
+  .naSteps p,
+  .naEcosystemInner p,
+  .naPrinciplesCopy p {
+    color: var(--colorTextMuted);
+    line-height: 1.65;
+  }
+
+  .naFeaturesHeader,
+  .naHowHeader,
+  .naUseHeader {
+    margin-bottom: 2.25rem;
+  }
+
+  .naFeatureList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.15rem;
+  }
+
+  .naFeatureCard {
+    padding: 1.85rem;
+    border-radius: var(--radiusLg);
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+  }
+
+  .naFeatureIndex {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+    margin-bottom: 0.85rem;
+  }
+
+  .naSteps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .naSteps article {
+    padding: 1.75rem;
+    border-radius: var(--radiusMd);
+    border: 1px solid var(--colorBorder);
+    background: var(--colorSurface);
+  }
+
+  .naSteps span {
+    display: block;
+    font-family: var(--fontDisplay);
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--colorBrand);
+    margin-bottom: 0.85rem;
+  }
+
+  .naPrinciplesInner {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .naPrinciplesCopy .sectionTitle {
+    margin-bottom: 1rem;
+  }
+
+  .naPrinciplesCopy p {
+    margin-bottom: 1.5rem;
+  }
+
+  .naPrinciplesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .naEcosystemInner {
+    text-align: center;
+  }
+
+  .naEcosystemInner .sectionTitle {
+    margin-bottom: 0.85rem;
+  }
+
+  .naEcosystemInner p {
+    max-width: 720px;
+    margin: 0 auto 1.75rem;
+  }
+
+  .naEcoLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .naEcoLinks a {
+    padding: 0.7rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid var(--colorBorder);
+    background: var(--colorWhite);
+    font-weight: 600;
+    transition: transform 0.3s var(--easeOutExpo), color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .naEcoLinks a:hover {
+    transform: translateY(-2px);
+    color: var(--colorBrand);
+    border-color: rgba(237, 53, 66, 0.3);
+  }
+
+  .naFaqList {
+    max-width: 760px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1.75rem;
+  }
+
+  .naFaqList details {
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    background: var(--colorSurface);
+    padding: 1rem 1.2rem;
+  }
+
+  .naFaqList summary {
+    cursor: pointer;
+    font-family: var(--fontDisplay);
+    font-weight: 700;
+  }
+
+  .naFaqList p {
+    margin-top: 0.8rem;
+    color: var(--colorTextMuted);
+    line-height: 1.65;
+  }
+
+  .naCta {
+    padding: 0 2rem 5rem;
+  }
+
+  .naCtaInner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+    border-radius: var(--radiusLg);
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, #120814, #2a1020 55%, #ED3542);
+  }
+
+  .naCtaInner h2 {
+    color: white;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .naCtaInner p {
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1.5rem;
+  }
+
+  .naCtaInner .naActions {
+    justify-content: center;
+  }
+
+  @media (max-width: 900px) {
+    .naHeroInner,
+    .naOverviewGrid,
+    .naFeatureList,
+    .naSteps,
+    .naUseGrid,
+    .naPrinciplesInner,
+    .naPrinciplesGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .naHero {
+      text-align: center;
+    }
+
+    .naHero p {
+      margin-inline: auto;
+    }
+
+    .naActions {
+      justify-content: center;
+    }
+  }
+</style>
