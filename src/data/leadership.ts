@@ -43,7 +43,7 @@ export const leadership: LeadershipPerson[] = [
     ],
     tags: ['Entrepreneur', 'Software engineer', 'Music & film', 'AI innovation'],
     featured: true,
-    photo: '/images/highness-hc.webp',
+    photo: '/images/highness-hc.jpeg?v=2',
     gradient: 'linear-gradient(145deg, #ED3542, #7c5cfc 60%, #5b7cfa)',
     companies: [
       {
@@ -109,7 +109,7 @@ export const leadership: LeadershipPerson[] = [
     tags: ['Co-founder', 'Software engineering', 'AI & operations'],
     featured: false,
     wide: true,
-    photo: '/images/justice-friday.jpeg',
+    photo: '/images/justice-friday.jpeg?v=2',
     responsibilities: [
       'Oversee daily operations and team coordination',
       'Manage project timelines and deliverables',
@@ -182,7 +182,7 @@ export const leadership: LeadershipPerson[] = [
     tags: ['Project coordination', 'Team leadership', 'Delivery excellence'],
     featured: false,
     wide: true,
-    photo: '/images/divine-amadi.jpeg',
+    photo: '/images/divine-amadi.jpeg?v=2',
     responsibilities: [
       'Plan, execute, and deliver technology projects on time and within budget',
       'Lead and coordinate cross-functional project teams',
@@ -204,5 +204,37 @@ export const leadership: LeadershipPerson[] = [
       'Coordinated successful product launches and updates',
     ],
     gradient: 'linear-gradient(145deg, #ff8a3d, #ED3542 45%, #7c5cfc)',
+  },
+  {
+    initials: 'KO',
+    name: 'Kingston Uchenna Onweagba',
+    role: 'Marketing Partner · Digital Marketing Strategist · Nicle Inc.',
+    bio: [
+      'Kingston Uchenna Onweagba is a Digital Marketing Strategist, entrepreneur, and content creator with a strong passion for helping businesses achieve sustainable growth through innovative digital solutions. As the Founder of Spix Media, he has partnered with businesses, educational institutions, and organizations to strengthen their digital presence through strategic branding, social media marketing, paid advertising, and AI-powered content creation.',
+      'With expertise in data-driven marketing and creative brand storytelling, Kingston helps organizations connect with the right audiences, build credibility, and generate measurable business results. His work focuses on developing effective digital strategies that increase visibility, improve customer engagement, and accelerate business growth in an increasingly competitive marketplace.',
+      "As a Marketing Partner at Nicle Inc., Kingston plays a key role in expanding the company's brand presence and promoting its innovative technology solutions. He works closely with the team to help businesses adopt modern digital strategies that improve efficiency, productivity, and long-term success. His vision is centered on empowering organizations across Africa and beyond by combining strategic marketing with emerging technologies to unlock new opportunities for growth.",
+    ],
+    tags: ['Digital marketing', 'Brand growth', 'AI-powered content'],
+    featured: false,
+    wide: true,
+    photo: '/images/kingston-onweagba.jpeg',
+    responsibilities: [
+      'Expand Nicle Inc. brand presence across digital channels',
+      'Develop and execute digital marketing and growth strategies',
+      'Lead social media marketing and paid advertising initiatives',
+      'Drive brand development and creative storytelling',
+      'Create AI-powered content that strengthens audience engagement',
+      'Support partner and community outreach across Africa and beyond',
+      'Help businesses adopt modern digital strategies for long-term growth',
+      'Align marketing efforts with product and company goals',
+    ],
+    achievements: [
+      'Founded Spix Media to deliver strategic digital marketing solutions',
+      'Partnered with businesses, educational institutions, and organizations on branding and growth',
+      'Built expertise across social media, paid advertising, and AI-powered content creation',
+      'Helped organizations improve visibility, credibility, and measurable results',
+      'Advanced marketing partnerships that connect technology with business growth',
+    ],
+    gradient: 'linear-gradient(145deg, #2f9bff, #5b7cfa 45%, #34c759)',
   },
 ];
