@@ -3,11 +3,13 @@ interface Props {
   label: string;
   title: string;
   subtitle: string;
+  rotatingTitles?: string[];
+  rotatingSubtitles?: string[];
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
 }
 
-const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
+const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, secondaryCta } = Astro.props;
 ---
 
 <section class="pageHero" data-hero>
@@ -23,8 +25,20 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
       <span class="badgePulse"></span>
       {label}
     </span>
-    <h1 class="pageTitle" set:html={title} />
-    <p class="pageSubtitle">{subtitle}</p>
+
+    <h1
+      class="pageTitle"
+      data-rotator-titles={rotatingTitles ? JSON.stringify(rotatingTitles) : undefined}
+    >
+      <span class="titleSlideText" set:html={title} />
+    </h1>
+
+    <p
+      class="pageSubtitle"
+      data-rotator-subtitles={rotatingSubtitles ? JSON.stringify(rotatingSubtitles) : undefined}
+    >
+      <span class="subtitleSlideText">{subtitle}</span>
+    </p>
 
     {(primaryCta || secondaryCta) && (
       <div class="pageActions">
@@ -45,6 +59,74 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
 
   <div class="pageCurve" aria-hidden="true"></div>
 </section>
+
+<script>
+  function setupHeroRotator() {
+    const titleEl = document.querySelector<HTMLElement>('[data-rotator-titles]');
+    const subtitleEl = document.querySelector<HTMLElement>('[data-rotator-subtitles]');
+
+    if (!titleEl && !subtitleEl) return;
+
+    let titles: string[] = [];
+    let subtitles: string[] = [];
+
+    if (titleEl && titleEl.dataset.rotatorTitles) {
+      try {
+        titles = JSON.parse(titleEl.dataset.rotatorTitles);
+      } catch (e) {}
+    }
+
+    if (subtitleEl && subtitleEl.dataset.rotatorSubtitles) {
+      try {
+        subtitles = JSON.parse(subtitleEl.dataset.rotatorSubtitles);
+      } catch (e) {}
+    }
+
+    let titleIdx = 0;
+    let subtitleIdx = 0;
+
+    const intervalId = setInterval(() => {
+      // Rotate Title with Slide Animation
+      if (titleEl && titles.length > 1) {
+        titleIdx = (titleIdx + 1) % titles.length;
+        const currentTitleText = titleEl.querySelector<HTMLElement>('.titleSlideText');
+        if (currentTitleText) {
+          currentTitleText.classList.add('slideOut');
+          setTimeout(() => {
+            currentTitleText.innerHTML = titles[titleIdx];
+            currentTitleText.classList.remove('slideOut');
+            currentTitleText.classList.add('slideIn');
+            requestAnimationFrame(() => {
+              currentTitleText.classList.remove('slideIn');
+            });
+          }, 350);
+        }
+      }
+
+      // Rotate Subtitle with Slide Animation
+      if (subtitleEl && subtitles.length > 1) {
+        subtitleIdx = (subtitleIdx + 1) % subtitles.length;
+        const currentSubText = subtitleEl.querySelector<HTMLElement>('.subtitleSlideText');
+        if (currentSubText) {
+          currentSubText.classList.add('slideOut');
+          setTimeout(() => {
+            currentSubText.textContent = subtitles[subtitleIdx];
+            currentSubText.classList.remove('slideOut');
+            currentSubText.classList.add('slideIn');
+            requestAnimationFrame(() => {
+              currentSubText.classList.remove('slideIn');
+            });
+          }, 350);
+        }
+      }
+    }, 4000);
+
+    window.addEventListener('beforeunload', () => clearInterval(intervalId), { once: true });
+  }
+
+  setupHeroRotator();
+  document.addEventListener('astro:page-load', setupHeroRotator);
+</script>
 
 <style>
   .pageHero {
@@ -157,6 +239,25 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
     color: var(--colorWhite);
     margin-bottom: 1.15rem;
     animation: riseIn 0.9s var(--easeOutExpo) 0.1s both;
+    min-height: 1.2em;
+  }
+
+  .titleSlideText {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease;
+    will-change: transform, opacity;
+  }
+
+  .titleSlideText.slideOut {
+    transform: translateY(-24px);
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+  .titleSlideText.slideIn {
+    transform: translateY(24px);
+    opacity: 0;
+    filter: blur(4px);
   }
 
   .pageTitle :global(.accent) {
@@ -181,9 +282,26 @@ const { label, title, subtitle, primaryCta, secondaryCta } = Astro.props;
   .pageSubtitle {
     font-size: clamp(1.05rem, 2vw, 1.25rem);
     color: rgba(255, 255, 255, 0.7);
-    max-width: 620px;
+    max-width: 640px;
     line-height: 1.7;
     animation: riseIn 0.9s var(--easeOutExpo) 0.22s both;
+    min-height: 2.8em;
+  }
+
+  .subtitleSlideText {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    will-change: transform, opacity;
+  }
+
+  .subtitleSlideText.slideOut {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  .subtitleSlideText.slideIn {
+    transform: translateY(16px);
+    opacity: 0;
   }
 
   .pageActions {

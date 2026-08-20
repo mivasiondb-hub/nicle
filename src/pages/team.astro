@@ -5,8 +5,8 @@ import PageHero from '../components/PageHero.astro';
 import Footer from '../components/Footer.astro';
 import { leadership } from '../data/leadership';
 
-const ceo = leadership.find((p) => p.featured)!;
-const team = leadership.filter((p) => !p.featured);
+const founders = [leadership[0], leadership[1]]; // Mr. Highness HC and Mr. Justice Friday
+const executiveTeam = leadership.slice(2); // Mrs. Kiowa George, Divine Amadi, Kingston Onweagba
 ---
 
 <BaseLayout
@@ -15,195 +15,123 @@ const team = leadership.filter((p) => !p.featured);
   activeNav="team"
   image="/og-default.png"
   canonical="/team"
-  keywords="Nicle Inc team, Highness HC, Justice Friday, Kiowa George, Divine Amadi, Kingston Onweagba, Nicle leadership"
+  keywords="Nicle Inc team, Highness HC, Justice Friday, Kiowa George, Divine Amadi, Kingston Onweagba, Nicle leadership, founders"
 >
   <Header active="team" />
   <main>
     <PageHero
       label="Team"
-      title='The people building <span class="accent">Nicle</span>'
+      title='The people Behind <span class="accent">Nicle</span>'
       subtitle="Leadership across operations, finance, project delivery, and vision — growing a privacy first, AI powered ecosystem worldwide."
       primaryCta={{ label: 'About Nicle', href: '/about' }}
       secondaryCta={{ label: 'View products', href: '/products' }}
     />
 
-    <section class="leaderSection">
-      <div class="leaderCard ceoCard">
-        <div class="leaderBadge">Leadership</div>
-        <div class="leaderGrid">
-          <div class="leaderAvatarWrap">
-            <div
-              class:list={['leaderAvatar', { leaderAvatarPhoto: !!ceo.photo }]}
-              style={!ceo.photo ? `background: ${ceo.gradient}` : undefined}
-              aria-hidden={!ceo.photo ? 'true' : undefined}
-            >
-              {ceo.photo ? (
-                <img src={ceo.photo} alt={ceo.name} class="leaderPhoto" width="280" height="280" loading="eager" />
-              ) : (
-                <span>{ceo.initials}</span>
-              )}
-            </div>
-            <div class="avatarRing" aria-hidden="true"></div>
-          </div>
-          <div class="leaderCopy">
-            <h2>{ceo.name}</h2>
-            <p class="leaderRole">{ceo.role}</p>
-            <div class="ceoBio">
-              {ceo.bio.map((paragraph) => <p>{paragraph}</p>)}
-            </div>
-            <div class="leaderTags">
-              {ceo.tags.map((tag) => <span>{tag}</span>)}
-            </div>
-          </div>
-        </div>
-
-        <div class="ceoDetail">
-          <div class="ceoBlock">
-            <h3>Companies founded</h3>
-            <div class="companyGrid">
-              {ceo.companies?.map((company) => (
-                <article class="companyCard">
-                  <h4>{company.name}</h4>
-                  <p class="companyMeta">{company.title} · Founded {company.founded}</p>
-                  <p>{company.detail}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div class="ceoBlock">
-            <h3>Legendary platforms developed</h3>
-            <p class="ceoBlockLead">
-              Chinedu has personally developed and written code for numerous revolutionary platforms that have
-              transformed how people interact with technology and each other.
-            </p>
-            <div class="platformCloud">
-              {ceo.platforms?.map((platform) => (
-                <span>{platform}</span>
-              ))}
-            </div>
-          </div>
-
-          <div class="ceoBlock">
-            <h3>The Nicer City &amp; Nicer City Networks</h3>
-            <p>{ceo.cityNote}</p>
-            <p class="ceoSubhead">Notable AI characters &amp; beings</p>
-            <div class="platformCloud softCloud">
-              {ceo.characters?.map((character) => (
-                <span>{character}</span>
-              ))}
-              <span>...and many more</span>
-            </div>
-            <p class="cityNetwork">{ceo.cityNetwork}</p>
-          </div>
-
-          <div class="ceoSplit">
-            <div class="ceoBlock">
-              <h3>Music &amp; entertainment</h3>
-              <p>
-                As a talented singer, songwriter, and record producer, Chinedu brings artistic vision to the
-                technology world through Hc Music, his record label division.
-              </p>
-              <div class="platformCloud softCloud">
-                {ceo.music?.map((item) => <span>{item}</span>)}
-              </div>
-            </div>
-            <div class="ceoBlock">
-              <h3>Film &amp; production</h3>
-              <p>
-                Through Hc Studios Picture, Chinedu explores storytelling and visual arts as an actor,
-                filmmaker, and director, creating compelling content that bridges technology and entertainment.
-              </p>
-              <div class="platformCloud softCloud">
-                {ceo.film?.map((item) => <span>{item}</span>)}
-              </div>
-            </div>
-          </div>
-
-          <div class="ceoLegacy">
-            <h3>Legacy &amp; vision</h3>
-            <p>{ceo.legacy}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="teamIntro">
-        <span class="sectionLabel">Leadership team</span>
-        <h2 class="sectionTitle">The people building Nicle with vision</h2>
+    <section class="teamPageSection">
+      <!-- Founders Section (2 cards in 1 line) -->
+      <div class="foundersHeader">
+        <span class="sectionLabel">Founding Leadership</span>
+        <h2 class="sectionTitle">The visionaries behind Nicle</h2>
         <p class="sectionLead">
-          Operations, finance, project, and marketing leadership working alongside the CEO to grow a privacy first,
-          AI powered ecosystem worldwide.
+          Founded by Mr. Highness HC and Mr. Justice Friday to pioneer proprietary AI models, encrypted communications, and the global Nicer Ecosystem.
         </p>
       </div>
 
-      <div class="teamGrid">
-        {team.map((person) => (
-          <article
-            class:list={['teamCard', { teamCardWide: person.wide }]}
-          >
-            <div
-              class:list={['teamAvatar', { teamAvatarPhoto: !!person.photo }]}
-              style={!person.photo ? `background: ${person.gradient}` : undefined}
-              aria-hidden={!person.photo ? 'true' : undefined}
-            >
-              {person.photo ? (
-                <img src={person.photo} alt={person.name} class="teamPhoto" width="256" height="256" loading="lazy" />
-              ) : (
-                <span>{person.initials}</span>
-              )}
-            </div>
-            <h3>{person.name}</h3>
-            <p class="teamRole">{person.role}</p>
-            <div class="teamBio">
-              {person.bio.map((paragraph) => <p>{paragraph}</p>)}
-            </div>
-            {person.responsibilities && (
-              <div class="teamExtras">
-                <div class="teamExtraBlock">
-                  <h4>Key responsibilities</h4>
-                  <ul>
-                    {person.responsibilities.map((item) => (
-                      <li>{item}</li>
-                    ))}
-                  </ul>
+      <div class="foundersTwoColGrid">
+        {founders.map((founder) => (
+          <article class="founderCard">
+            <div class="founderCardHeader">
+              <a href={`/team/${founder.slug}`} class="founderAvatarLink" aria-label={`View ${founder.name}'s Profile`}>
+                <div
+                  class:list={['founderAvatar', { founderAvatarPhoto: !!founder.photo }]}
+                  style={!founder.photo ? `background: ${founder.gradient}` : undefined}
+                >
+                  {founder.photo ? (
+                    <img src={founder.photo} alt={founder.name} class="founderPhoto" width="220" height="220" loading="eager" />
+                  ) : (
+                    <span>{founder.initials}</span>
+                  )}
                 </div>
-                {person.achievements && (
-                  <div class="teamExtraBlock">
-                    <h4>Key achievements</h4>
-                    <ul>
-                      {person.achievements.map((item) => (
-                        <li>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <div class="founderAvatarRing" aria-hidden="true"></div>
+              </a>
+
+              <div class="founderMeta">
+                <span class="founderBadge">
+                  {founder.slug === 'highness-hc' ? 'Founder & CEO' : 'Co-Founder & Manager'}
+                </span>
+                <h3 class="founderName">
+                  <a href={`/team/${founder.slug}`} class="founderTitleLink">{founder.name}</a>
+                </h3>
+                <p class="founderRole">{founder.role.split('·')[0]}</p>
+                <div class="founderTags">
+                  {founder.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+                </div>
+              </div>
+            </div>
+
+            <div class="founderBio">
+              <p>{founder.shortBio || founder.bio[0]}</p>
+            </div>
+
+            <div class="founderCardFooter">
+              <a href={`/team/${founder.slug}`} class="btnFounderCta">
+                <span>Explore Full Profile</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Executive Leadership Team Section (3 cards) -->
+      <div class="executivesHeader">
+        <span class="sectionLabel">Executive Team</span>
+        <h2 class="sectionTitle">Leadership driving execution &amp; growth</h2>
+        <p class="sectionLead">
+          Operations, financial strategy, agile technical delivery, and brand positioning across all platforms.
+        </p>
+      </div>
+
+      <div class="executivesGrid">
+        {executiveTeam.map((person) => (
+          <article class="execCard">
+            <a href={`/team/${person.slug}`} class="execAvatarLink" aria-label={`View ${person.name}'s Profile`}>
+              <div
+                class:list={['execAvatar', { execAvatarPhoto: !!person.photo }]}
+                style={!person.photo ? `background: ${person.gradient}` : undefined}
+              >
+                {person.photo ? (
+                  <img src={person.photo} alt={person.name} class="execPhoto" width="200" height="200" loading="lazy" />
+                ) : (
+                  <span>{person.initials}</span>
                 )}
               </div>
-            )}
-            {person.personalInfo && (
-              <div class="personalInfoCard">
-                <h4>Personal Information</h4>
-                <dl class="personalInfoList">
-                  <div>
-                    <dt>Full Name</dt>
-                    <dd>{person.personalInfo.fullName}</dd>
-                  </div>
-                  <div>
-                    <dt>Date of Birth</dt>
-                    <dd>{person.personalInfo.dateOfBirth}</dd>
-                  </div>
-                  <div>
-                    <dt>Role</dt>
-                    <dd>{person.personalInfo.role}</dd>
-                  </div>
-                  <div>
-                    <dt>Expertise</dt>
-                    <dd>{person.personalInfo.expertise}</dd>
-                  </div>
-                </dl>
+            </a>
+
+            <div class="execCardContent">
+              <h3 class="execName">
+                <a href={`/team/${person.slug}`} class="execTitleLink">{person.name}</a>
+              </h3>
+              <p class="execRole">{person.role.split('·')[0]}</p>
+
+              <div class="execBio">
+                <p>{person.shortBio || person.bio[0]}</p>
               </div>
-            )}
-            <div class="leaderTags">
-              {person.tags.map((tag) => <span>{tag}</span>)}
+
+              <div class="execTags">
+                {person.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+
+              <div class="execCardFooter">
+                <a href={`/team/${person.slug}`} class="btnExecCta">
+                  <span>View Full Profile</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </article>
         ))}
@@ -213,504 +141,385 @@ const team = leadership.filter((p) => !p.featured);
   <Footer />
 </BaseLayout>
 
-
 <style>
-  .leaderSection {
-    padding: 1rem 2rem 4rem;
+  .teamPageSection {
+    padding: 2.5rem 2rem 6rem;
     background: var(--colorWhite);
+    max-width: 1280px;
+    margin: 0 auto;
   }
 
-  .leaderCard {
-    max-width: 1080px;
-    margin: 0 auto 3.5rem;
-    padding: 2.5rem;
-    border-radius: var(--radiusLg);
-    border: 1px solid var(--colorBorder);
-    background: linear-gradient(180deg, var(--colorSurfaceElevated), var(--colorWhite));
-    box-shadow: var(--shadowSoft);
+  /* Section Headers */
+  .foundersHeader, .executivesHeader {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem;
   }
 
-  .leaderBadge {
+  .executivesHeader {
+    margin-top: 5rem;
+  }
+
+  .sectionLabel {
     display: inline-block;
-    margin-bottom: 1.75rem;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
     text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--colorBrand);
+    margin-bottom: 0.5rem;
   }
 
-  .leaderGrid {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2.25rem;
-    align-items: center;
-  }
-
-  .leaderAvatarWrap {
-    position: relative;
-    width: 140px;
-    height: 140px;
-    flex-shrink: 0;
-  }
-
-  .leaderAvatar {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
+  .sectionTitle {
     font-family: var(--fontDisplay);
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: white;
-    overflow: hidden;
+    font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
   }
 
-  .leaderAvatarPhoto {
-    background: #111;
-    box-shadow: 0 0 0 3px rgba(237, 53, 66, 0.22);
-  }
-
-  .leaderPhoto {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: none;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-
-  .avatarRing {
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    border: 2px solid rgba(237, 53, 66, 0.25);
-    animation: ringPulse 3s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  @keyframes ringPulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.06); opacity: 0.55; }
-  }
-
-  .leaderCopy h2 {
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    margin-bottom: 0.35rem;
-  }
-
-  .leaderRole {
-    color: var(--colorBrand);
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .ceoBio p {
+  .sectionLead {
+    font-size: 1.025rem;
     color: var(--colorTextMuted);
-    margin-bottom: 0.9rem;
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
-  .ceoBio p:last-child {
-    margin-bottom: 1.25rem;
-  }
-
-  .ceoDetail {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--colorBorder);
-    display: flex;
-    flex-direction: column;
+  /* 2 Founders in 1 Line */
+  .foundersTwoColGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
-  .ceoBlock h3,
-  .ceoLegacy h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.85rem;
-  }
-
-  .ceoBlockLead,
-  .ceoBlock p,
-  .cityNetwork,
-  .ceoLegacy p {
-    color: var(--colorTextMuted);
-    line-height: 1.7;
-    font-size: 0.95rem;
-  }
-
-  .ceoBlockLead {
-    margin-bottom: 1rem;
-  }
-
-  .ceoSubhead {
-    margin: 1.1rem 0 0.75rem;
-    font-size: 0.82rem !important;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--colorInk) !important;
-  }
-
-  .cityNetwork {
-    margin-top: 1rem;
-  }
-
-  .companyGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-
-  .companyCard {
-    padding: 1.25rem;
-    border-radius: var(--radiusMd);
+  .founderCard {
+    background: linear-gradient(180deg, var(--colorSurfaceElevated), #ffffff);
     border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
-  }
-
-  .companyCard h4 {
-    font-size: 1rem;
-    margin-bottom: 0.35rem;
-  }
-
-  .companyMeta {
-    font-size: 0.8rem !important;
-    font-weight: 600;
-    color: var(--colorBrand) !important;
-    margin-bottom: 0.55rem !important;
-  }
-
-  .platformCloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .platformCloud span {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--colorInk);
-    background: var(--colorBrandSoft);
-    border-radius: 999px;
-  }
-
-  .softCloud span {
-    background: var(--colorSurface);
-    border: 1px solid var(--colorBorder);
-  }
-
-  .ceoSplit {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .ceoSplit .ceoBlock {
-    padding: 1.35rem;
-    border-radius: var(--radiusMd);
-    border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
-  }
-
-  .ceoLegacy {
-    padding: 1.5rem;
-    border-radius: var(--radiusMd);
-    background: linear-gradient(135deg, rgba(237, 53, 66, 0.06), rgba(124, 92, 252, 0.08));
-    border: 1px solid rgba(237, 53, 66, 0.12);
-  }
-
-  .leaderTags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .leaderTags span {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--colorInk);
-    background: var(--colorBrandSoft);
-    border-radius: 999px;
-  }
-
-  .teamIntro {
-    max-width: 1080px;
-    margin: 0 auto 2rem;
-  }
-
-  .teamIntro .sectionLead {
-    max-width: 640px;
-  }
-
-  .teamGrid {
-    max-width: 1080px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  .teamCardWide {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto 1fr auto;
-    column-gap: 1.75rem;
-    row-gap: 0.35rem;
-    align-items: start;
-  }
-
-  .teamCardWide .teamAvatar {
-    grid-row: 1 / span 6;
-    width: 112px;
-    height: 112px;
-    font-size: 1.5rem;
-    margin-bottom: 0;
-  }
-
-  .teamCardWide .teamAvatarPhoto {
-    width: 128px;
-    height: 128px;
-  }
-
-  .teamCardWide h3,
-  .teamCardWide .teamRole,
-  .teamCardWide .teamBio,
-  .teamCardWide .teamExtras,
-  .teamCardWide .personalInfoCard,
-  .teamCardWide .leaderTags {
-    grid-column: 2;
-  }
-
-  .teamCardWide .teamBio p {
-    margin-bottom: 0.85rem;
-  }
-
-  .teamCardWide .teamBio p:last-child {
-    margin-bottom: 0;
-  }
-
-  .teamExtras {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 1.15rem 0 1.25rem;
-  }
-
-  .teamExtraBlock {
-    padding: 1.1rem 1.15rem;
-    border-radius: var(--radiusMd);
-    border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
-  }
-
-  .teamExtraBlock h4 {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--colorBrand);
-    margin-bottom: 0.75rem;
-  }
-
-  .teamExtraBlock ul {
+    border-radius: var(--radiusLg);
+    padding: 2.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .teamExtraBlock li {
-    position: relative;
-    padding-left: 0.9rem;
-    font-size: 0.88rem;
-    color: var(--colorTextMuted);
-    line-height: 1.5;
-  }
-
-  .teamExtraBlock li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.55em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--colorBrand);
-  }
-
-  .personalInfoCard {
-    padding: 1.1rem 1.15rem;
-    border-radius: var(--radiusMd);
-    border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
-    margin: 0 0 1.25rem;
-  }
-
-  .personalInfoCard h4 {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--colorBrand);
-    margin-bottom: 0.9rem;
-  }
-
-  .personalInfoList {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.85rem 1.25rem;
-  }
-
-  .personalInfoList dt {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--colorTextMuted);
-    margin-bottom: 0.25rem;
-  }
-
-  .personalInfoList dd {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--colorInk);
-  }
-
-  .teamCard {
-    padding: 1.75rem;
-    border-radius: var(--radiusLg);
-    border: 1px solid var(--colorBorder);
-    background: linear-gradient(180deg, var(--colorSurfaceElevated), var(--colorWhite));
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-    transition:
-      transform 0.45s var(--easeOutExpo),
-      box-shadow 0.45s ease,
-      border-color 0.3s ease;
-  }
-
-  .teamCard:hover {
-    transform: translateY(-6px);
     box-shadow: var(--shadowSoft);
-    border-color: rgba(237, 53, 66, 0.18);
+    transition: transform 0.3s var(--easeOutExpo), box-shadow 0.3s var(--easeOutExpo);
   }
 
-  .teamAvatar {
+  .founderCard:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadowLift);
+  }
+
+  .founderCardHeader {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .founderAvatarLink {
     position: relative;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-family: var(--fontDisplay);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 1.15rem;
-    overflow: hidden;
+    text-decoration: none;
     flex-shrink: 0;
   }
 
-  .teamAvatarPhoto {
-    background: #111;
-    box-shadow: 0 0 0 3px rgba(91, 124, 250, 0.2);
+  .founderAvatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--colorWhite);
+    font-family: var(--fontDisplay);
+    border: 3px solid #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease;
   }
 
-  .teamPhoto {
-    position: absolute;
-    inset: 0;
+  .founderAvatarLink:hover .founderAvatar {
+    transform: scale(1.05);
+  }
+
+  .founderPhoto {
     width: 100%;
     height: 100%;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: none;
     object-fit: cover;
-    object-position: center center;
-    display: block;
   }
 
-  .teamCard h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.35rem;
+  .founderAvatarRing {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(237, 53, 66, 0.35);
+    pointer-events: none;
   }
 
-  .teamRole {
-    font-size: 0.88rem;
-    font-weight: 600;
+  .founderMeta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .founderBadge {
+    display: inline-block;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--colorBrand);
+    background: var(--colorBrandSoft);
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    margin-bottom: 0.4rem;
+  }
+
+  .founderName {
+    font-family: var(--fontDisplay);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .founderTitleLink {
+    text-decoration: none;
+    color: var(--colorInk);
+    transition: color 0.2s ease;
+  }
+
+  .founderTitleLink:hover {
+    color: var(--colorBrand);
+  }
+
+  .founderRole {
+    font-size: 0.875rem;
+    color: var(--colorTextMuted);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+  }
+
+  .founderTags, .execTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .founderTags span, .execTags span {
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: 100px;
+    color: var(--colorText);
+  }
+
+  .founderBio {
+    font-size: 0.95rem;
+    color: var(--colorText);
+    line-height: 1.65;
+    margin-bottom: 1.75rem;
+    flex: 1;
+  }
+
+  .founderCardFooter {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--colorBorder);
+  }
+
+  .btnFounderCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background: var(--colorBrand);
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(237, 53, 66, 0.2);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btnFounderCta:hover {
+    background: var(--colorBrandHover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(237, 53, 66, 0.3);
+  }
+
+  /* 3 Column Executive Grid */
+  .executivesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .execCard {
+    background: var(--colorSurfaceElevated);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .execCard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadowSoft);
+  }
+
+  .execAvatarLink {
+    display: inline-block;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-bottom: 1.25rem;
+  }
+
+  .execAvatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--colorWhite);
+    font-family: var(--fontDisplay);
+    border: 3px solid #ffffff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease;
+  }
+
+  .execAvatarLink:hover .execAvatar {
+    transform: scale(1.05);
+  }
+
+  .execPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .execCardContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .execName {
+    font-family: var(--fontDisplay);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.25rem;
+  }
+
+  .execTitleLink {
+    text-decoration: none;
+    color: var(--colorInk);
+    transition: color 0.2s ease;
+  }
+
+  .execTitleLink:hover {
+    color: var(--colorBrand);
+  }
+
+  .execRole {
+    font-size: 0.8125rem;
+    color: var(--colorBrand);
+    font-weight: 600;
     margin-bottom: 0.85rem;
+    line-height: 1.4;
   }
 
-  .teamBio {
-    font-size: 0.92rem;
-    color: var(--colorTextMuted);
-    line-height: 1.65;
-    margin-bottom: 1.15rem;
+  .execBio {
+    font-size: 0.875rem;
+    color: var(--colorText);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
   }
 
-  .teamBio p {
-    font-size: 0.92rem;
-    color: var(--colorTextMuted);
-    line-height: 1.65;
+  .execTags {
+    margin-bottom: 1.5rem;
   }
 
-  @media (max-width: 960px) {
-    .teamGrid {
+  .execCardFooter {
+    margin-top: auto;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--colorBorder);
+  }
+
+  .btnExecCta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.6rem 0.95rem;
+    background: #ffffff;
+    border: 1px solid var(--colorBorder);
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btnExecCta:hover {
+    background: var(--colorBrandSoft);
+    border-color: rgba(237, 53, 66, 0.3);
+    color: var(--colorBrand);
+  }
+
+  @media (max-width: 1024px) {
+    .foundersTwoColGrid {
       grid-template-columns: 1fr;
-      max-width: 640px;
     }
 
-    .teamCardWide {
-      grid-template-columns: 1fr;
-    }
-
-    .teamCardWide .teamAvatar {
-      grid-row: auto;
-      margin-bottom: 1rem;
-    }
-
-    .teamCardWide h3,
-    .teamCardWide .teamRole,
-    .teamCardWide .teamBio,
-    .teamCardWide .teamExtras,
-    .teamCardWide .personalInfoCard,
-    .teamCardWide .leaderTags {
-      grid-column: 1;
-    }
-
-    .teamExtras {
-      grid-template-columns: 1fr;
-    }
-
-    .personalInfoList {
-      grid-template-columns: 1fr;
+    .executivesGrid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
   }
 
-  @media (max-width: 900px) {
-    .leaderGrid,
-    .companyGrid,
-    .ceoSplit {
-      grid-template-columns: 1fr;
+  @media (max-width: 640px) {
+    .teamPageSection {
+      padding: 1.5rem 1rem 4rem;
     }
 
-    .leaderAvatarWrap {
-      margin: 0 auto;
+    .founderCard {
+      padding: 1.5rem;
     }
 
-    .leaderCopy {
+    .founderCardHeader {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .founderTags {
+      justify-content: center;
+    }
+
+    .execCard {
       text-align: center;
     }
 
-    .leaderTags {
+    .execAvatarLink {
+      align-self: center;
+    }
+
+    .execTags {
       justify-content: center;
     }
   }

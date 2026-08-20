@@ -1,0 +1,591 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { helpProducts } from '../../../data/helpData';
+
+// Import logos for the products
+import mivasionImage from '../../../assets/images/mivasion-fit.jpeg';
+import worldnicerImage from '../../../assets/images/worldnicer-fit.jpeg';
+import nicerappImage from '../../../assets/images/nicerapp-fit.jpeg';
+import chatnicerImage from '../../../assets/images/chatnicer-fit.webp';
+import nicerAiPlusImage from '../../../assets/images/nicer-ai-plus-fit.jpeg';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const product of helpProducts) {
+    for (const article of product.articles) {
+      paths.push({
+        params: { product: product.id, article: article.id },
+        props: { product, article },
+      });
+    }
+  }
+  return paths;
+}
+
+const { product, article } = Astro.props;
+
+const productLogos: Record<string, ImageMetadata> = {
+  worldnicer: worldnicerImage,
+  nicerapp: nicerappImage,
+  mivasion: mivasionImage,
+  niceraiplus: nicerAiPlusImage,
+  chatnicer: chatnicerImage,
+};
+
+const logo = productLogos[product.logoKey];
+
+// Get other articles from the same product for sidebar navigation
+const otherArticles = product.articles.filter((a) => a.id !== article.id);
+---
+
+<BaseLayout
+  title={`${article.title} | ${product.name} Help`}
+  description={article.description}
+  activeNav="contact"
+  image="/og-default.png"
+  canonical={`/help/${product.id}/${article.id}`}
+  keywords={`${product.name} help, ${article.title}, ${article.category}`}
+>
+  <Header active="contact" />
+
+  <main class="hcaMain">
+    <!-- Breadcrumbs Bar -->
+    <section class="hcaHero">
+      <div class="hcaHeroInner" data-scroll-reveal>
+        <div class="hcaBreadcrumbs">
+          <a href="/help">Help Center</a>
+          <span class="separator">/</span>
+          <a href={`/help/${product.id}`}>{product.name} Help</a>
+          <span class="separator">/</span>
+          <span class="active">{article.category}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <section class="hcaContent">
+      <div class="hcaContentInner" data-scroll-reveal>
+        <div class="hcaGrid">
+          <article class="hcaArticleBody">
+            <span class="hcaCategoryBadge">{article.category}</span>
+            <h1 class="hcaTitle">{article.title}</h1>
+            <p class="hcaDescription">{article.description}</p>
+
+            <!-- Step by Step Guides -->
+            <div class="hcaStepsSection">
+              <h2 class="hcaSectionTitle">Step-by-Step Instructions</h2>
+              <ol class="hcaStepsList">
+                {article.steps.map((step, index) => (
+                  <li>
+                    <span class="stepNumber">{index + 1}</span>
+                    <p class="stepText">{step}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <!-- Helpful Tips Section -->
+            {article.tips && article.tips.length > 0 && (
+              <div class="hcaTipsSection">
+                <div class="hcaTipsIcon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path>
+                    <line x1="9" y1="18" x2="15" y2="18"></line>
+                    <line x1="10" y1="22" x2="14" y2="22"></line>
+                  </svg>
+                </div>
+                <div class="hcaTipsContent">
+                  <h3>Support Tips</h3>
+                  <ul>
+                    {article.tips.map((tip) => (
+                      <li>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            <!-- Feedback Rating Section -->
+            <div class="hcaFeedbackBox" id="hcaFeedbackSection">
+              <div class="hcaFeedbackPrompt" id="hcaFeedbackPrompt">
+                <strong>Was this article helpful?</strong>
+                <div class="hcaFeedbackButtons">
+                  <button class="btnFeedback" id="btnFeedbackYes">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                    </svg>
+                    Yes
+                  </button>
+                  <button class="btnFeedback" id="btnFeedbackNo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"></path>
+                    </svg>
+                    No
+                  </button>
+                </div>
+              </div>
+              <div class="hcaFeedbackThankYou" id="hcaFeedbackThankYou" style="display: none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="checkIcon">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <strong>Thank you for your feedback!</strong>
+                <p>Your inputs help us improve our product guides for the community.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sidebar listing other articles for the product -->
+          <aside class="hcaSidebar">
+            <div class="hcaSidebarCard">
+              <div class="hcaSidebarProductHeader">
+                <div class="hcaSidebarLogoFrame" style={`border-color: ${product.accent}`}>
+                  {logo && (
+                    <Image 
+                      src={logo} 
+                      alt={`${product.name} Logo`} 
+                      class="hcaSidebarLogo"
+                      widths={[60, 96]}
+                      sizes="40px"
+                      formats={['avif', 'webp']}
+                    />
+                  )}
+                </div>
+                <div>
+                  <h4>{product.name} Support</h4>
+                  <a href={`/help/${product.id}`} class="hcaViewAllLink">View all articles</a>
+                </div>
+              </div>
+              
+              {product.id === 'nicerapp' && (
+                <div class="hcaLegalLinks" style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--colorBorder);">
+                  <h5 style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--colorTextMuted); margin-bottom: 0.50rem;">Legal &amp; Policies</h5>
+                  <p style="font-size: 0.88rem; color: var(--colorTextMuted); margin-bottom: 0.75rem; line-height: 1.45;">Please review our active terms and security guidelines.</p>
+                  <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; font-weight: 600;">
+                    <li><a href="https://nicerapp.cloud/web/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--colorBrand);">Privacy Policy</a></li>
+                    <li><a href="https://nicerapp.cloud/web/terms" target="_blank" rel="noopener noreferrer" style="color: var(--colorBrand);">Terms of Service</a></li>
+                  </ul>
+                </div>
+              )}
+
+              {otherArticles.length > 0 && (
+                <div class="hcaRelatedArticles">
+                  <h5>Related Questions</h5>
+                  <ul>
+                    {otherArticles.map((art) => (
+                      <li>
+                        <a href={`/help/${product.id}/${art.id}`}>
+                          {art.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const yesBtn = document.getElementById('btnFeedbackYes');
+  const noBtn = document.getElementById('btnFeedbackNo');
+  const promptArea = document.getElementById('hcaFeedbackPrompt');
+  const thankYouArea = document.getElementById('hcaFeedbackThankYou');
+
+  function handleFeedback() {
+    if (promptArea && thankYouArea) {
+      promptArea.style.display = 'none';
+      thankYouArea.style.display = 'flex';
+    }
+  }
+
+  if (yesBtn) yesBtn.addEventListener('click', handleFeedback);
+  if (noBtn) noBtn.addEventListener('click', handleFeedback);
+</script>
+
+<style>
+  .hcaMain {
+    background: var(--colorWhite);
+    min-height: calc(100vh - var(--headerHeight));
+  }
+
+  /* Hero / Breadcrumbs Area */
+  .hcaHero {
+    padding: calc(var(--headerHeight) + 3.5rem) 1.5rem 1.5rem;
+    background: var(--colorSurface);
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  .hcaHeroInner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hcaBreadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--colorTextMuted);
+    flex-wrap: wrap;
+  }
+
+  .hcaBreadcrumbs a {
+    color: var(--colorTextMuted);
+    transition: color 0.2s ease;
+  }
+
+  .hcaBreadcrumbs a:hover {
+    color: var(--colorBrand);
+  }
+
+  .hcaBreadcrumbs .separator {
+    color: var(--colorBorder);
+  }
+
+  .hcaBreadcrumbs .active {
+    color: var(--colorInk);
+  }
+
+  /* Columns Grid Layout */
+  .hcaContent {
+    padding: 3.5rem 1.5rem 6rem;
+  }
+
+  .hcaContentInner {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hcaGrid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .hcaCategoryBadge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--colorTextMuted);
+    margin-bottom: 1.25rem;
+  }
+
+  .hcaTitle {
+    font-family: var(--fontDisplay);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    color: var(--colorInk);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hcaDescription {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--colorTextMuted);
+    margin-bottom: 3rem;
+  }
+
+  /* Steps Section */
+  .hcaStepsSection {
+    margin-bottom: 3.5rem;
+  }
+
+  .hcaSectionTitle {
+    font-family: var(--fontDisplay);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 1.75rem;
+  }
+
+  .hcaStepsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hcaStepsList li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .stepNumber {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--colorBrandSoft);
+    color: var(--colorBrand);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fontDisplay);
+    font-weight: 800;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(237, 53, 66, 0.1);
+  }
+
+  .stepText {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--colorText);
+    padding-top: 0.2rem;
+  }
+
+  /* Tips section (glassmorphic alert style box) */
+  .hcaTipsSection {
+    display: flex;
+    gap: 1.25rem;
+    padding: 2rem;
+    border-radius: 18px;
+    background: rgba(91, 124, 250, 0.05);
+    border: 1px solid rgba(91, 124, 250, 0.15);
+    margin-bottom: 3.5rem;
+  }
+
+  .hcaTipsIcon {
+    color: var(--colorAccent);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(91, 124, 250, 0.1);
+  }
+
+  .hcaTipsContent h3 {
+    font-family: var(--fontDisplay);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.5rem;
+  }
+
+  .hcaTipsContent ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+
+  .hcaTipsContent li {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--colorText);
+  }
+
+  /* Feedback box */
+  .hcaFeedbackBox {
+    border-top: 1px solid var(--colorBorder);
+    padding-top: 2.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .hcaFeedbackPrompt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hcaFeedbackPrompt strong {
+    font-size: 1.05rem;
+    color: var(--colorInk);
+  }
+
+  .hcaFeedbackButtons {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .btnFeedback {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--colorBorder);
+    background: var(--colorWhite);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--colorTextMuted);
+    transition: all 0.25s ease;
+  }
+
+  .btnFeedback:hover {
+    color: var(--colorBrand);
+    border-color: rgba(237, 53, 66, 0.35);
+    background: var(--colorBrandSoft);
+  }
+
+  .hcaFeedbackThankYou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hcaFeedbackThankYou .checkIcon {
+    color: #34c759;
+    background: rgba(52, 199, 89, 0.1);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    margin-bottom: 0.25rem;
+  }
+
+  .hcaFeedbackThankYou strong {
+    font-family: var(--fontDisplay);
+    font-size: 1.15rem;
+    color: var(--colorInk);
+  }
+
+  .hcaFeedbackThankYou p {
+    color: var(--colorTextMuted);
+    font-size: 0.95rem;
+  }
+
+  /* Sidebar styling (related questions links) */
+  .hcaSidebarCard {
+    padding: 2rem 1.75rem;
+    border-radius: 18px;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    box-shadow: 0 4px 15px rgba(10, 10, 11, 0.02);
+  }
+
+  .hcaSidebarProductHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--colorBorder);
+    padding-bottom: 1.25rem;
+  }
+
+  .hcaSidebarLogoFrame {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    border: 2px solid var(--colorWhite);
+    flex-shrink: 0;
+  }
+
+  .hcaSidebarLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hcaSidebarProductHeader h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.15rem;
+  }
+
+  .hcaViewAllLink {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--colorBrand);
+    transition: opacity 0.2s ease;
+  }
+
+  .hcaViewAllLink:hover {
+    opacity: 0.8;
+  }
+
+  .hcaRelatedArticles h5 {
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+  }
+
+  .hcaRelatedArticles ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .hcaRelatedArticles li {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .hcaRelatedArticles a {
+    color: var(--colorInk);
+    transition: color 0.25s ease;
+    line-height: 1.35;
+    display: block;
+  }
+
+  .hcaRelatedArticles a:hover {
+    color: var(--colorBrand);
+  }
+
+  @media (max-width: 900px) {
+    .hcaGrid {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hcaHero {
+      padding-top: calc(var(--headerHeight) + 3rem);
+    }
+
+    .hcaFeedbackPrompt {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .hcaFeedbackButtons {
+      width: 100%;
+    }
+
+    .btnFeedback {
+      flex-grow: 1;
+      justify-content: center;
+    }
+  }
+</style>

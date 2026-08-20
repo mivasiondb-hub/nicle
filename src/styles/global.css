@@ -43,6 +43,37 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Premium Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--colorWhite);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--colorBorder);
+  border-radius: 10px;
+  border: 2px solid var(--colorWhite);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--colorTextMuted);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colorBorder) var(--colorWhite);
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: var(--colorBrandSoft);
+  color: var(--colorBrand);
+}
+
 body {
   font-family: var(--fontBody);
   color: var(--colorText);
@@ -157,6 +188,12 @@ h1, h2, h3, h4 {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px);
+}
+
+.btnPrimary:active,
+.btnOutline:active,
+.headerCta:active {
+  transform: scale(0.96) translateY(0) !important;
 }
 
 .btnGhost {

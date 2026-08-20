@@ -1,0 +1,555 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { helpProducts } from '../../data/helpData';
+
+// Import logos for the products
+import mivasionImage from '../../assets/images/mivasion-fit.jpeg';
+import worldnicerImage from '../../assets/images/worldnicer-fit.jpeg';
+import nicerappImage from '../../assets/images/nicerapp-fit.jpeg';
+import chatnicerImage from '../../assets/images/chatnicer-fit.webp';
+import nicerAiPlusImage from '../../assets/images/nicer-ai-plus-fit.jpeg';
+
+const productLogos: Record<string, ImageMetadata> = {
+  worldnicer: worldnicerImage,
+  nicerapp: nicerappImage,
+  mivasion: mivasionImage,
+  niceraiplus: nicerAiPlusImage,
+  chatnicer: chatnicerImage,
+};
+
+// Flatten all articles for quick search indexing
+const allArticles = helpProducts.flatMap((p) => 
+  p.articles.map((art) => ({
+    ...art,
+    productId: p.id,
+    productName: p.name
+  }))
+);
+---
+
+<BaseLayout
+  title="Nicle Support | Help Center"
+  description="Get help with worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer. Find answers to common security, account, and configuration questions."
+  activeNav="contact"
+  image="/og-default.png"
+  canonical="/help"
+  keywords="Nicle support, Nicle help center, worldnicer help, nicerapp support, Mivasion help"
+>
+  <Header active="contact" />
+  
+  <main class="hcMain">
+    <!-- Centered Google-style Hero -->
+    <section class="hcHero">
+      <div class="hcHeroInner" data-scroll-reveal>
+        <div class="hcLogoWrap">
+          <img src="/nicle-logo.png" alt="Nicle Logo" class="hcCompanyLogo" />
+        </div>
+        <h1 class="hcHeroTitle">How can we help you?</h1>
+        
+        <!-- Interactive Search Bar -->
+        <div class="hcSearchContainer">
+          <div class="hcSearchBox">
+            <svg class="hcSearchIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="hcSearchInput" 
+              placeholder="Describe your issue or search articles..." 
+              autocomplete="off"
+            />
+            <button id="hcSearchClear" class="hcClearBtn" aria-label="Clear search" style="display: none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          
+          <!-- Instant Search Suggestions Dropdown -->
+          <div id="hcSuggestions" class="hcSuggestionsDropdown" style="display: none;">
+            <div id="hcSuggestionsList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Help Grid -->
+    <section class="hcProductsSection">
+      <div class="hcProductsContainer" data-scroll-reveal>
+        <div class="hcProductsGrid" id="hcProductGrid">
+          {helpProducts.map((product) => {
+            const logo = productLogos[product.logoKey];
+            return (
+              <a 
+                href={`/help/${product.id}`} 
+                class="hcProductCard" 
+                data-product-name={product.name.toLowerCase()}
+                data-product-tagline={product.tagline.toLowerCase()}
+              >
+                <div class="hcProductLogoFrame" style={`--accent-glow: ${product.accent}`}>
+                  {logo && (
+                    <Image 
+                      src={logo} 
+                      alt={`${product.name} Logo`} 
+                      class="hcProductLogo"
+                      widths={[120, 180]}
+                      sizes="80px"
+                      formats={['avif', 'webp']}
+                    />
+                  )}
+                </div>
+                <strong class="hcProductName">{product.name}</strong>
+              </a>
+            );
+          })}
+        </div>
+        
+        <!-- No Results Visual -->
+        <div id="hcNoResults" class="hcNoResultsWrap" style="display: none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <p>No matching products or help articles found.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- General Support Info -->
+    <section class="hcSupportBand">
+      <div class="hcSupportInner" data-scroll-reveal>
+        <h3>Need direct assistance?</h3>
+        <p>If you can't find the answers in our help sections, get in touch with our support desk.</p>
+        <a href="/contact" class="btnOutline">Contact Support Desk</a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<script define:vars={{ allArticles }}>
+  // Client side search scripting
+  const searchInput = document.getElementById('hcSearchInput');
+  const searchClear = document.getElementById('hcSearchClear');
+  const suggestionsDropdown = document.getElementById('hcSuggestions');
+  const suggestionsList = document.getElementById('hcSuggestionsList');
+  const productGrid = document.getElementById('hcProductGrid');
+  const productCards = document.querySelectorAll('.hcProductCard');
+  const noResults = document.getElementById('hcNoResults');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const value = e.target.value.toLowerCase().trim();
+      
+      // Update Clear button visibility
+      if (value.length > 0) {
+        searchClear.style.display = 'flex';
+      } else {
+        searchClear.style.display = 'none';
+      }
+
+      // If search query is empty, restore all cards and hide suggestions
+      if (value === '') {
+        productCards.forEach(card => card.style.display = 'flex');
+        suggestionsDropdown.style.display = 'none';
+        noResults.style.display = 'none';
+        return;
+      }
+
+      // Filter product cards based on name or tagline
+      let visibleProductCount = 0;
+      productCards.forEach(card => {
+        const name = card.getAttribute('data-product-name');
+        const tagline = card.getAttribute('data-product-tagline');
+        if (name.includes(value) || tagline.includes(value)) {
+          card.style.display = 'flex';
+          visibleProductCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Filter help articles to show in suggestions list
+      const matchedArticles = allArticles.filter(art => 
+        art.title.toLowerCase().includes(value) || 
+        art.description.toLowerCase().includes(value) ||
+        art.category.toLowerCase().includes(value)
+      ).slice(0, 5); // limit to top 5 results
+
+      // Display suggestions
+      if (matchedArticles.length > 0) {
+        suggestionsDropdown.style.display = 'block';
+        suggestionsList.innerHTML = matchedArticles.map(art => `
+          <a href="/help/${art.productId}/${art.id}" class="hcSuggestionItem">
+            <div class="hcSuggestionHeader">
+              <span class="hcSuggestionProduct">${art.productName}</span>
+              <span class="hcSuggestionCategory">${art.category}</span>
+            </div>
+            <strong class="hcSuggestionTitle">${art.title}</strong>
+            <p class="hcSuggestionDesc">${art.description}</p>
+          </a>
+        `).join('');
+      } else {
+        suggestionsDropdown.style.display = 'none';
+      }
+
+      // Show no results view if neither product nor article matches
+      if (visibleProductCount === 0 && matchedArticles.length === 0) {
+        noResults.style.display = 'flex';
+      } else {
+        noResults.style.display = 'none';
+      }
+    });
+
+    // Clear search functionality
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.focus();
+      searchClear.style.display = 'none';
+      productCards.forEach(card => card.style.display = 'flex');
+      suggestionsDropdown.style.display = 'none';
+      noResults.style.display = 'none';
+    });
+
+    // Close suggestions dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
+        suggestionsDropdown.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+<style>
+  .hcMain {
+    background: var(--colorWhite);
+    min-height: calc(100vh - var(--headerHeight));
+  }
+
+  /* Centered Google Support Style Hero */
+  .hcHero {
+    padding: calc(var(--headerHeight) + 5.5rem) 1.5rem 3.5rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(245, 246, 248, 0.5) 0%, var(--colorWhite) 100%);
+  }
+
+  .hcHeroInner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hcLogoWrap {
+    margin-bottom: 1.5rem;
+  }
+
+  .hcCompanyLogo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    opacity: 0.95;
+  }
+
+  .hcHeroTitle {
+    font-family: var(--fontDisplay);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 600;
+    color: var(--colorInk);
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* Search Container & Dropdown suggestions */
+  .hcSearchContainer {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    z-index: 10;
+  }
+
+  .hcSearchBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    padding: 0 1.25rem 0 1.5rem;
+    box-shadow: 0 4px 18px rgba(10, 10, 11, 0.05);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .hcSearchBox:focus-within {
+    border-color: rgba(237, 53, 66, 0.4);
+    box-shadow: 0 8px 30px rgba(237, 53, 66, 0.08), 0 0 0 1px rgba(237, 53, 66, 0.1);
+  }
+
+  .hcSearchIcon {
+    color: var(--colorTextMuted);
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+
+  .hcSearchBox input {
+    width: 100%;
+    height: 52px;
+    border: none;
+    outline: none;
+    font-family: var(--fontBody);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--colorInk);
+    background: transparent;
+  }
+
+  .hcSearchBox input::placeholder {
+    color: var(--colorTextMuted);
+  }
+
+  .hcClearBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    color: var(--colorTextMuted);
+    transition: background 0.25s ease, color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .hcClearBtn:hover {
+    background: var(--colorSurface);
+    color: var(--colorInk);
+  }
+
+  /* Suggestions Dropdown Card */
+  .hcSuggestionsDropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(10, 10, 11, 0.12);
+    overflow: hidden;
+    text-align: left;
+  }
+
+  .hcSuggestionItem {
+    display: block;
+    padding: 1.2rem 1.75rem;
+    border-bottom: 1px solid var(--colorBorder);
+    transition: background 0.2s ease;
+  }
+
+  .hcSuggestionItem:last-child {
+    border-bottom: none;
+  }
+
+  .hcSuggestionItem:hover {
+    background: var(--colorSurface);
+  }
+
+  .hcSuggestionHeader {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+
+  .hcSuggestionProduct {
+    color: var(--colorBrand);
+  }
+
+  .hcSuggestionCategory {
+    color: var(--colorTextMuted);
+  }
+
+  .hcSuggestionTitle {
+    display: block;
+    color: var(--colorInk);
+    font-size: 0.98rem;
+    line-height: 1.3;
+    margin-bottom: 0.2rem;
+  }
+
+  .hcSuggestionDesc {
+    font-size: 0.85rem;
+    color: var(--colorTextMuted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Product Card Grid Section */
+  .hcProductsSection {
+    padding: 1rem 1.5rem 5rem;
+    background: var(--colorWhite);
+  }
+
+  .hcProductsContainer {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hcProductsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+  }
+
+  .hcProductCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+    border-radius: 18px;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    box-shadow: 0 4px 15px rgba(10, 10, 11, 0.02);
+    text-align: center;
+    transition: transform 0.35s var(--easeOutExpo), box-shadow 0.35s ease, border-color 0.3s ease;
+  }
+
+  .hcProductCard:hover {
+    transform: translateY(-6px);
+    border-color: rgba(10, 10, 11, 0.15);
+    box-shadow: 0 16px 36px rgba(10, 10, 11, 0.08);
+  }
+
+  .hcProductLogoFrame {
+    width: 78px;
+    height: 78px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #000;
+    margin-bottom: 1.25rem;
+    border: 3px solid var(--colorWhite);
+    box-shadow: 
+      0 8px 20px rgba(0, 0, 0, 0.12),
+      0 0 0 1px rgba(10, 10, 11, 0.05);
+    transition: transform 0.35s var(--easeOutExpo), box-shadow 0.35s ease;
+  }
+
+  .hcProductCard:hover .hcProductLogoFrame {
+    transform: scale(1.05);
+    box-shadow: 
+      0 12px 28px rgba(0, 0, 0, 0.18),
+      0 0 35px var(--accent-glow);
+  }
+
+  .hcProductLogo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hcProductName {
+    font-family: var(--fontDisplay);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    letter-spacing: -0.01em;
+  }
+
+  .hcNoResultsWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 1.5rem;
+    color: var(--colorTextMuted);
+    gap: 1rem;
+  }
+
+  .hcNoResultsWrap svg {
+    color: var(--colorBorder);
+  }
+
+  /* Footer Support Band */
+  .hcSupportBand {
+    background: var(--colorSurface);
+    padding: 4.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .hcSupportBand .btnOutline {
+    color: #ff7a8a;
+    border-color: rgba(255, 122, 138, 0.4);
+    background: rgba(255, 122, 138, 0.05);
+    transition: all 0.3s var(--easeOutExpo);
+  }
+
+  .hcSupportBand .btnOutline:hover {
+    color: var(--colorWhite);
+    background: #ff7a8a;
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(255, 122, 138, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .hcSupportInner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .hcSupportInner h3 {
+    font-family: var(--fontDisplay);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.5rem;
+  }
+
+  .hcSupportInner p {
+    color: var(--colorTextMuted);
+    margin-bottom: 1.75rem;
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 900px) {
+    .hcProductsGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hcProductsGrid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+    }
+
+    .hcHero {
+      padding-top: calc(var(--headerHeight) + 3rem);
+    }
+
+    .hcProductCard {
+      padding: 1.75rem 1rem;
+    }
+
+    .hcProductLogoFrame {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+    }
+  }
+</style>

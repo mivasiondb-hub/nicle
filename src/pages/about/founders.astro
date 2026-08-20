@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import Footer from '../../components/Footer.astro';
+import { leadership } from '../../data/leadership';
+
+const ceo = leadership[0];
+const coFounder = leadership[1];
+---
+
+<BaseLayout
+  title="Founders | Meet the Visionary Founders of Nicle Inc"
+  description="Meet the founders of Nicle Inc and All Things Web Technology Inc. — Mr. Highness HC and Mr. Justice Friday, building the Nicer Ecosystem and next-generation AI."
+  activeNav="founders"
+  image="/og-default.png"
+  canonical="/about/founders"
+  keywords="Nicle founders, Highness HC, Justice Friday, All Things Web Technology, Nicer Ecosystem founders, AI leadership, Knowledge Graph"
+>
+  <Header active="founders" />
+  <main>
+    <PageHero
+      label="Founders"
+      title='Meet the founders of <span class="accent">Nicle</span>'
+      subtitle="The visionary leadership and engineering minds behind Nicle Inc and All Things Web Technology Inc. — shaping the future of AI and the Nicer Ecosystem."
+      primaryCta={{ label: 'Explore team', href: '/team' }}
+      secondaryCta={{ label: 'About Nicle', href: '/about' }}
+    />
+
+    <section class="foundersSection">
+      <div class="foundersIntro">
+        <span class="sectionLabel">Founding Vision</span>
+        <h2 class="sectionTitle">Building technology that empowers humanity</h2>
+        <p class="sectionLead">
+          At Nicle Inc, our founders combine deep technical expertise with visionary leadership to build transformative AI-powered platforms. Click on any founder to explore their full Knowledge Graph profile, verified entity dossier, and career milestones.
+        </p>
+      </div>
+
+      <div class="foundersGrid">
+        <!-- CEO & Founder -->
+        <article class="founderCard">
+          <div class="founderCardHeader">
+            <a href={`/team/${ceo.slug}`} class="founderAvatarLink" aria-label={`View ${ceo.name}'s Knowledge Graph Profile`}>
+              <div
+                class:list={['founderAvatar', { founderAvatarPhoto: !!ceo.photo }]}
+                style={!ceo.photo ? `background: ${ceo.gradient}` : undefined}
+              >
+                {ceo.photo ? (
+                  <img src={ceo.photo} alt={ceo.name} class="founderPhoto" width="280" height="280" loading="eager" />
+                ) : (
+                  <span>{ceo.initials}</span>
+                )}
+              </div>
+            </a>
+            <div class="founderMeta">
+              <span class="founderBadge">Founder &amp; CEO</span>
+              <h2 class="founderName">
+                <a href={`/team/${ceo.slug}`} class="founderTitleLink">{ceo.name}</a>
+              </h2>
+              <p class="founderRole">{ceo.role}</p>
+              <div class="tagList">
+                {ceo.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+          </div>
+
+          <div class="founderBio">
+            {ceo.bio.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+
+          <div class="founderActionRow">
+            <a href={`/team/${ceo.slug}`} class="btnFounderKg">
+              <span>Explore Full Profile &amp; Story</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          {ceo.companies && (
+            <div class="founderBlock">
+              <h3>Companies &amp; Divisions Founded</h3>
+              <div class="companyList">
+                {ceo.companies.map((c) => (
+                  <div class="companyCard">
+                    <h4>{c.name}</h4>
+                    <p class="companyRole">{c.title} &middot; Founded {c.founded}</p>
+                    <p>{c.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {ceo.platforms && (
+            <div class="founderBlock">
+              <h3>Revolutionary Platforms Developed</h3>
+              <div class="platformCloud">
+                {ceo.platforms.map((platform) => (
+                  <span class="platformTag">{platform}</span>
+                ))}
+              </div>
+            </div>
+          )}
+        </article>
+
+        <!-- Co-Founder -->
+        <article class="founderCard">
+          <div class="founderCardHeader">
+            <a href={`/team/${coFounder.slug}`} class="founderAvatarLink" aria-label={`View ${coFounder.name}'s Knowledge Graph Profile`}>
+              <div
+                class:list={['founderAvatar', { founderAvatarPhoto: !!coFounder.photo }]}
+                style={!coFounder.photo ? `background: ${coFounder.gradient}` : undefined}
+              >
+                {coFounder.photo ? (
+                  <img src={coFounder.photo} alt={coFounder.name} class="founderPhoto" width="280" height="280" loading="lazy" />
+                ) : (
+                  <span>{coFounder.initials}</span>
+                )}
+              </div>
+            </a>
+            <div class="founderMeta">
+              <span class="founderBadge">Co-Founder &amp; Manager</span>
+              <h2 class="founderName">
+                <a href={`/team/${coFounder.slug}`} class="founderTitleLink">{coFounder.name}</a>
+              </h2>
+              <p class="founderRole">{coFounder.role}</p>
+              <div class="tagList">
+                {coFounder.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+          </div>
+
+          <div class="founderBio">
+            {coFounder.bio.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+
+          <div class="founderActionRow">
+            <a href={`/team/${coFounder.slug}`} class="btnFounderKg">
+              <span>Explore Full Profile &amp; Story</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+          {coFounder.responsibilities && (
+            <div class="founderBlock">
+              <h3>Key Responsibilities &amp; Focus</h3>
+              <ul class="bulletList">
+                {coFounder.responsibilities.map((r) => (
+                  <li>{r}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {coFounder.achievements && (
+            <div class="founderBlock">
+              <h3>Key Achievements</h3>
+              <ul class="bulletList">
+                {coFounder.achievements.map((a) => (
+                  <li>{a}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </article>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .foundersSection {
+    padding: 3rem 2rem 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .foundersIntro {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .sectionLabel {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--colorBrand);
+    margin-bottom: 0.75rem;
+  }
+
+  .sectionTitle {
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--colorInk);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .sectionLead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--colorTextMuted);
+  }
+
+  .foundersGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .founderCard {
+    background: var(--colorSurfaceElevated);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusLg);
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    box-shadow: var(--shadowSoft);
+    transition: transform 0.3s var(--easeOutExpo), box-shadow 0.3s var(--easeOutExpo);
+  }
+
+  .founderCard:hover {
+    box-shadow: var(--shadowLift);
+  }
+
+  .founderCardHeader {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .founderAvatarLink {
+    text-decoration: none;
+  }
+
+  .founderAvatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: 3px solid #fff;
+    transition: transform 0.25s ease;
+  }
+
+  .founderAvatarLink:hover .founderAvatar {
+    transform: scale(1.05);
+  }
+
+  .founderAvatar span {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    font-family: var(--fontDisplay);
+  }
+
+  .founderPhoto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .founderMeta {
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .founderBadge {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    background: var(--colorBrandSoft);
+    color: var(--colorBrand);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 100px;
+    margin-bottom: 0.5rem;
+  }
+
+  .founderTitleLink {
+    text-decoration: none;
+    color: var(--colorInk);
+    transition: color 0.2s ease;
+  }
+
+  .founderTitleLink:hover {
+    color: var(--colorBrand);
+  }
+
+  .founderName {
+    font-family: var(--fontDisplay);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.25rem;
+  }
+
+  .founderRole {
+    font-size: 0.95rem;
+    color: var(--colorTextMuted);
+    margin-bottom: 1rem;
+  }
+
+  .tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--colorSurface);
+    border: 1px solid var(--colorBorder);
+    border-radius: 100px;
+    color: var(--colorText);
+  }
+
+  .founderBio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--colorText);
+    margin-bottom: 1.75rem;
+  }
+
+  .founderActionRow {
+    margin-bottom: 2rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--colorBorder);
+  }
+
+  .btnFounderKg {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.4rem;
+    background: var(--colorBrand);
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .btnFounderKg:hover {
+    background: var(--colorBrandHover);
+    transform: translateY(-2px);
+  }
+
+  .founderBlock {
+    margin-top: 1.75rem;
+  }
+
+  .founderBlock h3 {
+    font-family: var(--fontDisplay);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 1rem;
+  }
+
+  .companyList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .companyCard {
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    padding: 1.25rem;
+  }
+
+  .companyCard h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--colorInk);
+    margin-bottom: 0.25rem;
+  }
+
+  .companyRole {
+    font-size: 0.8125rem;
+    color: var(--colorBrand);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .companyCard p:last-child {
+    font-size: 0.875rem;
+    color: var(--colorTextMuted);
+    line-height: 1.5;
+  }
+
+  .platformCloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .platformTag {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    background: var(--colorWhite);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    color: var(--colorInk);
+  }
+
+  .bulletList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.6rem 1.5rem;
+    padding-left: 1.25rem;
+    color: var(--colorText);
+    font-size: 0.9375rem;
+  }
+
+  .bulletList li {
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .foundersSection {
+      padding: 2rem 1rem 4rem;
+    }
+
+    .founderCardHeader {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .founderAvatar {
+      margin: 0 auto;
+    }
+
+    .tagList {
+      justify-content: center;
+    }
+
+    .founderActionRow {
+      text-align: center;
+    }
+
+    .btnFounderKg {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
