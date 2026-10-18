@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import { helpProducts } from '../../data/helpData';
 
 // Import logos for the products
+import nicerwaveImage from '../../assets/images/nicerwave.png';
 import mivasionImage from '../../assets/images/mivasion-fit.jpeg';
 import worldnicerImage from '../../assets/images/worldnicer-fit.jpeg';
 import nicerappImage from '../../assets/images/nicerapp-fit.jpeg';
@@ -13,6 +14,7 @@ import chatnicerImage from '../../assets/images/chatnicer-fit.webp';
 import nicerAiPlusImage from '../../assets/images/nicer-ai-plus-fit.jpeg';
 
 const productLogos: Record<string, ImageMetadata> = {
+  nicerwave: nicerwaveImage,
   worldnicer: worldnicerImage,
   nicerapp: nicerappImage,
   mivasion: mivasionImage,
@@ -32,11 +34,11 @@ const allArticles = helpProducts.flatMap((p) =>
 
 <BaseLayout
   title="Nicle Support | Help Center"
-  description="Get help with worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer. Find answers to common security, account, and configuration questions."
+  description="Get help with NicerWave, nicerapp, and nicer ai plus. Find answers to common security, account, and configuration questions."
   activeNav="contact"
-  image="/og-default.png"
+  image="/images/nicerwave.png"
   canonical="/help"
-  keywords="Nicle support, Nicle help center, worldnicer help, nicerapp support, Mivasion help"
+  keywords="Nicle support, Nicle help center, NicerWave help, nicerapp support, nicer ai plus help"
 >
   <Header active="contact" />
   

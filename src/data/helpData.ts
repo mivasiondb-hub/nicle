@@ -19,98 +19,95 @@ export interface HelpProduct {
 
 export const helpProducts: HelpProduct[] = [
   {
-    id: 'worldnicer',
-    name: 'worldnicer',
-    tagline: 'Privacy-first social network',
-    logoKey: 'worldnicer',
-    accent: '#34c759',
-    gradient: 'linear-gradient(145deg, #0b3d2e 0%, #34c759 50%, #5b7cfa 100%)',
+    id: 'nicerwave',
+    name: 'NicerWave',
+    tagline: 'Social app for real friends',
+    logoKey: 'nicerwave',
+    accent: '#6c5ce7',
+    gradient: 'linear-gradient(145deg, #120e2a 0%, #6c5ce7 50%, #00d2ff 100%)',
     articles: [
       {
         id: 'create-account',
         category: 'Getting Started',
-        title: 'How to create a worldnicer account',
-        description: 'Complete registration walkthrough including email verification and initial security setups.',
+        title: 'How to create a NicerWave account',
+        description: 'Complete registration walkthrough on iOS, Android, and web with initial profile setup.',
         steps: [
-          'Navigate to the official worldnicer portal and click on the "Sign Up" button in the upper-right corner of the interface.',
-          'Provide your full legal name, an active email address you have access to, and design a strong password containing numbers and symbols.',
-          'Open your inbox, locate the verification email from worldnicer, and click on the unique confirmation link to activate your profile.',
-          'Complete your account setup by selecting a unique @username, uploading a profile banner, and setting your profile status.',
-          'Proceed through the privacy setup assistant to establish initial visibility preferences for your posts and connection requests.'
+          'Download NicerWave from the App Store or Google Play, or open the app on your device.',
+          'Click or tap "Sign Up" and provide your mobile number, email, or Nicer number to register.',
+          'Verify your account via the one-time code sent to your phone or inbox.',
+          'Choose your unique @username, upload a profile photo, and add your bio.',
+          'Set up your two-step PIN under Account Settings for enhanced protection.'
         ],
         tips: [
-          'Choose a password that is at least 12 characters long and avoid reusing credentials from other platforms.',
-          'Email verification links remain active for exactly 24 hours. If your link expires, click "Resend Email" on the login screen.',
-          'You can modify your @username at a later date, but doing so will update your profile URL and break old inbound links.'
+          'Already have a Nicer number from nicerapp? You can use it to sign in to NicerWave instantly.',
+          'Your feed is friends-first: start by following the people you know and love.',
+          'You can update your display name and profile picture at any time in Settings.'
         ]
       },
       {
         id: 'delete-account',
         category: 'Account & Privacy',
-        title: 'How to delete your worldnicer account',
-        description: 'Understand the difference between account deactivation and account deletion, and learn how to permanently erase your data.',
+        title: 'How to delete or deactivate your NicerWave account',
+        description: 'Understand the difference between temporary deactivation and permanent account deletion.',
         steps: [
-          'Log in to your worldnicer account on your desktop web browser or mobile application.',
-          'Click your profile avatar in the upper right-hand corner and choose "Settings" from the dropdown menu.',
-          'Navigate to the "Account Settings" section, then click on the "Security & Data" tab.',
-          'Scroll past your session logs to find the "Permanently Delete Profile" link.',
-          'Enter your current account password to authorize the request, then click "Yes, Delete Everything" to queue the erasure.'
+          'Open NicerWave on mobile or web and tap your profile avatar.',
+          'Go to Settings > Account & Security.',
+          'Scroll down to "Deactivate or Delete Account".',
+          'Choose "Deactivate" to pause your profile or "Delete" to permanently remove all data.',
+          'Confirm with your account password or PIN to finalize the request.'
         ],
         tips: [
-          'Account deletion is irreversible. All posts, images, comments, direct chats, and relationships will be permanently scrubbed from our systems.',
-          'Under our compliance guidelines, full system data sanitization can take up to 30 days. Your profile becomes invisible immediately.',
-          'If you only wish to take a temporary break, select "Deactivate Account" instead, which preserves your data while hiding your page.'
+          'Deletion is permanent and erases your posts, Stories, Vins, and direct messages.',
+          'We do not sell your personal data, and deleting your profile removes your information from active servers.'
         ]
       },
       {
-        id: 'privacy-settings',
-        category: 'Account & Privacy',
-        title: 'Configuring your profile privacy controls',
-        description: 'Take command of your digital footprint by adjusting profile discoverability, contact rules, and indexing settings.',
+        id: 'vins-stories',
+        category: 'Features & Media',
+        title: 'Creating and sharing Stories, albums, and Vins',
+        description: 'Learn how to capture moments, trim short videos, and share disappearing Stories.',
         steps: [
-          'Open your Account Settings and navigate to the "Privacy Controls" panel.',
-          'Toggle "Private Profile" to the ON position to ensure only approved followers can see your profile grid and updates.',
-          'Under the Discoverability section, turn off "Search Engine Indexing" to prevent search crawlers (like Google) from parsing your page.',
-          'Set your messaging preferences: choose whether "Everyone", "Followers Only", or "No One" can initiate direct conversations.',
-          'Review the tag settings and choose whether you want to approve photos you are tagged in manually before they show on your feed.'
+          'Tap the "+" create button on the navigation bar.',
+          'Select "Story" for 24-hour disappearing photos with stickers and music.',
+          'Select "Vin" to record or upload short video clips with sounds, trimming, and captions.',
+          'Select "Post" to share single photos or multi-image swipeable albums with captions.',
+          'Tap "Share" to publish to your friends-first feed.'
         ],
         tips: [
-          'Turning on private profile status does not retroactively impact your existing followers; you must block them to remove access.',
-          'Search engines can take several business days to remove cached versions of your public pages after indexing is turned off.'
+          'Use Vins Duet to collaborate creatively with other creators you follow.',
+          'Stories expire automatically after 24 hours, but you can save them to Highlights on your profile.'
         ]
       },
       {
-        id: 'content-moderation',
+        id: 'nicer-ai-plus-in-chat',
+        category: 'AI Assistant',
+        title: 'Using Nicer AI Plus inside NicerWave chats',
+        description: 'How to write, generate images, translate, and export documents directly inside your conversations.',
+        steps: [
+          'Open any chat or group conversation in NicerWave.',
+          'Tap the Nicer AI Plus icon or type @ai to summon the assistant.',
+          'Ask questions, request draft text, or ask for image generation.',
+          'Request document generation to export research or notes as PDF or Word documents directly.'
+        ],
+        tips: [
+          'Nicer AI Plus is free to start for all NicerWave users.',
+          'You can generate multilingual translations instantly inside international group chats.'
+        ]
+      },
+      {
+        id: 'safety-moderation',
         category: 'Safety & Community',
-        title: 'Reporting policy violations and content moderation',
-        description: 'Keep your feed healthy by blocking malicious profiles and reporting posts that breach community rules.',
+        title: 'Reporting policy violations and safety tools',
+        description: 'How content screening, safer links, and report & block protect your conversations.',
         steps: [
-          'To report a post, click the triple dot ("...") menu icon in its top-right corner.',
-          'Select "Report Post" and pick the policy category that best matches the violation (e.g. Harassment, Spam, Hate Speech).',
-          'Describe the issue in the text area provided and click "Submit Report" to send it to our moderation team.',
-          'To block the user immediately, visit their profile page, click their options menu, and select "Block Profile".',
-          'Review your moderation logs under Settings > Blocked Profiles to manage blocked accounts at any time.'
+          'Tap the "..." menu icon next to any post, story, Vin, or message.',
+          'Select "Report" and choose the reason (harassment, harmful content, or spam).',
+          'Tap "Block" to prevent an account from seeing your feed or sending you messages.',
+          'Visit the Safety Center in Settings to review your blocked profiles and active sessions.'
         ],
         tips: [
-          'All reports submitted to the worldnicer safety desk are completely anonymous. Users will not know who reported their content.',
-          'Blocked accounts cannot view your feed, look up your name, message you, or tag you in any comments.'
-        ]
-      },
-      {
-        id: 'community-channels',
-        category: 'Community Hosting',
-        title: 'Creating and managing community channels',
-        description: 'Establish shared forums for interest groups, neighborhood circles, or creator hubs.',
-        steps: [
-          'Click the "Channels" icon in the navigation bar and select the "+" button to create a new channel.',
-          'Choose a title, write an descriptive summary, upload a banner image, and select a brand accent color.',
-          'Define the channel type: Public (anyone can join/post), Restricted (anyone can view, only approved can post), or Private.',
-          'Set up moderation rules, assign moderation badges to trusted community members, and write channel descriptions.',
-          'Distribute the unique channel invite link to bring in new participants.'
-        ],
-        tips: [
-          'Private channels do not appear in worldnicer search queries; users can only join them if they have a direct invite link.',
-          'Channel owners can customize posting limits to prevent spam (e.g., restricting posts to one every 10 minutes per user).'
+          'NicerWave runs pre-feed automated content screening to block explicit material.',
+          'External links opened in NicerWave pass through an automatic safety check to warn against phishing.'
         ]
       }
     ]

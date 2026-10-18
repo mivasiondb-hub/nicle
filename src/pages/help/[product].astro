@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 import { helpProducts } from '../../data/helpData';
 
 // Import logos for the products
+import nicerwaveImage from '../../assets/images/nicerwave.png';
 import mivasionImage from '../../assets/images/mivasion-fit.jpeg';
 import worldnicerImage from '../../assets/images/worldnicer-fit.jpeg';
 import nicerappImage from '../../assets/images/nicerapp-fit.jpeg';
@@ -22,6 +23,7 @@ export function getStaticPaths() {
 const { product } = Astro.props;
 
 const productLogos: Record<string, ImageMetadata> = {
+  nicerwave: nicerwaveImage,
   worldnicer: worldnicerImage,
   nicerapp: nicerappImage,
   mivasion: mivasionImage,
@@ -127,7 +129,7 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
             <div class="hcpSidebarCard hcpSidebarInfoCard">
               <h3>Product Resources</h3>
               <ul>
-                <li><a href={product.id === 'nicerapp' ? '/nicerapp' : product.id === 'mivasion' ? '/mivasion' : product.id === 'niceraiplus' ? '/nicer-ai-plus' : product.id === 'worldnicer' ? '/worldnicer' : product.id === 'chatnicer' ? '/chatnicer' : '/products'}>Visit Product Page</a></li>
+                <li><a href={product.id === 'nicerapp' ? '/nicerapp' : product.id === 'nicerwave' ? '/nicerwave' : product.id === 'niceraiplus' ? '/nicer-ai-plus' : '/products'}>Visit Product Page</a></li>
                 <li><a href="/security">Security &amp; Encryption Specs</a></li>
                 {product.id === 'nicerapp' && (
                   <>

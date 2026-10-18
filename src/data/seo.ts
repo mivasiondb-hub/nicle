@@ -6,7 +6,7 @@ export const siteName = 'Nicle Inc';
 export const defaultSeo = {
   title: 'Nicle Inc | AI Software, Social Platforms & the Nicer Ecosystem',
   description:
-    'Nicle Inc builds next-generation AI models and intelligent software — including worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer — as a subsidiary of All Things Web Technology Inc.',
+    'Nicle Inc builds next-generation AI models and intelligent software — including NicerWave, nicerapp, and nicer ai plus — as a subsidiary of All Things Web Technology Inc.',
   image: '/og-default.png',
   imageAlt: 'Nicle Inc — building the future of artificial intelligence and human connection',
   type: 'website' as const,
@@ -64,11 +64,9 @@ export const sitemapPaths = [
   '/about',
   '/about/founders',
   '/products',
-  '/mivasion',
-  '/worldnicer',
+  '/nicerwave',
   '/nicerapp',
   '/nicer-ai-plus',
-  '/chatnicer',
   '/team',
   '/team/highness-hc',
   '/team/justice-friday',

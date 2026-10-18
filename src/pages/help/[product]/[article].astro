@@ -6,6 +6,7 @@ import Footer from '../../../components/Footer.astro';
 import { helpProducts } from '../../../data/helpData';
 
 // Import logos for the products
+import nicerwaveImage from '../../../assets/images/nicerwave.png';
 import mivasionImage from '../../../assets/images/mivasion-fit.jpeg';
 import worldnicerImage from '../../../assets/images/worldnicer-fit.jpeg';
 import nicerappImage from '../../../assets/images/nicerapp-fit.jpeg';
@@ -28,6 +29,7 @@ export function getStaticPaths() {
 const { product, article } = Astro.props;
 
 const productLogos: Record<string, ImageMetadata> = {
+  nicerwave: nicerwaveImage,
   worldnicer: worldnicerImage,
   nicerapp: nicerappImage,
   mivasion: mivasionImage,

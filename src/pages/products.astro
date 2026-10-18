@@ -7,17 +7,13 @@ import Footer from '../components/Footer.astro';
 import NicerAiPlusShowcase from '../components/NicerAiPlusShowcase.astro';
 import { products } from '../data/site';
 import { productItemListSchema, productSeo } from '../data/productSeo';
-import mivasionImage from '../assets/images/mivasion-fit.jpeg';
-import worldnicerImage from '../assets/images/worldnicer-fit.jpeg';
+import nicerwaveImage from '../assets/images/nicerwave.png';
 import nicerappImage from '../assets/images/nicerapp-fit.jpeg';
-import chatnicerImage from '../assets/images/chatnicer-fit.webp';
 import nicerAiPlusImage from '../assets/images/nicer-ai-plus-fit.jpeg';
 
 const productImages: Record<string, ImageMetadata> = {
-  mivasion: mivasionImage,
-  worldnicer: worldnicerImage,
+  nicerwave: nicerwaveImage,
   nicerapp: nicerappImage,
-  chatnicer: chatnicerImage,
   niceraiplus: nicerAiPlusImage,
 };
 
@@ -26,18 +22,17 @@ const productPaths: Record<string, string> = Object.fromEntries(
 );
 
 const floatProducts = products.filter((p) => productImages[p.id]);
-const standardProducts = products.filter((p) => p.id !== 'niceraiplus');
-const beforeAi = standardProducts.slice(0, 3);
-const afterAi = standardProducts.slice(3);
+const beforeAi = products.filter((p) => p.id === 'nicerwave');
+const afterAi = products.filter((p) => p.id === 'nicerapp');
 ---
 
 <BaseLayout
-  title="Products | worldnicer, nicerapp, Mivasion, nicer ai plus & Chatnicer"
-  description="Explore Nicle products and services: worldnicer privacy first social network, nicerapp encrypted messaging, Mivasion AI studio, nicer ai plus assistant, and Chatnicer photos & Reels."
+  title="Products | NicerWave, nicerapp & nicer ai plus — Nicle Inc"
+  description="Explore Nicle products: NicerWave social app for real friends, nicerapp end-to-end encrypted messaging, and nicer ai plus multimodal conversational assistant."
   activeNav="products"
-  image="/og-default.png"
+  image="/images/nicerwave.png"
   canonical="/products"
-  keywords="Nicle products, worldnicer, nicerapp, Mivasion, nicer ai plus, Chatnicer, AI apps, social platforms, Nicle services"
+  keywords="Nicle products, NicerWave, nicerwave app, nicerapp, nicer ai plus, AI apps, social network, encrypted messaging"
   jsonLd={productItemListSchema}
 >
   <Header active="products" />
@@ -48,16 +43,16 @@ const afterAi = standardProducts.slice(3);
       subtitle="Discover our ecosystem of tools designed for creativity and connection."
       rotatingTitles={[
         'Innovative <span class="accent">Products</span>',
-        'Creative <span class="accent">AI Studios</span>',
-        'Privacy-First <span class="accent">Platforms</span>',
-        'Intelligent <span class="accent">Software</span>',
+        'Social for <span class="accent">Real Friends</span>',
+        'Privacy-First <span class="accent">Messaging</span>',
+        'Intelligent <span class="accent">AI Assistant</span>',
         'Next-Gen <span class="accent">Ecosystem</span>',
       ]}
       rotatingSubtitles={[
         'Discover our ecosystem of tools designed for creativity and connection.',
-        'Groundbreaking platforms engineered for privacy, intelligence, and community.',
-        'Empowering creators and businesses with next-generation artificial intelligence.',
-        'From generative video studios to encrypted messaging and conversational AI assistants.',
+        'From NicerWave social spaces to encrypted nicerapp and conversational AI with nicer ai plus.',
+        'Empowering real moments, authentic friends, and kinder conversations worldwide.',
+        'High-performance independent software built for privacy, intelligence, and community.',
       ]}
       primaryCta={{ label: 'Talk to our AI', href: '/products#niceraiplus' }}
       secondaryCta={{ label: 'Our story', href: '/about' }}
@@ -143,6 +138,7 @@ const afterAi = standardProducts.slice(3);
                     <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </a>
+
                 <a href="/about" class="btnGhost">Why Nicle builds this</a>
               </div>
             </div>

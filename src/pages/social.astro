@@ -6,18 +6,12 @@ import PageHero from '../components/PageHero.astro';
 import Footer from '../components/Footer.astro';
 import { products } from '../data/site';
 import { serviceHubSeo, productSeo } from '../data/productSeo';
-import mivasionImage from '../assets/images/mivasion-fit.jpeg';
-import worldnicerImage from '../assets/images/worldnicer-fit.jpeg';
-import chatnicerImage from '../assets/images/chatnicer-fit.webp';
+import nicerwaveImage from '../assets/images/nicerwave.png';
 
-const socialProducts = products.filter((p) =>
-  ['mivasion', 'worldnicer', 'chatnicer'].includes(p.id)
-);
+const socialProducts = products.filter((p) => p.id === 'nicerwave');
 
 const images: Record<string, ImageMetadata> = {
-  mivasion: mivasionImage,
-  worldnicer: worldnicerImage,
-  chatnicer: chatnicerImage,
+  nicerwave: nicerwaveImage,
 };
 
 const productPaths = Object.fromEntries(productSeo.map((p) => [p.id, p.path]));
@@ -28,8 +22,8 @@ const hub = serviceHubSeo.social;
   title={hub.title}
   description={hub.description}
   activeNav="products"
-  image="/og-worldnicer.jpeg"
-  imageAlt="worldnicer and Nicle social platforms"
+  image="/images/nicerwave.png"
+  imageAlt="NicerWave and Nicle social platforms"
   canonical={hub.path}
   keywords={hub.keywords}
 >
@@ -37,18 +31,18 @@ const hub = serviceHubSeo.social;
   <main>
     <PageHero
       label="Social & creative"
-      title='Platforms built for <span class="accent">creators and communities</span>'
-      subtitle="Mivasion, worldnicer, and Chatnicer bring creative AI, positive social spaces, and rich media sharing into one connected ecosystem."
+      title='Platforms built for <span class="accent">real connection</span>'
+      subtitle="NicerWave brings authentic social connection, 24-hour stories, Vins short videos, and kinder conversations into the Nicer Ecosystem."
       primaryCta={{ label: 'View all products', href: '/products' }}
       secondaryCta={{ label: 'Explore AI', href: '/intelligence' }}
     />
 
     <section class="hubSection">
       <div class="hubIntro" data-scroll-reveal>
-        <span class="sectionLabel">Three platforms</span>
-        <h2 class="sectionTitle">Create. Connect. Share.</h2>
+        <span class="sectionLabel">Social Platform</span>
+        <h2 class="sectionTitle">Real friends. Real moments.</h2>
         <p class="sectionLead">
-          Each product has a clear job — studio craft, social positivity, or moments through photos and Reels.
+          Share what is happening, keep up with the people who matter, and talk the way friends do — in one app built for kinder conversations.
         </p>
       </div>
 

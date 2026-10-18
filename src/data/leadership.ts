@@ -244,7 +244,7 @@ export const leadership: LeadershipPerson[] = [
     tags: ['Corporate finance', 'Financial controls', 'Strategic growth', 'CFO'],
     featured: false,
     wide: true,
-    photo: '/images/kiowa-george.jpeg',
+    photo: '/images/kiowa-george.png',
     gradient: 'linear-gradient(145deg, #7c5cfc, #ED3542 50%, #ff8a3d)',
     gender: 'Female',
     occupations: ['Chief Financial Officer', 'Corporate Finance Strategist', 'Fiscal Director'],

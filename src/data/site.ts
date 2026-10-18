@@ -1,25 +1,21 @@
 export const products = [
   {
-    id: 'mivasion',
-    name: 'Mivasion',
-    tagline: 'AI image and video studio',
+    id: 'nicerwave',
+    name: 'NicerWave',
+    tagline: 'Real friends. Real moments.',
     description:
-      'Create stunning visuals and cinematic video with generative AI. Mivasion is Nicle’s creative studio for designers, marketers, and storytellers who need production quality output at machine speed.',
-    features: ['Image generation', 'Video synthesis', 'Style transfer', 'Studio workflows'],
-    accent: '#5b7cfa',
-    gradient: 'linear-gradient(145deg, #1a2a6c 0%, #5b7cfa 45%, #ED3542 100%)',
-    image: '/images/mivasion-fit.jpeg',
-  },
-  {
-    id: 'worldnicer',
-    name: 'worldnicer',
-    tagline: 'Positivity focused social network',
-    description:
-      'A privacy first community space that blends short form microblogging with real time conversation. Built for kindness, discovery, and ownership of your social graph.',
-    features: ['Microblogging', 'Live conversations', 'Privacy first', 'Community tools'],
-    accent: '#34c759',
-    gradient: 'linear-gradient(145deg, #0b3d2e 0%, #34c759 50%, #5b7cfa 100%)',
-    image: '/images/worldnicer-fit.jpeg',
+      'The social app built for real friends, real moments, and kinder conversations. Share swipeable photo albums, 24-hour stories, and short-form Vins, connect through encrypted voice and video calls, send creator gifts with NicerWallet, and create directly with Nicer AI Plus.',
+    features: [
+      'Friends-first feed & 24-hour disappearing Stories',
+      'Vins short videos with sounds, duets & built-in editor',
+      'Group chats, voice notes, and voice & video calls',
+      'Nicer AI Plus built-in for writing, images & documents',
+      'Safety by design with content screening & safer links',
+      'NicerWallet for creator tipping and Nicle Verify badges',
+    ],
+    accent: '#6c5ce7',
+    gradient: 'linear-gradient(145deg, #120e2a 0%, #6c5ce7 50%, #00d2ff 100%)',
+    image: '/images/nicerwave.png',
   },
   {
     id: 'nicerapp',
@@ -42,17 +38,6 @@ export const products = [
     accent: '#7c5cfc',
     gradient: 'linear-gradient(145deg, #1a0f3d 0%, #7c5cfc 40%, #5b7cfa 100%)',
     image: '/images/nicer-ai-plus-fit.jpeg',
-  },
-  {
-    id: 'chatnicer',
-    name: 'Chatnicer',
-    tagline: 'Photos, Reels, and Stories',
-    description:
-      'Share moments through photos, short form video, and temporary Stories. Follow creators, message friends, and discover content shaped by your interests and location.',
-    features: ['Photos and Reels', 'Stories', 'Creator discovery', 'Location aware feed'],
-    accent: '#ff8a3d',
-    gradient: 'linear-gradient(145deg, #3d1a08 0%, #ff8a3d 40%, #ED3542 100%)',
-    image: '/images/chatnicer-fit.webp',
   },
 ];
 

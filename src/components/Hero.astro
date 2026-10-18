@@ -715,7 +715,8 @@ const searchIndex = [
 
   @media (max-width: 640px) {
     .heroSection {
-      padding: calc(var(--headerHeight) + 0.5rem) 0.85rem 2rem;
+      padding: calc(var(--headerHeight) + 1.25rem) 1rem 3rem;
+      min-height: auto;
     }
 
     .heroOrb {
@@ -729,6 +730,30 @@ const searchIndex = [
     .brandWordWater {
       animation: none;
       background-size: 100% 100%;
+    }
+
+    .heroTitle {
+      font-size: clamp(2rem, 7vw, 2.75rem);
+    }
+
+    .heroActions {
+      width: 100%;
+      max-width: 340px;
+      gap: 0.75rem;
+    }
+
+    .heroActions a {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .heroSearchBox {
+      padding: 0 0.85rem 0 1rem;
+    }
+
+    .heroSearchBox input {
+      font-size: 0.875rem;
+      height: 42px;
     }
   }
 </style>

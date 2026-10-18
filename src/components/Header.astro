@@ -29,6 +29,7 @@ const navItems = [
       />
     </a>
 
+    <!-- Desktop Navigation -->
     <nav class="mainNav" aria-label="Main navigation">
       {navItems.map((item) => (
         <a
@@ -42,9 +43,142 @@ const navItems = [
       ))}
     </nav>
 
-    <a href="/products" class="headerCta">Get started</a>
+    <!-- Header Actions -->
+    <div class="headerActions">
+      <a href="/products" class="headerCta">Get started</a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        class="mobileToggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileNavOverlay"
+        data-mobile-toggle
+      >
+        <span class="burgerBar barTop" aria-hidden="true"></span>
+        <span class="burgerBar barMid" aria-hidden="true"></span>
+        <span class="burgerBar barBot" aria-hidden="true"></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- Mobile Navigation Drawer Overlay (Strictly hidden on desktop) -->
+<div class="mobileDrawer" id="mobileNavOverlay" data-mobile-drawer aria-hidden="true">
+  <div class="drawerBackdrop" data-drawer-close></div>
+  <div class="drawerPanel">
+    <div class="drawerHeader">
+      <a href="/" class="drawerLogoLink" data-drawer-close aria-label="Nicle Inc home">
+        <img src="/nicle-logo.png" alt="Nicle Inc" width="84" height="24" />
+      </a>
+      <button class="drawerCloseBtn" type="button" aria-label="Close menu" data-drawer-close>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="drawerNav" aria-label="Mobile navigation">
+      {navItems.map((item, index) => (
+        <a
+          href={item.href}
+          class:list={['drawerLink', { drawerLinkActive: active === item.key }]}
+          style={`--i: ${index}`}
+        >
+          <span class="drawerLinkLeft">
+            <span class="drawerLinkDot" aria-hidden="true"></span>
+            <span class="drawerLinkText">{item.label}</span>
+          </span>
+          <svg class="drawerLinkChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      ))}
+    </nav>
+
+    <div class="drawerFooter">
+      <a href="/products" class="drawerCtaBtn">
+        <span>Get started</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      <p class="drawerMeta">
+        &copy; {new Date().getFullYear()} Nicle Inc &middot; All Things Web Technology
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupHeader() {
+    const header = document.querySelector<HTMLElement>('[data-header]');
+    const toggleBtn = document.querySelector<HTMLButtonElement>('[data-mobile-toggle]');
+    const drawer = document.querySelector<HTMLElement>('[data-mobile-drawer]');
+    const closeBtns = document.querySelectorAll('[data-drawer-close]');
+
+    if (!header || !toggleBtn || !drawer) return;
+
+    // Scroll header background transition
+    const onScroll = () => {
+      if (window.scrollY > 20) {
+        header.classList.add('headerScrolled');
+      } else {
+        header.classList.remove('headerScrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Toggle Mobile Drawer
+    const setDrawerOpen = (open: boolean) => {
+      if (open) {
+        drawer.classList.add('isOpen');
+        toggleBtn.classList.add('isActive');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('isOpen');
+        toggleBtn.classList.remove('isActive');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    };
+
+    toggleBtn.addEventListener('click', () => {
+      const isCurrentlyOpen = drawer.classList.contains('isOpen');
+      setDrawerOpen(!isCurrentlyOpen);
+    });
+
+    closeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => setDrawerOpen(false));
+    });
+
+    drawer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setDrawerOpen(false));
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('isOpen')) {
+        setDrawerOpen(false);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860 && drawer.classList.contains('isOpen')) {
+        setDrawerOpen(false);
+      }
+    });
+  }
+
+  setupHeader();
+  document.addEventListener('astro:page-load', setupHeader);
+</script>
 
 <style>
   .siteHeader {
@@ -52,32 +186,31 @@ const navItems = [
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1000;
     height: var(--headerHeight);
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px) saturate(1.4);
-    border-bottom: 1px solid transparent;
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--colorBorder);
     transition:
-      background 0.4s var(--easeOutQuart),
-      border-color 0.4s var(--easeOutQuart),
-      box-shadow 0.4s var(--easeOutQuart);
+      background 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .siteHeader.headerScrolled {
-    background: rgba(255, 255, 255, 0.94);
-    border-bottom-color: var(--colorBorder);
-    box-shadow: 0 8px 32px rgba(10, 10, 11, 0.06);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 4px 20px rgba(10, 10, 11, 0.06);
   }
 
   .headerInner {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    justify-content: space-between;
     width: 100%;
-    max-width: none;
+    max-width: 1320px;
     height: 100%;
-    margin: 0;
-    padding: 0 1.25rem 0 0;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
   .logoLink {
@@ -85,13 +218,12 @@ const navItems = [
     align-items: center;
     flex-shrink: 0;
     height: 100%;
-    padding: 0 0 0 12px;
-    margin: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
   .logoLink:hover {
     opacity: 0.88;
+    transform: scale(1.02);
   }
 
   .logoImage {
@@ -101,11 +233,12 @@ const navItems = [
     display: block;
   }
 
+  /* Desktop Navigation */
   .mainNav {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-left: 0.5rem;
+    gap: 1.85rem;
+    margin: 0 auto 0 2.5rem;
   }
 
   .navLink {
@@ -113,8 +246,8 @@ const navItems = [
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--colorTextMuted);
-    padding: 0.55rem 0;
-    transition: color 0.25s var(--easeOutQuart);
+    padding: 0.55rem 0.25rem;
+    transition: color 0.25s ease;
   }
 
   .navLink:hover,
@@ -132,7 +265,7 @@ const navItems = [
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.4s var(--easeOutExpo);
+    transition: transform 0.3s var(--easeOutExpo);
   }
 
   .navLinkActive .navUnderline,
@@ -140,61 +273,250 @@ const navItems = [
     transform: scaleX(1);
   }
 
+  /* Header Actions */
+  .headerActions {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
   .headerCta {
-    position: relative;
-    margin-left: auto;
-    padding: 0.55rem 1.15rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.25rem;
+    font-size: 0.84rem;
+    font-weight: 700;
     color: var(--colorWhite);
     background: var(--colorBrand);
     border-radius: 999px;
-    overflow: hidden;
-    isolation: isolate;
+    box-shadow: 0 4px 14px var(--colorBrandSoft);
     transition:
       background 0.25s ease,
-      transform 0.3s var(--easeOutExpo),
-      box-shadow 0.3s ease;
+      transform 0.25s var(--easeOutExpo),
+      box-shadow 0.25s ease;
   }
 
   .headerCta:hover {
     background: var(--colorBrandHover);
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px var(--colorBrandGlow);
+    box-shadow: 0 8px 22px var(--colorBrandGlow);
   }
 
+  /* NEVER display mobile elements on desktop */
+  .mobileToggle {
+    display: none !important;
+  }
+
+  .mobileDrawer {
+    display: none !important;
+  }
+
+  /* Mobile Breakpoint (<= 860px) */
   @media (max-width: 860px) {
-    .siteHeader {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.92);
-    }
-
-    .headerCta {
-      display: none;
-    }
-
     .headerInner {
-      padding: 0 0.75rem 0 0;
-      gap: 0.75rem;
-    }
-
-    .logoLink {
-      padding-left: 10px;
-    }
-
-    .logoImage {
-      height: 24px;
+      padding: 0 1rem;
     }
 
     .mainNav {
-      gap: 1rem;
-      overflow-x: auto;
-      margin-left: auto;
+      display: none !important;
     }
 
-    .navLink {
-      font-size: 0.8125rem;
-      white-space: nowrap;
+    .mobileToggle {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: rgba(10, 10, 11, 0.04);
+      border: 1px solid var(--colorBorder);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .burgerBar {
+      display: block;
+      width: 19px;
+      height: 2px;
+      background: var(--colorInk);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .mobileToggle.isActive .barTop {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .mobileToggle.isActive .barMid {
+      opacity: 0;
+    }
+
+    .mobileToggle.isActive .barBot {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobileDrawer {
+      display: block !important;
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      visibility: hidden;
+      pointer-events: none;
+      transition: visibility 0.3s ease;
+    }
+
+    .mobileDrawer.isOpen {
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .drawerBackdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 12, 18, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobileDrawer.isOpen .drawerBackdrop {
+      opacity: 1;
+    }
+
+    .drawerPanel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(85vw, 340px);
+      background: #ffffff;
+      box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem 1.5rem 2rem;
+      transform: translateX(100%);
+      transition: transform 0.3s var(--easeOutExpo);
+      overflow-y: auto;
+    }
+
+    .mobileDrawer.isOpen .drawerPanel {
+      transform: translateX(0);
+    }
+
+    .drawerHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.15rem;
+      border-bottom: 1px solid var(--colorBorder);
+      margin-bottom: 1.25rem;
+    }
+
+    .drawerCloseBtn {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: var(--colorSurface);
+      color: var(--colorInk);
+      border: 1px solid var(--colorBorder);
+      cursor: pointer;
+    }
+
+    .drawerNav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+
+    .drawerLink {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0.85rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--colorInk);
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .drawerLink:hover {
+      background: var(--colorSurfaceElevated);
+      color: var(--colorBrand);
+    }
+
+    .drawerLinkActive {
+      background: var(--colorBrandSoft) !important;
+      color: var(--colorBrand) !important;
+      font-weight: 700;
+    }
+
+    .drawerLinkLeft {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .drawerLinkDot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--colorBorder);
+    }
+
+    .drawerLinkActive .drawerLinkDot {
+      background: var(--colorBrand);
+    }
+
+    .drawerLinkChevron {
+      color: var(--colorTextMuted);
+    }
+
+    .drawerFooter {
+      margin-top: auto;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--colorBorder);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .drawerCtaBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.8rem 1.25rem;
+      border-radius: 10px;
+      background: var(--colorBrand);
+      color: var(--colorWhite);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .drawerMeta {
+      font-size: 0.72rem;
+      color: var(--colorTextMuted);
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .headerCta {
+      display: none;
     }
   }
 </style>
