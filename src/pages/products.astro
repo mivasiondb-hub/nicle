@@ -7,17 +7,13 @@ import Footer from '../components/Footer.astro';
 import NicerAiPlusShowcase from '../components/NicerAiPlusShowcase.astro';
 import { products } from '../data/site';
 import { productItemListSchema, productSeo } from '../data/productSeo';
-import mivasionImage from '../assets/images/mivasion-fit.jpeg';
-import worldnicerImage from '../assets/images/worldnicer-fit.jpeg';
+import nicerwaveImage from '../assets/images/nicerwave-fit.jpeg';
 import nicerappImage from '../assets/images/nicerapp-fit.jpeg';
-import chatnicerImage from '../assets/images/chatnicer-fit.webp';
 import nicerAiPlusImage from '../assets/images/nicer-ai-plus-fit.jpeg';
 
 const productImages: Record<string, ImageMetadata> = {
-  mivasion: mivasionImage,
-  worldnicer: worldnicerImage,
+  nicerwave: nicerwaveImage,
   nicerapp: nicerappImage,
-  chatnicer: chatnicerImage,
   niceraiplus: nicerAiPlusImage,
 };
 
@@ -27,17 +23,15 @@ const productPaths: Record<string, string> = Object.fromEntries(
 
 const floatProducts = products.filter((p) => productImages[p.id]);
 const standardProducts = products.filter((p) => p.id !== 'niceraiplus');
-const beforeAi = standardProducts.slice(0, 3);
-const afterAi = standardProducts.slice(3);
 ---
 
 <BaseLayout
-  title="Products | worldnicer, nicerapp, Mivasion, nicer ai plus & Chatnicer"
-  description="Explore Nicle products and services: worldnicer privacy first social network, nicerapp encrypted messaging, Mivasion AI studio, nicer ai plus assistant, and Chatnicer photos & Reels."
+  title="Products | nicerwave, nicerapp & nicer ai plus"
+  description="Explore Nicle products and services: nicerwave social app, nicerapp encrypted messaging, and nicer ai plus assistant."
   activeNav="products"
   image="/og-default.png"
   canonical="/products"
-  keywords="Nicle products, worldnicer, nicerapp, Mivasion, nicer ai plus, Chatnicer, AI apps, social platforms, Nicle services"
+  keywords="Nicle products, nicerwave, nicerapp, nicer ai plus, AI apps, social platforms, Nicle services"
   jsonLd={productItemListSchema}
 >
   <Header active="products" />
@@ -48,7 +42,7 @@ const afterAi = standardProducts.slice(3);
       subtitle="Discover our ecosystem of tools designed for creativity and connection."
       rotatingTitles={[
         'Innovative <span class="accent">Products</span>',
-        'Creative <span class="accent">AI Studios</span>',
+        'Kinder <span class="accent">Social</span>',
         'Privacy-First <span class="accent">Platforms</span>',
         'Intelligent <span class="accent">Software</span>',
         'Next-Gen <span class="accent">Ecosystem</span>',
@@ -57,7 +51,7 @@ const afterAi = standardProducts.slice(3);
         'Discover our ecosystem of tools designed for creativity and connection.',
         'Groundbreaking platforms engineered for privacy, intelligence, and community.',
         'Empowering creators and businesses with next-generation artificial intelligence.',
-        'From generative video studios to encrypted messaging and conversational AI assistants.',
+        'From kinder social sharing to encrypted messaging and conversational AI assistants.',
       ]}
       primaryCta={{ label: 'Talk to our AI', href: '/products#niceraiplus' }}
       secondaryCta={{ label: 'Our story', href: '/about' }}
@@ -85,7 +79,7 @@ const afterAi = standardProducts.slice(3);
                   formats={['avif', 'webp']}
                   quality={80}
                   loading="eager"
-                  decoding="async"
+                  decoding="sync"
                 />
               </div>
               <span class="dockName">{product.name}</span>
@@ -98,7 +92,7 @@ const afterAi = standardProducts.slice(3);
     <!-- Main Products Showcase Section -->
     <section class="productsSection">
       <div class="productsList">
-        {beforeAi.map((product, index) => (
+        {standardProducts.map((product, index) => (
           <article
             class:list={['productBlock', { reverse: index % 2 === 1 }]}
             id={product.id}
@@ -115,8 +109,8 @@ const afterAi = standardProducts.slice(3);
                   sizes="140px"
                   formats={['avif', 'webp']}
                   quality={80}
-                  loading="lazy"
-                  decoding="async"
+                  loading="eager"
+                  decoding="sync"
                 />
                 <div class="productFloatGlow" style={`background: ${product.accent}`} aria-hidden="true"></div>
               </a>
@@ -154,69 +148,13 @@ const afterAi = standardProducts.slice(3);
     <!-- AI Feature Showcase Section -->
     <NicerAiPlusShowcase />
 
-    <!-- Products After AI Showcase -->
-    <section class="productsSection productsSectionAfter">
-      <div class="productsList">
-        {afterAi.map((product, index) => (
-          <article
-            class:list={['productBlock', { reverse: (index + beforeAi.length) % 2 === 1 }]}
-            id={product.id}
-            data-scroll-reveal
-            style={`--revealDelay: ${index * 0.05}s`}
-          >
-            <div class="productMediaCol">
-              <a href={productPaths[product.id] || `#${product.id}`} class="productFloat" aria-label={product.name}>
-                <Image
-                  src={productImages[product.id]}
-                  alt={`${product.name} logo`}
-                  class="productLogo"
-                  widths={[180, 240, 320]}
-                  sizes="140px"
-                  formats={['avif', 'webp']}
-                  quality={80}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div class="productFloatGlow" style={`background: ${product.accent}`} aria-hidden="true"></div>
-              </a>
-            </div>
-
-            <div class="productCopy">
-              <span class="productAccent" style={`color: ${product.accent}`}>{product.tagline}</span>
-              <h2 class="productTitle">{product.name}</h2>
-              <p class="productDesc">{product.description}</p>
-
-              <ul class="featureList">
-                {product.features.map((feature) => (
-                  <li>
-                    <span class="check" style={`background: ${product.accent}`}></span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div class="productLinks">
-                <a href={productPaths[product.id] || `#${product.id}`} class="btnPrimary">
-                  <span>Learn more</span>
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-                <a href="/about" class="btnGhost">Why Nicle builds this</a>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <!-- Unified Stack Section -->
     <section class="stackSection" data-scroll-reveal>
       <div class="stackInner">
         <span class="sectionLabel">Connected Ecosystem</span>
         <h2 class="sectionTitle">One company. One integrated stack.</h2>
         <p class="sectionLead">
-          Social, messaging, creative AI, and intelligent assistance — designed to work as a
+          Social, messaging, and intelligent assistance — designed to work as a
           coherent digital ecosystem under Nicle Inc.
         </p>
         <div class="stackRow">
@@ -241,13 +179,13 @@ const afterAi = standardProducts.slice(3);
   /* Quick Navigation Dock / Rounded Frame */
   .floatStrip {
     padding: 2rem 1.5rem 1.5rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .dockContainer {
     max-width: 860px;
     margin: 0 auto;
-    background: linear-gradient(180deg, #ffffff 0%, #fafbfe 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid var(--colorBorder);
     border-radius: 24px;
     padding: 1.25rem 2rem;
@@ -294,7 +232,7 @@ const afterAi = standardProducts.slice(3);
     border-radius: 16px;
     overflow: hidden;
     background: #000;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--colorBg);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
@@ -330,7 +268,7 @@ const afterAi = standardProducts.slice(3);
   /* Products Showcase Section */
   .productsSection {
     padding: 3rem 2rem 5rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .productsSectionAfter {
@@ -346,7 +284,7 @@ const afterAi = standardProducts.slice(3);
   }
 
   .productBlock {
-    background: linear-gradient(180deg, var(--colorSurfaceElevated) 0%, #ffffff 100%);
+    background: linear-gradient(180deg, var(--colorSurfaceElevated) 0%, var(--colorCard) 100%);
     border: 1px solid var(--colorBorder);
     border-radius: var(--radiusLg);
     padding: clamp(2rem, 4vw, 3rem);
@@ -389,7 +327,7 @@ const afterAi = standardProducts.slice(3);
     overflow: hidden;
     background: #000;
     position: relative;
-    border: 3px solid #ffffff;
+    border: 3px solid var(--colorBg);
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
     transition: transform 0.35s var(--easeOutExpo), box-shadow 0.35s ease;
     flex-shrink: 0;
@@ -505,7 +443,7 @@ const afterAi = standardProducts.slice(3);
     font-weight: 700;
     font-size: 0.925rem;
     color: var(--colorInk);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border: 1px solid var(--colorBorder);
     border-radius: 999px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);

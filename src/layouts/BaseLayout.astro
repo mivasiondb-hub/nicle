@@ -23,7 +23,7 @@ const {
   type = defaultSeo.type,
   canonical,
   noindex = false,
-  keywords = 'Nicle Inc, worldnicer, nicerapp, Mivasion, nicer ai plus, Chatnicer, AI software, social network, All Things Web Technology',
+  keywords = 'Nicle Inc, nicerwave, nicerapp, nicer ai plus, AI software, social network, All Things Web Technology',
   jsonLd = [],
 } = Astro.props;
 
@@ -56,8 +56,8 @@ const structuredData = [
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="bingbot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
-    <meta name="theme-color" content="#ED3542" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#06070b" />
+    <meta name="color-scheme" content="dark" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -88,32 +88,22 @@ const structuredData = [
     <!-- LinkedIn / general social -->
     <meta property="article:publisher" content={siteName} />
 
-    <!-- Non-blocking fonts: fewer weights, load after first paint -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@500;600;700&display=swap"
-      />
-    </noscript>
 
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
+    <div class="ambientBackdrop" aria-hidden="true"></div>
+    <div class="cursorGlow" data-cursor-glow aria-hidden="true"></div>
+    <div class="grainOverlay" aria-hidden="true"></div>
     <div class="scrollProgress" data-scroll-progress aria-hidden="true"></div>
     <slot />
+    {import.meta.env.PROD && (
+      <script is:inline>
+        if ('serviceWorker' in navigator) {
+          addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
+        }
+      </script>
+    )}
   </body>
 </html>
 

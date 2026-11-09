@@ -21,90 +21,53 @@ export type ProductSeo = {
   accent: string;
   features: string[];
   related: string[];
+  /** False until platforms, pricing, and availability are confirmed; omits those claims from the schema. */
+  publiclyListed?: boolean;
 };
 
 const byId = Object.fromEntries(products.map((p) => [p.id, p]));
 
 export const productSeo: ProductSeo[] = [
   {
-    id: 'mivasion',
-    slug: 'mivasion',
-    path: '/mivasion',
-    name: 'Mivasion',
-    title: 'Mivasion | AI Image & Video Studio by Nicle Inc',
+    id: 'nicerwave',
+    slug: 'nicerwave',
+    path: '/nicerwave',
+    name: 'nicerwave',
+    title: 'nicerwave | The Social App for Real Friends by Nicle Inc',
     description:
-      'Mivasion is Nicle’s AI image and video studio for designers, marketers, and storytellers. Generate production quality visuals, cinematic video, style transfer, and studio workflows at machine speed.',
+      'nicerwave is the social app from Nicle Inc built for real friends, real moments, and kinder conversations. Share swipeable photo albums, 24-hour stories, and short-form Vins, connect through encrypted voice and video calls, send creator gifts with NicerWallet, and create directly with nicer ai plus.',
     keywords:
-      'Mivasion, AI image generator, AI video studio, generative AI design, style transfer AI, Nicle creative tools, AI art studio',
-    image: '/images/mivasion-fit.jpeg',
-    imageAlt: 'Mivasion AI image and video studio by Nicle Inc',
-    heroTitle: 'AI image and video, built for <span class="accent">real creative work</span>',
+      'nicerwave, nicer wave, social app, photo albums, 24-hour stories, short-form Vins, encrypted video calls, NicerWallet, Nicle social',
+    image: '/images/nicerwave-fit.jpeg',
+    imageAlt: 'nicerwave social app by Nicle Inc',
+    heroTitle: 'Real friends. Real moments. <span class="accent">Kinder conversations.</span>',
     heroSubtitle:
-      'Mivasion helps creators ship stunning visuals and cinematic video with generative AI — production quality output without production timelines.',
-    sectionLabel: 'What is Mivasion?',
-    sectionTitle: 'A creative AI studio inside the Nicer Ecosystem',
+      'nicerwave is the social app for swipeable photo albums, 24-hour stories, short-form Vins, and encrypted voice and video calls.',
+    sectionLabel: 'What is nicerwave?',
+    sectionTitle: 'The social app built for real friends',
     body: [
-      'Mivasion is Nicle Inc’s generative studio for image and video. It is built for teams who need speed without sacrificing craft — from campaign visuals to cinematic sequences.',
-      'As part of the Nicer Ecosystem, Mivasion connects creative generation with Nicle’s broader AI and social platforms, so ideas can move from prompt to publish with less friction.',
+      'nicerwave is Nicle Inc’s social app for real friends, real moments, and kinder conversations. Share swipeable photo albums, 24-hour stories, and short-form Vins with the people who matter.',
+      'Connect through encrypted voice and video calls, send creator gifts with NicerWallet, and create directly with nicer ai plus.',
     ],
     why: [
       {
-        title: 'Production ready visuals',
-        text: 'Generate images and video that hold up in marketing, product, and storytelling workflows.',
+        title: 'Share real moments',
+        text: 'Swipeable photo albums, 24-hour stories, and short-form Vins.',
       },
       {
-        title: 'Style with control',
-        text: 'Use style transfer and studio tools to keep brand direction consistent across creative output.',
+        title: 'Encrypted calls',
+        text: 'Connect with friends through encrypted voice and video calls.',
       },
       {
-        title: 'Built for teams',
-        text: 'Designed for designers, marketers, and creators who need reliable generative workflows at scale.',
-      },
-    ],
-    category: 'MultimediaApplication',
-    accent: byId.mivasion.accent,
-    features: byId.mivasion.features,
-    related: ['worldnicer', 'nicer-ai-plus', 'chatnicer'],
-  },
-  {
-    id: 'worldnicer',
-    slug: 'worldnicer',
-    path: '/worldnicer',
-    name: 'worldnicer',
-    title: 'worldnicer | Privacy First Social Network by Nicle Inc',
-    description:
-      'worldnicer is a positivity focused, privacy first social network from Nicle Inc. Microblogging, live conversations, and community tools built for kindness, discovery, and ownership of your social graph.',
-    keywords:
-      'worldnicer, world nicer, privacy first social network, positive social media, microblogging app, Nicle Inc social, kinder social network',
-    image: '/og-worldnicer.jpeg',
-    imageAlt: 'worldnicer — positivity focused social network by Nicle Inc',
-    heroTitle: 'A social network built for <span class="accent">positivity &amp; privacy</span>',
-    heroSubtitle:
-      'worldnicer blends short form microblogging with real time conversation — designed for kindness, discovery, and true ownership of your social graph.',
-    sectionLabel: 'What is worldnicer?',
-    sectionTitle: 'Privacy first. Positivity focused. Built by Nicle.',
-    body: [
-      'worldnicer is Nicle Inc’s social platform for people who want community without compromise. Share short form updates, join live conversations, and grow communities where privacy and kindness are built in — not bolted on.',
-      'As part of the Nicer Ecosystem, worldnicer connects creators and communities across a stack designed for trust, transparency, and human connection.',
-    ],
-    why: [
-      {
-        title: 'Privacy by design',
-        text: 'Own your social graph. Clear controls. No dark patterns around your data.',
-      },
-      {
-        title: 'Positivity first',
-        text: 'Community tools and culture shaped for kindness, discovery, and real conversation.',
-      },
-      {
-        title: 'Part of Nicle',
-        text: 'Connected to the Nicer Ecosystem — messaging, AI, and creative tools under one vision.',
+        title: 'Gift and create',
+        text: 'Send creator gifts with NicerWallet and create directly with nicer ai plus.',
       },
     ],
     category: 'SocialNetworkingApplication',
-    accent: byId.worldnicer.accent,
-    features: byId.worldnicer.features,
-    related: ['chatnicer', 'nicerapp', 'mivasion'],
+    accent: byId.nicerwave.accent,
+    features: byId.nicerwave.features,
+    related: ['nicerapp', 'nicer-ai-plus', 'social'],
+    publiclyListed: false,
   },
   {
     id: 'nicerapp',
@@ -144,7 +107,7 @@ export const productSeo: ProductSeo[] = [
     category: 'CommunicationApplication',
     accent: byId.nicerapp.accent,
     features: byId.nicerapp.features,
-    related: ['worldnicer', 'security', 'nicer-ai-plus'],
+    related: ['nicerwave', 'security', 'nicer-ai-plus'],
   },
   {
     id: 'niceraiplus',
@@ -184,47 +147,7 @@ export const productSeo: ProductSeo[] = [
     category: 'BusinessApplication',
     accent: byId.niceraiplus.accent,
     features: byId.niceraiplus.features,
-    related: ['mivasion', 'intelligence', 'nicerapp'],
-  },
-  {
-    id: 'chatnicer',
-    slug: 'chatnicer',
-    path: '/chatnicer',
-    name: 'Chatnicer',
-    title: 'Chatnicer | Photos, Reels & Stories by Nicle Inc',
-    description:
-      'Chatnicer is Nicle’s social canvas for photos, Reels, Stories, creator discovery, and location aware feeds. Share moments and follow creators shaped by your interests.',
-    keywords:
-      'Chatnicer, chat nicer, photo sharing app, Reels app, Stories social, creator discovery, Nicle social media, short video platform',
-    image: '/images/chatnicer-fit.webp',
-    imageAlt: 'Chatnicer photos Reels and Stories by Nicle Inc',
-    heroTitle: 'Share moments through <span class="accent">photos, Reels &amp; Stories</span>',
-    heroSubtitle:
-      'Chatnicer is the Nicle canvas for visual sharing — follow creators, message friends, and discover content shaped by interests and location.',
-    sectionLabel: 'What is Chatnicer?',
-    sectionTitle: 'A richer way to share everyday life',
-    body: [
-      'Chatnicer brings photos, short form video, and temporary Stories into one social experience. It is built for creators and communities who want discovery without losing the joy of real moments.',
-      'Inside the Nicer Ecosystem, Chatnicer complements worldnicer and Nicle’s creative tools — helping people publish, follow, and connect through visual storytelling.',
-    ],
-    why: [
-      {
-        title: 'Visual first sharing',
-        text: 'Photos, Reels, and Stories designed for fast creation and natural discovery.',
-      },
-      {
-        title: 'Creator friendly',
-        text: 'Find and follow creators with feeds tuned to interests and location.',
-      },
-      {
-        title: 'Connected ecosystem',
-        text: 'Part of Nicle’s social stack alongside worldnicer and creative AI tools.',
-      },
-    ],
-    category: 'SocialNetworkingApplication',
-    accent: byId.chatnicer.accent,
-    features: byId.chatnicer.features,
-    related: ['worldnicer', 'mivasion', 'social'],
+    related: ['nicerwave', 'intelligence', 'nicerapp'],
   },
 ];
 
@@ -238,16 +161,20 @@ export function buildProductSchema(product: ProductSeo) {
     '@type': 'SoftwareApplication',
     name: product.name,
     applicationCategory: product.category,
-    operatingSystem: 'Web, iOS, Android',
     url: `${siteUrl}${product.path}`,
     image: product.image.startsWith('http') ? product.image : `${siteUrl}${product.image}`,
     description: product.description,
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-    },
+    ...(product.publiclyListed === false
+      ? {}
+      : {
+          operatingSystem: 'Web, iOS, Android',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+          },
+        }),
     brand: {
       '@type': 'Brand',
       name: 'Nicle Inc',
@@ -309,10 +236,10 @@ export const productItemListSchema = {
 
 export const serviceHubSeo = {
   social: {
-    title: 'Social & Creative Platforms | worldnicer, Mivasion, Chatnicer',
+    title: 'Social & Creative Platforms | nicerwave and nicer ai plus',
     description:
-      'Explore Nicle social and creative services: worldnicer for privacy first communities, Mivasion AI studio, and Chatnicer for photos, Reels, and Stories.',
-    keywords: 'Nicle social, worldnicer, Mivasion, Chatnicer, creative platforms, social network services',
+      'Explore Nicle social and creative services: nicerwave, the social app for real friends, and nicer ai plus for creating directly with AI.',
+    keywords: 'Nicle social, nicerwave, nicer ai plus, social app, creative platforms',
     path: '/social',
   },
   intelligence: {

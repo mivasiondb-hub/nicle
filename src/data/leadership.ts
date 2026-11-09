@@ -85,12 +85,11 @@ export const leadership: LeadershipPerson[] = [
     sameAs: [
       'https://www.allthingswebtechnology.com',
       'https://nicleinc.com',
-      'https://worldnicer.com',
     ],
     keyFacts: [
       { label: 'Full Name', value: 'Highness Chinedu Hc' },
       { label: 'Date of Birth', value: 'July 5, 1999' },
-      { label: 'Known For', value: 'Founding Nicle Inc, All Things Web Technology Inc, The Nicer City, WorldNicer' },
+      { label: 'Known For', value: 'Founding Nicle Inc, All Things Web Technology Inc, The Nicer City' },
       { label: 'Current Role', value: 'Founder & CEO (Nicle Inc & All Things Web Technology Inc)' },
       { label: 'Coding Since', value: 'Age 14 (Self-taught full-stack engineer)' },
       { label: 'Headquarters', value: 'Port Harcourt, Nigeria & Ontario, Canada' },
@@ -123,9 +122,6 @@ export const leadership: LeadershipPerson[] = [
       },
     ],
     platforms: [
-      'WorldNicer',
-      'ChatNicer',
-      'Mivasion',
       'PlantSeer',
       'Lyrics AI',
       'Nicer Doctor',
@@ -325,7 +321,7 @@ export const leadership: LeadershipPerson[] = [
       'Implemented agile delivery frameworks improving turnaround by 30%',
       'Led cross-functional teams to deliver mission-critical software on time',
       'Established transparent project tracking, dashboarding, and KPI systems',
-      'Coordinated smooth launches for worldnicer, nicer ai plus, and nicerapp updates',
+      'Coordinated smooth launches for nicer ai plus and nicerapp updates',
     ],
   },
 ];

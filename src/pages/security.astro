@@ -63,8 +63,8 @@ const pillars = [
             sizes="(max-width: 900px) 100vw, 480px"
             formats={['avif', 'webp']}
             quality={75}
-            loading="lazy"
-            decoding="async"
+            loading="eager"
+            decoding="sync"
           />
           <div class="secGlow" aria-hidden="true"></div>
         </div>
@@ -123,7 +123,7 @@ const pillars = [
 <style>
   .secSection {
     padding: 3rem 2rem 4rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .secLayout {
@@ -215,7 +215,7 @@ const pillars = [
   .pillarCard {
     padding: 1.75rem;
     border-radius: var(--radiusMd);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border: 1px solid var(--colorBorder);
     transition: transform 0.4s var(--easeOutExpo), box-shadow 0.4s ease;
   }

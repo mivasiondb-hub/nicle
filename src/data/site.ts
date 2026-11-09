@@ -1,25 +1,14 @@
 export const products = [
   {
-    id: 'mivasion',
-    name: 'Mivasion',
-    tagline: 'AI image and video studio',
+    id: 'nicerwave',
+    name: 'nicerwave',
+    tagline: 'The social app for real friends',
     description:
-      'Create stunning visuals and cinematic video with generative AI. Mivasion is Nicle’s creative studio for designers, marketers, and storytellers who need production quality output at machine speed.',
-    features: ['Image generation', 'Video synthesis', 'Style transfer', 'Studio workflows'],
-    accent: '#5b7cfa',
-    gradient: 'linear-gradient(145deg, #1a2a6c 0%, #5b7cfa 45%, #ED3542 100%)',
-    image: '/images/mivasion-fit.jpeg',
-  },
-  {
-    id: 'worldnicer',
-    name: 'worldnicer',
-    tagline: 'Positivity focused social network',
-    description:
-      'A privacy first community space that blends short form microblogging with real time conversation. Built for kindness, discovery, and ownership of your social graph.',
-    features: ['Microblogging', 'Live conversations', 'Privacy first', 'Community tools'],
-    accent: '#34c759',
-    gradient: 'linear-gradient(145deg, #0b3d2e 0%, #34c759 50%, #5b7cfa 100%)',
-    image: '/images/worldnicer-fit.jpeg',
+      'The social app built for real friends, real moments, and kinder conversations. Share swipeable photo albums, 24-hour stories, and short-form Vins, connect through encrypted voice and video calls, send creator gifts with NicerWallet, and create directly with nicer ai plus.',
+    features: ['Swipeable photo albums', '24-hour stories', 'Short-form Vins', 'Encrypted voice and video calls', 'Creator gifts with NicerWallet', 'Create with nicer ai plus'],
+    accent: '#3aa0ff',
+    gradient: 'linear-gradient(145deg, #0a2a6c 0%, #2f6bff 40%, #e01fd0 100%)',
+    image: '/images/nicerwave-fit.jpeg',
   },
   {
     id: 'nicerapp',
@@ -43,17 +32,6 @@ export const products = [
     gradient: 'linear-gradient(145deg, #1a0f3d 0%, #7c5cfc 40%, #5b7cfa 100%)',
     image: '/images/nicer-ai-plus-fit.jpeg',
   },
-  {
-    id: 'chatnicer',
-    name: 'Chatnicer',
-    tagline: 'Photos, Reels, and Stories',
-    description:
-      'Share moments through photos, short form video, and temporary Stories. Follow creators, message friends, and discover content shaped by your interests and location.',
-    features: ['Photos and Reels', 'Stories', 'Creator discovery', 'Location aware feed'],
-    accent: '#ff8a3d',
-    gradient: 'linear-gradient(145deg, #3d1a08 0%, #ff8a3d 40%, #ED3542 100%)',
-    image: '/images/chatnicer-fit.webp',
-  },
 ];
 
 export const newsItems = [
@@ -65,32 +43,11 @@ export const newsItems = [
     category: 'AI',
   },
   {
-    date: '2025',
-    title: 'worldnicer opens as a privacy first social space',
-    excerpt:
-      'Designed for positivity and community, worldnicer blends microblogging with real time conversations in a transparent, user owned environment.',
-    category: 'Product',
-  },
-  {
     date: '2024',
     title: 'nicerapp doubles down on encryption without compromise',
     excerpt:
       'A new transparency report and architecture update reinforce our promise: no backdoors, no hidden access, full ownership of conversations.',
     category: 'Security',
-  },
-  {
-    date: '2023',
-    title: 'Mivasion studio reaches creative teams across continents',
-    excerpt:
-      'AI powered image and video workflows help brands and creators ship cinematic work faster from Canada to Africa and Australia.',
-    category: 'Product',
-  },
-  {
-    date: '2022',
-    title: 'Chatnicer brings Stories and Reels to the Nicle ecosystem',
-    excerpt:
-      'A new social canvas for photos, short video, and temporary updates — tuned to interests and geographic discovery.',
-    category: 'Product',
   },
   {
     date: '2026',

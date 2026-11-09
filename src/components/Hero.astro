@@ -55,13 +55,13 @@ const searchIndex = [
     </h1>
 
     <p class="heroSubtitle">
-      Privacy-first social platforms, secure messaging, AI studios &amp; connected intelligence.
+      Social built for real friends, secure messaging &amp; connected intelligence.
     </p>
 
     <!-- Google-Style Search Bar -->
     <div class="heroSearchContainer">
       <div class="heroSearchBox">
-        <svg class="heroSearchIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#70757a" stroke-width="2.5">
+        <svg class="heroSearchIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colorTextMuted)" stroke-width="2.5">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
@@ -72,7 +72,7 @@ const searchIndex = [
           autocomplete="off"
         />
         <button id="heroSearchClear" class="heroSearchClearBtn" aria-label="Clear search" style="display: none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#70757a" stroke-width="2.5">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colorTextMuted)" stroke-width="2.5">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -142,8 +142,8 @@ const searchIndex = [
       top: calc(100% + 6px);
       left: 0;
       right: 0;
-      background: #ffffff;
-      border: 1px solid #dfe1e5;
+      background: var(--colorPanel);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 18px;
       box-shadow: 0 16px 40px rgba(0,0,0,0.28);
       overflow: hidden;
@@ -153,10 +153,10 @@ const searchIndex = [
   }
 
   const badgeColors = {
-    'product':     { bg: '#e8f0fe', color: '#1a73e8' },
-    'team-member': { bg: '#fce8e6', color: '#c5221f' },
-    'help-guide':  { bg: '#e6f4ea', color: '#137333' },
-    'page':        { bg: '#f1f3f4', color: '#5f6368' },
+    'product':     { bg: 'rgba(138, 180, 248, 0.14)', color: '#8ab4f8' },
+    'team-member': { bg: 'rgba(242, 139, 130, 0.14)', color: '#f28b82' },
+    'help-guide':  { bg: 'rgba(129, 201, 149, 0.14)', color: '#81c995' },
+    'page':        { bg: 'rgba(255, 255, 255, 0.08)', color: 'var(--colorTextMuted)' },
   };
 
   function highlightQuery(text, query) {
@@ -166,7 +166,7 @@ const searchIndex = [
     const before = text.substring(0, idx);
     const match = text.substring(idx, idx + query.length);
     const after = text.substring(idx + query.length);
-    return `${before}<strong style="color:#1a0dab;font-weight:700;">${match}</strong>${after}`;
+    return `${before}<strong style="color:#8ab4f8;font-weight:700;">${match}</strong>${after}`;
   }
 
   if (input) {
@@ -202,20 +202,20 @@ const searchIndex = [
               align-items:center;
               justify-content:space-between;
               padding:0.7rem 1.15rem;
-              color:#202124;
+              color:var(--colorInk);
               text-decoration:none;
-              border-bottom:1px solid #f1f3f4;
-              background:#ffffff;
+              border-bottom:1px solid rgba(255, 255, 255, 0.08);
+              background:transparent;
               transition: background 0.15s;
-            " onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='#ffffff'">
+            " onmouseover="this.style.background='rgba(255, 255, 255, 0.06)'" onmouseout="this.style.background='transparent'">
               <div style="display:flex;align-items:center;gap:0.85rem;min-width:0;flex-grow:1;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#70757a" stroke-width="2" style="flex-shrink:0;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--colorTextMuted)" stroke-width="2" style="flex-shrink:0;">
                   <circle cx="11" cy="11" r="8"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
                 <div style="display:flex;flex-direction:column;min-width:0;">
-                  <span style="font-size:0.925rem;font-weight:500;color:#202124;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${highlightedTitle}</span>
-                  <span style="font-size:0.78rem;color:#70757a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.subtitle}</span>
+                  <span style="font-size:0.925rem;font-weight:500;color:var(--colorInk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${highlightedTitle}</span>
+                  <span style="font-size:0.78rem;color:var(--colorTextMuted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${item.subtitle}</span>
                 </div>
               </div>
               <span style="
@@ -233,15 +233,15 @@ const searchIndex = [
             </a>
           `;
         }).join('') + `
-          <div style="padding:0.45rem 1.15rem;background:#f8f9fa;border-top:1px solid #f1f3f4;text-align:right;font-size:0.72rem;color:#70757a;">
+          <div style="padding:0.45rem 1.15rem;background:var(--colorSurface);border-top:1px solid rgba(255, 255, 255, 0.08);text-align:right;font-size:0.72rem;color:var(--colorTextMuted);">
             Click a prediction to jump to page
           </div>
         `;
       } else {
         panel.style.display = 'block';
         list.innerHTML = `
-          <div style="display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:1.25rem 1rem;color:#70757a;font-size:0.88rem;background:#ffffff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#70757a" stroke-width="2">
+          <div style="display:flex;align-items:center;justify-content:center;gap:0.6rem;padding:1.25rem 1rem;color:var(--colorTextMuted);font-size:0.88rem;background:var(--colorPanel);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--colorTextMuted)" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
@@ -275,7 +275,7 @@ const searchIndex = [
     align-items: center;
     justify-content: center;
     min-height: auto;
-    padding: calc(var(--headerHeight) + 0.75rem) 1.25rem 2.5rem;
+    padding: calc(var(--headerHeight) + 4.5rem) 1.25rem 6rem;
     background: linear-gradient(165deg, #060708 0%, #0c1014 48%, #08090c 100%);
     overflow: visible !important;
   }
@@ -505,17 +505,18 @@ const searchIndex = [
     display: flex;
     align-items: center;
     width: 100%;
-    background: #ffffff;
-    border: 1px solid #dfe1e5;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 999px;
     padding: 0 1rem 0 1.15rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02) inset, 0 10px 30px rgba(0, 0, 0, 0.35);
     transition: all 0.25s ease;
   }
 
   .heroSearchBox:focus-within {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    border-color: #4285f4;
+    box-shadow: 0 0 0 4px rgba(237, 53, 66, 0.15), 0 14px 40px rgba(237, 53, 66, 0.18);
+    border-color: rgba(255, 93, 105, 0.6);
   }
 
   .heroSearchIcon {
@@ -531,12 +532,12 @@ const searchIndex = [
     font-family: var(--fontBody);
     font-size: 0.95rem;
     font-weight: 500;
-    color: #202124 !important;
+    color: var(--colorInk) !important;
     background: transparent;
   }
 
   .heroSearchBox input::placeholder {
-    color: #70757a;
+    color: var(--colorTextMuted);
   }
 
   .heroSearchClearBtn {
@@ -555,7 +556,7 @@ const searchIndex = [
   }
 
   .heroSearchClearBtn:hover {
-    background: #f1f3f4;
+    background: var(--colorSurface);
   }
 
   /* High Z-Index Unclipped Google Autocomplete Dropdown Card */
@@ -564,8 +565,8 @@ const searchIndex = [
     top: calc(100% + 6px);
     left: 0;
     right: 0;
-    background: #ffffff;
-    border: 1px solid #dfe1e5;
+    background: var(--colorPanel);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 18px;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     overflow: hidden;
@@ -578,9 +579,9 @@ const searchIndex = [
     align-items: center;
     justify-content: space-between;
     padding: 0.7rem 1.15rem;
-    color: #202124 !important;
+    color: var(--colorInk) !important;
     text-decoration: none;
-    border-bottom: 1px solid #f1f3f4;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: background 0.15s ease;
   }
 
@@ -589,7 +590,7 @@ const searchIndex = [
   }
 
   .heroSuggestionItem:hover {
-    background: #f8f9fa;
+    background: var(--colorSurface);
   }
 
   .suggestionLeft {
@@ -613,20 +614,20 @@ const searchIndex = [
   .suggestionTitle {
     font-size: 0.925rem;
     font-weight: 500;
-    color: #202124 !important;
+    color: var(--colorInk) !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   :global(.searchHighlight) {
-    color: #1a0dab !important;
+    color: #8ab4f8 !important;
     font-weight: 700;
   }
 
   .suggestionSubtitle {
     font-size: 0.78rem;
-    color: #70757a !important;
+    color: var(--colorTextMuted) !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -645,32 +646,32 @@ const searchIndex = [
   }
 
   .suggestionBadge.product {
-    background: #e8f0fe;
-    color: #1a73e8;
+    background: rgba(138, 180, 248, 0.14);
+    color: #8ab4f8;
   }
 
   .suggestionBadge.team-member {
-    background: #fce8e6;
-    color: #c5221f;
+    background: rgba(242, 139, 130, 0.14);
+    color: #f28b82;
   }
 
   .suggestionBadge.help-guide {
-    background: #e6f4ea;
-    color: #137333;
+    background: rgba(129, 201, 149, 0.14);
+    color: #81c995;
   }
 
   .suggestionBadge.page {
-    background: #f1f3f4;
-    color: #5f6368;
+    background: var(--colorSurface);
+    color: var(--colorTextMuted);
   }
 
   .searchDropdownFooter {
     padding: 0.45rem 1.15rem;
-    background: #f8f9fa;
-    border-top: 1px solid #f1f3f4;
+    background: var(--colorSurface);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     text-align: right;
     font-size: 0.72rem;
-    color: #70757a;
+    color: var(--colorTextMuted);
   }
 
   .heroSearchNoResults {
@@ -679,7 +680,7 @@ const searchIndex = [
     justify-content: center;
     gap: 0.6rem;
     padding: 1.25rem 1rem;
-    color: #70757a;
+    color: var(--colorTextMuted);
     font-size: 0.88rem;
   }
 
@@ -706,9 +707,9 @@ const searchIndex = [
     bottom: 0;
     left: 0;
     right: 0;
-    height: 36px;
-    background: var(--colorSurface);
-    clip-path: ellipse(80% 100% at 50% 100%);
+    height: 120px;
+    background: linear-gradient(180deg, transparent, var(--colorBg));
+    clip-path: none;
     z-index: 1;
     pointer-events: none;
   }

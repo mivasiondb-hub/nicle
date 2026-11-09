@@ -6,10 +6,8 @@ import Footer from '../../../components/Footer.astro';
 import { helpProducts } from '../../../data/helpData';
 
 // Import logos for the products
-import mivasionImage from '../../../assets/images/mivasion-fit.jpeg';
-import worldnicerImage from '../../../assets/images/worldnicer-fit.jpeg';
+import nicerwaveImage from '../../../assets/images/nicerwave-fit.jpeg';
 import nicerappImage from '../../../assets/images/nicerapp-fit.jpeg';
-import chatnicerImage from '../../../assets/images/chatnicer-fit.webp';
 import nicerAiPlusImage from '../../../assets/images/nicer-ai-plus-fit.jpeg';
 
 export function getStaticPaths() {
@@ -28,11 +26,9 @@ export function getStaticPaths() {
 const { product, article } = Astro.props;
 
 const productLogos: Record<string, ImageMetadata> = {
-  worldnicer: worldnicerImage,
+  nicerwave: nicerwaveImage,
   nicerapp: nicerappImage,
-  mivasion: mivasionImage,
   niceraiplus: nicerAiPlusImage,
-  chatnicer: chatnicerImage,
 };
 
 const logo = productLogos[product.logoKey];
@@ -150,7 +146,9 @@ const otherArticles = product.articles.filter((a) => a.id !== article.id);
                       widths={[60, 96]}
                       sizes="40px"
                       formats={['avif', 'webp']}
-                    />
+  loading="eager"
+  decoding="sync"
+/>
                   )}
                 </div>
                 <div>
@@ -213,7 +211,7 @@ const otherArticles = product.articles.filter((a) => a.id !== article.id);
 
 <style>
   .hcaMain {
-    background: var(--colorWhite);
+    background: var(--colorCard);
     min-height: calc(100vh - var(--headerHeight));
   }
 
@@ -428,7 +426,7 @@ const otherArticles = product.articles.filter((a) => a.id !== article.id);
     padding: 0.65rem 1.25rem;
     border-radius: 999px;
     border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--colorTextMuted);
@@ -482,7 +480,7 @@ const otherArticles = product.articles.filter((a) => a.id !== article.id);
   .hcaSidebarCard {
     padding: 2rem 1.75rem;
     border-radius: 18px;
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border: 1px solid var(--colorBorder);
     box-shadow: 0 4px 15px rgba(10, 10, 11, 0.02);
   }
@@ -502,7 +500,7 @@ const otherArticles = product.articles.filter((a) => a.id !== article.id);
     border-radius: 10px;
     overflow: hidden;
     background: #000;
-    border: 2px solid var(--colorWhite);
+    border: 2px solid var(--colorBg);
     flex-shrink: 0;
   }
 

@@ -8,7 +8,7 @@ import cardSecurity from '../assets/images/card-security.webp';
 const highlights = [
   {
     title: 'Social & creative platforms',
-    text: 'Explore Mivasion, worldnicer, and Chatnicer — built for creators, communities, and positivity.',
+    text: 'Explore nicerwave — the social app built for real friends, real moments, and kinder conversations.',
     href: '/social',
     image: cardSocial,
     alt: 'Creators collaborating around phones and tablets in a bright modern workspace',
@@ -35,7 +35,7 @@ const highlights = [
     <span class="sectionLabel">Ecosystem</span>
     <h2 class="sectionTitle">Products that redefine connection</h2>
     <p class="sectionLead">
-      {products.length} platforms spanning social, messaging, creative AI, and intelligence —
+      {products.length} platforms spanning social, messaging, and intelligence —
       designed as one premium digital ecosystem.
     </p>
   </div>
@@ -56,8 +56,8 @@ const highlights = [
               sizes="(max-width: 1024px) 100vw, 400px"
               formats={['avif', 'webp']}
               quality={72}
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              decoding="sync"
             />
             <div class="cardShade" aria-hidden="true"></div>
           </div>
@@ -110,7 +110,7 @@ const highlights = [
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border-radius: var(--radiusLg);
     overflow: hidden;
     border: 1px solid var(--colorBorder);

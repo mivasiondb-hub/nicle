@@ -11,7 +11,7 @@ const mailtoGeneral = `mailto:${contactEmail}?subject=${encodeURIComponent('Cont
 const helpTopics = [
   {
     title: 'Product support',
-    text: 'Report bugs, ask how a feature works, or get help signing in across worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer.',
+    text: 'Report bugs, ask how a feature works, or get help signing in across nicerwave, nicerapp, and nicer ai plus.',
   },
   {
     title: 'Account & access',
@@ -64,7 +64,7 @@ const faqs = [
   },
   {
     q: 'Can I get help with a specific product?',
-    a: 'Yes. Mention the product name in your subject line (for example, nicerapp or worldnicer) and include device, account handle if relevant, and steps to reproduce the issue.',
+    a: 'Yes. Mention the product name in your subject line (for example, nicerapp or nicerwave) and include device, account handle if relevant, and steps to reproduce the issue.',
   },
   {
     q: 'How do I apply for a role at Nicle?',
@@ -106,7 +106,7 @@ const productLinks = productSeo.map((p) => ({
 
 <BaseLayout
   title="Contact Us | Help Center & Careers at Nicle"
-  description="Contact Nicle Inc for product support, careers, and company questions. Email we@nicleinc.com — help with worldnicer, nicerapp, Mivasion, nicer ai plus, and Chatnicer."
+  description="Contact Nicle Inc for product support, careers, and company questions. Email we@nicleinc.com — help with nicerwave, nicerapp, and nicer ai plus."
   activeNav="contact"
   image="/og-default.png"
   canonical="/contact"
@@ -230,7 +230,7 @@ const productLinks = productSeo.map((p) => ({
           <span class="sectionLabel">Careers at Nicle</span>
           <h2 class="sectionTitle">Build the future of human connection</h2>
           <p>
-            Nicle Inc is growing a connected stack across social platforms, private messaging, creative AI, and intelligent assistants.
+            Nicle Inc is growing a connected stack across social, private messaging, and intelligent assistants.
             We look for people who care about privacy, craft, and products people actually use.
           </p>
           <p>
@@ -280,7 +280,7 @@ const productLinks = productSeo.map((p) => ({
         <h2 class="sectionTitle">What to include in your email</h2>
         <ul>
           <li>Your name and the best way to reach you</li>
-          <li>The product involved (worldnicer, nicerapp, Mivasion, nicer ai plus, or Chatnicer)</li>
+          <li>The product involved (nicerwave, nicerapp, or nicer ai plus)</li>
           <li>A clear description of the question, issue, or role you are interested in</li>
           <li>Screenshots, links, or steps to reproduce for support requests</li>
           <li>Résumé, portfolio, or LinkedIn for career applications</li>
@@ -325,7 +325,7 @@ const productLinks = productSeo.map((p) => ({
     background:
       radial-gradient(ellipse 70% 55% at 50% -10%, rgba(237, 53, 66, 0.08), transparent 60%),
       radial-gradient(ellipse 50% 40% at 85% 20%, rgba(91, 124, 250, 0.08), transparent 55%),
-      var(--colorWhite);
+      var(--colorBg);
   }
 
   .contactHeroInner {
@@ -351,7 +351,7 @@ const productLinks = productSeo.map((p) => ({
 
   .actionCards {
     padding: 1.5rem 1.5rem 3.5rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .actionGrid {
@@ -381,11 +381,11 @@ const productLinks = productSeo.map((p) => ({
   }
 
   .actionCardHelp {
-    background: #e8f0fe;
+    background: rgba(138, 180, 248, 0.14);
   }
 
   .actionCardCareers {
-    background: #e6f4ea;
+    background: rgba(129, 201, 149, 0.14);
   }
 
   .actionLabel {
@@ -393,7 +393,7 @@ const productLinks = productSeo.map((p) => ({
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #5f6368;
+    color: var(--colorTextMuted);
   }
 
   .actionCard p {
@@ -407,7 +407,7 @@ const productLinks = productSeo.map((p) => ({
   }
 
   .actionIcon {
-    color: #1a73e8;
+    color: #8ab4f8;
     display: grid;
     place-items: center;
   }
@@ -433,7 +433,7 @@ const productLinks = productSeo.map((p) => ({
     gap: 0.7rem;
     padding: 0.95rem 1.4rem;
     border-radius: 999px;
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border: 1px solid var(--colorBorder);
     color: var(--colorBrand);
     font-family: var(--fontDisplay);
@@ -471,7 +471,7 @@ const productLinks = productSeo.map((p) => ({
   .emailMeta article {
     padding: 1.25rem 1.2rem;
     border-radius: 14px;
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border: 1px solid var(--colorBorder);
   }
 
@@ -493,7 +493,7 @@ const productLinks = productSeo.map((p) => ({
   .tipsSection,
   .faqSection {
     padding: 5rem 1.5rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .topicsInner,
@@ -546,7 +546,7 @@ const productLinks = productSeo.map((p) => ({
 
   .productsHelpGrid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.85rem;
   }
 
@@ -556,13 +556,13 @@ const productLinks = productSeo.map((p) => ({
     gap: 0.35rem;
     padding: 1.15rem 1rem;
     border-radius: 14px;
-    background: var(--colorWhite);
-    border: 1px solid #dadce0;
+    background: var(--colorCard);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: border-color 0.25s ease, transform 0.3s var(--easeOutExpo);
   }
 
   .productHelpCard:hover {
-    border-color: #1a73e8;
+    border-color: #8ab4f8;
     transform: translateY(-2px);
   }
 
@@ -578,7 +578,7 @@ const productLinks = productSeo.map((p) => ({
 
   .careersSection {
     padding: 5rem 1.5rem;
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .careersInner {
@@ -614,7 +614,7 @@ const productLinks = productSeo.map((p) => ({
   .careersGrid article {
     padding: 1.25rem 1.3rem;
     border-radius: 14px;
-    background: #e6f4ea;
+    background: rgba(129, 201, 149, 0.14);
   }
 
   .careersGrid h3 {
@@ -623,7 +623,7 @@ const productLinks = productSeo.map((p) => ({
   }
 
   .careersGrid p {
-    color: #3c4043;
+    color: var(--colorText);
     font-size: 0.94rem;
     line-height: 1.55;
   }

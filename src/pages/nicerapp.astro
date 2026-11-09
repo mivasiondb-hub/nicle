@@ -86,7 +86,7 @@ const faqs = [
   },
   {
     q: 'Who builds nicerapp?',
-    a: 'nicerapp is built by Nicle Inc, a subsidiary of All Things Web Technology Inc. It is part of the Nicer Ecosystem alongside worldnicer, Mivasion, nicer ai plus, and Chatnicer.',
+    a: 'nicerapp is built by Nicle Inc, a subsidiary of All Things Web Technology Inc. It is part of the Nicer Ecosystem alongside nicerwave and nicer ai plus.',
   },
   {
     q: 'Is nicerapp end to end encrypted?',
@@ -163,8 +163,8 @@ const faqSchema = {
               sizes="(max-width: 900px) 200px, 260px"
               formats={['avif', 'webp']}
               quality={78}
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              decoding="sync"
             />
           </div>
         </div>
@@ -296,15 +296,12 @@ const faqSchema = {
         <span class="sectionLabel">Nicer Ecosystem</span>
         <h2 class="sectionTitle">One stack. Clear jobs.</h2>
         <p>
-          nicerapp handles private messaging. worldnicer focuses on social community. Mivasion
-          powers creative AI. nicer ai plus assists with intelligence. Chatnicer shares photos,
-          Reels, and Stories. Together they form Nicle’s connected product family.
+          nicerapp handles private messaging. nicerwave brings real friends together. nicer ai plus
+          assists with intelligence. Together they form Nicle’s connected product family.
         </p>
         <div class="naEcoLinks">
-          <a href="/worldnicer">worldnicer</a>
-          <a href="/mivasion">Mivasion</a>
+          <a href="/nicerwave">nicerwave</a>
           <a href="/nicer-ai-plus">nicer ai plus</a>
-          <a href="/chatnicer">Chatnicer</a>
           <a href="/products">All products</a>
         </div>
       </div>
@@ -430,7 +427,7 @@ const faqSchema = {
     left: 0;
     right: 0;
     height: 48px;
-    background: var(--colorWhite);
+    background: var(--colorCard);
     clip-path: ellipse(70% 100% at 50% 100%);
     z-index: 3;
   }
@@ -538,7 +535,7 @@ const faqSchema = {
   }
 
   .naStrip {
-    background: var(--colorWhite);
+    background: var(--colorCard);
     border-bottom: 1px solid var(--colorBorder);
     padding: 1.25rem 1.5rem;
   }
@@ -587,7 +584,7 @@ const faqSchema = {
   .naHow,
   .naPrinciples,
   .naFaq {
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .naFeatures,
@@ -647,7 +644,7 @@ const faqSchema = {
 
   .naUseGrid article,
   .naFeatureCard {
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .naPrinciplesGrid article {
@@ -771,7 +768,7 @@ const faqSchema = {
     padding: 0.8rem 1.4rem;
     border-radius: 999px;
     border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     font-weight: 700;
     font-size: 0.9rem;
     box-shadow: 0 4px 12px rgba(10, 10, 11, 0.03);
@@ -809,12 +806,12 @@ const faqSchema = {
 
   .naFaqList details:hover {
     border-color: rgba(237, 53, 66, 0.2);
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .naFaqList details[open] {
     border-color: rgba(237, 53, 66, 0.28);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     box-shadow: 0 8px 30px rgba(10, 10, 11, 0.04);
   }
 

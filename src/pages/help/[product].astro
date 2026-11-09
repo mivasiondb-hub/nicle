@@ -6,10 +6,8 @@ import Footer from '../../components/Footer.astro';
 import { helpProducts } from '../../data/helpData';
 
 // Import logos for the products
-import mivasionImage from '../../assets/images/mivasion-fit.jpeg';
-import worldnicerImage from '../../assets/images/worldnicer-fit.jpeg';
+import nicerwaveImage from '../../assets/images/nicerwave-fit.jpeg';
 import nicerappImage from '../../assets/images/nicerapp-fit.jpeg';
-import chatnicerImage from '../../assets/images/chatnicer-fit.webp';
 import nicerAiPlusImage from '../../assets/images/nicer-ai-plus-fit.jpeg';
 
 export function getStaticPaths() {
@@ -22,11 +20,9 @@ export function getStaticPaths() {
 const { product } = Astro.props;
 
 const productLogos: Record<string, ImageMetadata> = {
-  worldnicer: worldnicerImage,
+  nicerwave: nicerwaveImage,
   nicerapp: nicerappImage,
-  mivasion: mivasionImage,
   niceraiplus: nicerAiPlusImage,
-  chatnicer: chatnicerImage,
 };
 
 const logo = productLogos[product.logoKey];
@@ -65,7 +61,9 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
                 widths={[120, 180]}
                 sizes="80px"
                 formats={['avif', 'webp']}
-              />
+  loading="eager"
+  decoding="sync"
+/>
             )}
           </div>
           <div class="hcpHeaderCopy">
@@ -127,7 +125,7 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
             <div class="hcpSidebarCard hcpSidebarInfoCard">
               <h3>Product Resources</h3>
               <ul>
-                <li><a href={product.id === 'nicerapp' ? '/nicerapp' : product.id === 'mivasion' ? '/mivasion' : product.id === 'niceraiplus' ? '/nicer-ai-plus' : product.id === 'worldnicer' ? '/worldnicer' : product.id === 'chatnicer' ? '/chatnicer' : '/products'}>Visit Product Page</a></li>
+                <li><a href={product.id === 'nicerapp' ? '/nicerapp' : product.id === 'niceraiplus' ? '/nicer-ai-plus' : product.id === 'nicerwave' ? '/nicerwave' : '/products'}>Visit Product Page</a></li>
                 <li><a href="/security">Security &amp; Encryption Specs</a></li>
                 {product.id === 'nicerapp' && (
                   <>
@@ -149,14 +147,14 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
 
 <style>
   .hcpMain {
-    background: var(--colorWhite);
+    background: var(--colorCard);
     min-height: calc(100vh - var(--headerHeight));
   }
 
   /* Header Section */
   .hcpHero {
     padding: calc(var(--headerHeight) + 4rem) 1.5rem 3rem;
-    background: linear-gradient(180deg, rgba(245, 246, 248, 0.4) 0%, var(--colorWhite) 100%);
+    background: linear-gradient(180deg, transparent 0%, var(--colorCard) 100%);
     border-bottom: 1px solid var(--colorBorder);
   }
 
@@ -204,7 +202,7 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
     border-radius: 20px;
     overflow: hidden;
     background: #000;
-    border: 3px solid var(--colorWhite);
+    border: 3px solid var(--colorBg);
     flex-shrink: 0;
   }
 
@@ -277,7 +275,7 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
     padding: 1.25rem 1.5rem;
     border-radius: 14px;
     border: 1px solid var(--colorBorder);
-    background: var(--colorWhite);
+    background: var(--colorCard);
     transition: transform 0.3s var(--easeOutExpo), border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
@@ -364,7 +362,7 @@ const categories = [...new Set(product.articles.map((a) => a.category))];
   }
 
   .hcpSidebarInfoCard {
-    background: var(--colorWhite);
+    background: var(--colorCard);
   }
 
   .hcpSidebarInfoCard ul {

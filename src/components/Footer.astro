@@ -7,8 +7,8 @@
         class="footerLogo"
         width="110"
         height="36"
-        loading="lazy"
-        decoding="async"
+        loading="eager"
+        decoding="sync"
       />
       <p class="footerTagline">
         Building the future of human connection through AI, social platforms, and secure communication.
@@ -27,11 +27,9 @@
       </div>
       <div class="footerCol">
         <h4 class="footerHeading">Products</h4>
-        <a href="/mivasion">Mivasion</a>
-        <a href="/worldnicer">worldnicer</a>
+        <a href="/nicerwave">nicerwave</a>
         <a href="/nicerapp">nicerapp</a>
         <a href="/nicer-ai-plus">nicer ai plus</a>
-        <a href="/chatnicer">Chatnicer</a>
       </div>
       <div class="footerCol">
         <h4 class="footerHeading">Company</h4>
@@ -60,9 +58,49 @@
 
 <style>
   .siteFooter {
-    background: var(--colorWhite);
-    color: var(--colorBlack);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 120%, rgba(237, 53, 66, 0.16), transparent 60%),
+      radial-gradient(ellipse 40% 60% at 90% 0%, rgba(139, 108, 255, 0.1), transparent 60%),
+      linear-gradient(180deg, rgba(4, 5, 9, 0.6), var(--colorBgDeep));
+    color: var(--colorTextMuted);
     padding: 5rem 2rem 2rem;
+    isolation: isolate;
+  }
+
+  .siteFooter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 93, 105, 0.7), rgba(139, 108, 255, 0.7), transparent);
+  }
+
+  .siteFooter::after {
+    content: 'NICLE';
+    position: absolute;
+    left: 50%;
+    bottom: -0.18em;
+    transform: translateX(-50%);
+    font-family: var(--fontDisplay);
+    font-weight: 700;
+    font-size: clamp(6rem, 22vw, 20rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 75%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    pointer-events: none;
+    z-index: -1;
+    white-space: nowrap;
+  }
+
+  .footerCol a {
+    color: var(--colorText);
   }
 
   .footerTop {

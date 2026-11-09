@@ -24,8 +24,8 @@ function bootMotion() {
   initLinkRipple();
   initHashFocus();
   initDetailsMotion();
+  initCursorGlow();
   // Prepare reveals before motionReady so above-fold content never flashes white
-  initImageReveal();
   initRevealObserver();
 }
 
@@ -240,41 +240,6 @@ function initTiltCards() {
   });
 }
 
-function initImageReveal() {
-  const images = document.querySelectorAll(
-    '.cardVisual img, .psLogo, .leaderPhoto, .teamPhoto, .productFloat .productLogo'
-  );
-  if (!images.length || prefersReducedMotion()) return;
-
-  // Mobile: never hide photos behind a late reveal
-  if (isMobileViewport()) {
-    images.forEach((img) => {
-      img.classList.add('mediaReveal', 'mediaRevealed');
-    });
-    return;
-  }
-
-  images.forEach((img) => {
-    img.classList.add('mediaReveal');
-    if (isNearViewport(img)) img.classList.add('mediaRevealed');
-  });
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('mediaRevealed');
-        observer.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.01, rootMargin: '80px 0px 40px 0px' }
-  );
-
-  images.forEach((img) => {
-    if (!img.classList.contains('mediaRevealed')) observer.observe(img);
-  });
-}
-
 function initLinkRipple() {
   if (prefersReducedMotion()) return;
 
@@ -297,6 +262,44 @@ function initHashFocus() {
     target.classList.add('hashFocus');
     window.setTimeout(() => target.classList.remove('hashFocus'), 1600);
   });
+}
+
+function initCursorGlow() {
+  const glow = document.querySelector<HTMLElement>('[data-cursor-glow]');
+  if (!glow || prefersReducedMotion() || isCoarsePointer()) return;
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 3;
+  let x = targetX;
+  let y = targetY;
+  let running = false;
+
+  function frame() {
+    x += (targetX - x) * 0.12;
+    y += (targetY - y) * 0.12;
+    glow!.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    if (Math.abs(targetX - x) > 0.5 || Math.abs(targetY - y) > 0.5) {
+      requestAnimationFrame(frame);
+    } else {
+      running = false;
+    }
+  }
+
+  window.addEventListener(
+    'pointermove',
+    (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      glow.classList.add('isActive');
+      if (!running) {
+        running = true;
+        requestAnimationFrame(frame);
+      }
+    },
+    { passive: true }
+  );
+
+  document.addEventListener('pointerleave', () => glow.classList.remove('isActive'));
 }
 
 function initDetailsMotion() {

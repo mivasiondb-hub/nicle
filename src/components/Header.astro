@@ -25,7 +25,7 @@ const navItems = [
         width="90"
         height="26"
         fetchpriority="high"
-        decoding="async"
+        decoding="sync"
       />
     </a>
 
@@ -54,7 +54,7 @@ const navItems = [
     right: 0;
     z-index: 100;
     height: var(--headerHeight);
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(6, 7, 11, 0.55);
     backdrop-filter: blur(20px) saturate(1.4);
     border-bottom: 1px solid transparent;
     transition:
@@ -64,9 +64,9 @@ const navItems = [
   }
 
   .siteHeader.headerScrolled {
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(6, 7, 11, 0.82);
     border-bottom-color: var(--colorBorder);
-    box-shadow: 0 8px 32px rgba(10, 10, 11, 0.06);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
   }
 
   .headerInner {
@@ -166,7 +166,7 @@ const navItems = [
   @media (max-width: 860px) {
     .siteHeader {
       backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(6, 7, 11, 0.9);
     }
 
     .headerCta {
