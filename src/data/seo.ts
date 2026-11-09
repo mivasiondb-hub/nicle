@@ -19,7 +19,7 @@ export const organizationSchema = {
   name: 'Nicle Inc',
   legalName: 'Nicle Inc',
   url: siteUrl,
-  logo: `${siteUrl}/nicle-logo.png`,
+  logo: `${siteUrl}/icon-512.png`,
   foundingDate: '2026-05',
   parentOrganization: {
     '@type': 'Organization',
@@ -49,7 +49,7 @@ export const websiteSchema = {
     name: siteName,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/nicle-logo.png`,
+      url: `${siteUrl}/icon-512.png`,
     },
   },
   potentialAction: {
