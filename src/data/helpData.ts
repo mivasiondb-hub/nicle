@@ -21,36 +21,93 @@ export const helpProducts: HelpProduct[] = [
   {
     id: 'nicerwave',
     name: 'nicerwave',
-    tagline: 'The social app for real friends',
+    tagline: 'Social app for real friends',
     logoKey: 'nicerwave',
     accent: '#3aa0ff',
     gradient: 'linear-gradient(145deg, #0a2a6c 0%, #2f6bff 40%, #e01fd0 100%)',
     articles: [
       {
-        id: 'what-you-can-do',
+        id: 'create-account',
         category: 'Getting Started',
-        title: 'What you can do on nicerwave',
-        description: 'An overview of sharing, calling, gifting, and creating on nicerwave.',
+        title: 'How to create a nicerwave account',
+        description: 'Complete registration walkthrough on iOS, Android, and web with initial profile setup.',
         steps: [
-          'Share swipeable photo albums with your friends.',
-          'Post 24-hour stories and short-form Vins.',
-          'Connect through encrypted voice and video calls.',
-          'Send creator gifts with NicerWallet.',
-          'Create directly with nicer ai plus.'
+          'Download nicerwave from the App Store or Google Play, or open the app on your device.',
+          'Click or tap "Sign Up" and provide your mobile number, email, or Nicer number to register.',
+          'Verify your account via the one-time code sent to your phone or inbox.',
+          'Choose your unique @username, upload a profile photo, and add your bio.',
+          'Set up your two-step PIN under Account Settings for enhanced protection.'
+        ],
+        tips: [
+          'Already have a Nicer number from nicerapp? You can use it to sign in to nicerwave instantly.',
+          'Your feed is friends-first: start by following the people you know and love.',
+          'You can update your display name and profile picture at any time in Settings.'
         ]
       },
       {
-        id: 'contact-support',
-        category: 'Support',
-        title: 'How to get help with nicerwave',
-        description: 'Reach the Nicle team about a nicerwave question or problem.',
+        id: 'delete-account',
+        category: 'Account & Privacy',
+        title: 'How to delete or deactivate your nicerwave account',
+        description: 'Understand the difference between temporary deactivation and permanent account deletion.',
         steps: [
-          'Email we@nicleinc.com and put nicerwave in the subject line.',
-          'Describe the question or problem in as much detail as you can.',
-          'Include your device, your account handle if relevant, and the steps that lead to the issue.'
+          'Open nicerwave on mobile or web and tap your profile avatar.',
+          'Go to Settings > Account & Security.',
+          'Scroll down to "Deactivate or Delete Account".',
+          'Choose "Deactivate" to pause your profile or "Delete" to permanently remove all data.',
+          'Confirm with your account password or PIN to finalize the request.'
         ],
         tips: [
-          'We aim to acknowledge product help requests within 1-2 business days.'
+          'Deletion is permanent and erases your posts, Stories, Vins, and direct messages.',
+          'We do not sell your personal data, and deleting your profile removes your information from active servers.'
+        ]
+      },
+      {
+        id: 'vins-stories',
+        category: 'Features & Media',
+        title: 'Creating and sharing Stories, albums, and Vins',
+        description: 'Learn how to capture moments, trim short videos, and share disappearing Stories.',
+        steps: [
+          'Tap the "+" create button on the navigation bar.',
+          'Select "Story" for 24-hour disappearing photos with stickers and music.',
+          'Select "Vin" to record or upload short video clips with sounds, trimming, and captions.',
+          'Select "Post" to share single photos or multi-image swipeable albums with captions.',
+          'Tap "Share" to publish to your friends-first feed.'
+        ],
+        tips: [
+          'Use Vins Duet to collaborate creatively with other creators you follow.',
+          'Stories expire automatically after 24 hours, but you can save them to Highlights on your profile.'
+        ]
+      },
+      {
+        id: 'nicer-ai-plus-in-chat',
+        category: 'AI Assistant',
+        title: 'Using Nicer AI Plus inside nicerwave chats',
+        description: 'How to write, generate images, translate, and export documents directly inside your conversations.',
+        steps: [
+          'Open any chat or group conversation in nicerwave.',
+          'Tap the Nicer AI Plus icon or type @ai to summon the assistant.',
+          'Ask questions, request draft text, or ask for image generation.',
+          'Request document generation to export research or notes as PDF or Word documents directly.'
+        ],
+        tips: [
+          'Nicer AI Plus is free to start for all nicerwave users.',
+          'You can generate multilingual translations instantly inside international group chats.'
+        ]
+      },
+      {
+        id: 'safety-moderation',
+        category: 'Safety & Community',
+        title: 'Reporting policy violations and safety tools',
+        description: 'How content screening, safer links, and report & block protect your conversations.',
+        steps: [
+          'Tap the "..." menu icon next to any post, story, Vin, or message.',
+          'Select "Report" and choose the reason (harassment, harmful content, or spam).',
+          'Tap "Block" to prevent an account from seeing your feed or sending you messages.',
+          'Visit the Safety Center in Settings to review your blocked profiles and active sessions.'
+        ],
+        tips: [
+          'nicerwave runs pre-feed automated content screening to block explicit material.',
+          'External links opened in nicerwave pass through an automatic safety check to warn against phishing.'
         ]
       }
     ]
