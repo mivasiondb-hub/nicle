@@ -74,7 +74,6 @@ export const sitemapPaths = [
   '/team/justice-friday',
   '/team/kiowa-george',
   '/team/divine-amadi',
-  '/team/kingston-onweagba',
   '/news',
   '/contact',
   '/careers',

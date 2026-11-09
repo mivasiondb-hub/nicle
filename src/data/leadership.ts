@@ -328,52 +328,6 @@ export const leadership: LeadershipPerson[] = [
       'Coordinated smooth launches for worldnicer, nicer ai plus, and nicerapp updates',
     ],
   },
-  {
-    slug: 'kingston-onweagba',
-    initials: 'KO',
-    name: 'Kingston Uchenna Onweagba',
-    fullName: 'Kingston Uchenna Onweagba',
-    role: 'Marketing Partner · Digital Marketing Strategist · Nicle Inc.',
-    headline: 'Digital Growth Strategist, Media Founder & AI Marketing Partner',
-    shortBio:
-      'Founder of Spix Media and Marketing Partner at Nicle Inc., specializing in data-driven growth, brand positioning, audience development, and AI-powered storytelling.',
-    bio: [
-      'Kingston Uchenna Onweagba is a Digital Marketing Strategist, entrepreneur, and content creator with a strong passion for helping businesses achieve sustainable growth through innovative digital solutions. As the Founder of Spix Media, he has partnered with businesses, educational institutions, and organizations to strengthen their digital presence through strategic branding, social media marketing, paid advertising, and AI-powered content creation.',
-      'With expertise in data-driven marketing and creative brand storytelling, Kingston helps organizations connect with the right audiences, build credibility, and generate measurable business results. His work focuses on developing effective digital strategies that increase visibility, improve customer engagement, and accelerate business growth in an increasingly competitive marketplace.',
-      "As a Marketing Partner at Nicle Inc., Kingston plays a key role in expanding the company's brand presence and promoting its innovative technology solutions. He works closely with the team to help businesses adopt modern digital strategies that improve efficiency, productivity, and long-term success. His vision is centered on empowering organizations across Africa and beyond by combining strategic marketing with emerging technologies to unlock new opportunities for growth.",
-    ],
-    tags: ['Digital marketing', 'Brand growth', 'AI-powered content', 'Media founder'],
-    featured: false,
-    wide: true,
-    photo: '/images/kingston-onweagba.jpeg',
-    gradient: 'linear-gradient(145deg, #2f9bff, #5b7cfa 45%, #34c759)',
-    gender: 'Male',
-    occupations: ['Digital Marketing Strategist', 'Media Founder', 'Brand Growth Consultant', 'Content Producer'],
-    knowsAbout: ['Digital Marketing Strategy', 'Audience Growth', 'AI Content Creation', 'Brand Storytelling'],
-    sameAs: ['https://www.allthingswebtechnology.com', 'https://nicleinc.com'],
-    keyFacts: [
-      { label: 'Full Name', value: 'Kingston Uchenna Onweagba' },
-      { label: 'Role', value: 'Marketing Partner & Digital Marketing Strategist' },
-      { label: 'Founded Venture', value: 'Spix Media' },
-      { label: 'Expertise', value: 'Brand Strategy, Social Media Growth, AI Media Production' },
-      { label: 'Affiliations', value: 'Nicle Inc. & Spix Media' },
-    ],
-    responsibilities: [
-      'Expand Nicle Inc. brand visibility and awareness across global digital channels',
-      'Develop and execute data-driven digital marketing and user acquisition campaigns',
-      'Lead strategic social media campaigns, paid media, and brand storytelling',
-      'Pioneer AI-powered content workflows that maximize audience engagement',
-      'Drive community building and marketing partnerships across Africa and international hubs',
-      'Help commercial partners leverage Nicle technology for digital transformation',
-      'Align marketing analytics and KPIs with product roadmap milestones',
-    ],
-    achievements: [
-      'Founded Spix Media, delivering high-impact branding and growth campaigns',
-      'Partnered with diverse enterprises and educational institutions to scale digital reach',
-      'Pioneered AI-assisted creative workflows for multi-channel brand growth',
-      'Significantly boosted organic reach and product recognition for Nicle platforms',
-    ],
-  },
 ];
 
 export function getLeaderBySlug(slug: string): LeadershipPerson | undefined {
