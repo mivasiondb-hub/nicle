@@ -452,7 +452,9 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
     background: var(--colorSurface);
     color: var(--colorText);
     min-height: 100vh;
+    padding-top: var(--headerHeight);
     padding-bottom: 5rem;
+    overflow-x: clip;
   }
 
   .kgContainer {
@@ -472,6 +474,7 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   .kgBreadcrumbList {
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
     color: var(--colorTextMuted);
@@ -683,12 +686,23 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   /* Main Layout */
   .kgMainLayout {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: minmax(0, 1fr) 360px;
     gap: 2.5rem;
     margin-top: 2.5rem;
   }
 
   /* Cards */
+  .kgMainContent,
+  .kgSidebar,
+  .kgHeroMeta {
+    min-width: 0;
+  }
+
+  .kgCard,
+  .kgPanelCard {
+    overflow-wrap: break-word;
+  }
+
   .kgMainContent {
     display: flex;
     flex-direction: column;
@@ -744,7 +758,7 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   /* Companies Grid */
   .kgCompanyGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1.25rem;
   }
 
@@ -757,6 +771,8 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
 
   .kgCompanyCardTop {
     display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.75rem;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 0.35rem;
@@ -869,7 +885,7 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   /* Media Split */
   .kgMediaSplit {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 1.5rem;
   }
 
@@ -925,7 +941,7 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   /* Executive Split */
   .kgExecSplit {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 2rem;
   }
 
@@ -1033,6 +1049,8 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   .kgSchemaVal {
     color: var(--colorInk);
     text-align: right;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   /* Right Sidebar - Google Knowledge Panel Style */
@@ -1163,6 +1181,8 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
     color: #8ab4f8;
     text-decoration: none;
     font-weight: 600;
+    min-width: 0;
+    overflow-wrap: anywhere;
     transition: color 0.2s ease;
   }
 
@@ -1272,7 +1292,7 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
 
   @media (max-width: 1024px) {
     .kgMainLayout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .kgHeroContent {
@@ -1295,13 +1315,86 @@ const otherLeaders = leadership.filter((l) => l.slug !== person.slug);
   }
 
   @media (max-width: 640px) {
+    .kgContainer {
+      padding: 0 1rem;
+    }
+
+    .kgHeroSection {
+      padding: 2rem 0 2.5rem;
+    }
+
+    .kgHeroContent {
+      gap: 1.5rem;
+    }
+
     .kgHeroAvatar {
       width: 150px;
       height: 150px;
     }
 
+    .kgRoleTagRow {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .kgEntityTitle {
+      font-size: 1.85rem;
+    }
+
+    .kgHeroActions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .kgBtnPrimary,
+    .kgBtnOutline {
+      justify-content: center;
+    }
+
+    .kgMainLayout {
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .kgMainContent {
+      gap: 1.25rem;
+    }
+
     .kgCard {
-      padding: 1.5rem;
+      padding: 1.35rem 1.15rem;
+    }
+
+    .kgCardTitle {
+      font-size: 1.3rem;
+    }
+
+    .kgBioBody {
+      font-size: 0.975rem;
+      line-height: 1.75;
+    }
+
+    .kgSchemaGrid {
+      padding: 1rem;
+    }
+
+    .kgSchemaItem {
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .kgSchemaVal {
+      text-align: left;
+    }
+
+    .kgPanelHeader,
+    .kgPanelBody {
+      padding-left: 1.15rem;
+      padding-right: 1.15rem;
+    }
+
+    .kgRelatedItem {
+      padding: 0.75rem 1.15rem;
     }
   }
 </style>
