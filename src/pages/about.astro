@@ -4,6 +4,15 @@ import Header from '../components/Header.astro';
 import PageHero from '../components/PageHero.astro';
 import Footer from '../components/Footer.astro';
 
+const registryFacts = [
+  { label: 'Legal name', value: 'Nicle PLC' },
+  { label: 'RC number', value: '9906392' },
+  { label: 'Company type', value: 'Public company limited by shares' },
+  { label: 'Incorporated', value: '2 October 2026' },
+  { label: 'Registered with', value: 'Corporate Affairs Commission, Nigeria' },
+  { label: 'Registered office', value: 'Port Harcourt, Nigeria' },
+];
+
 const principles = [
   {
     title: 'Innovation',
@@ -214,6 +223,47 @@ const leaders = [
               <strong>{fact.value}</strong>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="registrySection" id="registration">
+      <div class="registryInner">
+        <div class="registryCopy" data-scroll-reveal="left">
+          <span class="sectionLabel">Registered company</span>
+          <h2 class="sectionTitle">Nicle PLC, incorporated in Nigeria</h2>
+          <p class="registryLead">
+            Nicle is registered with the Corporate Affairs Commission (CAC) of Nigeria as a public
+            company limited by shares under the Companies and Allied Matters Act 2020.
+          </p>
+          <dl class="registryFacts">
+            {registryFacts.map((fact) => (
+              <div class="registryRow">
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="registryVisual" data-scroll-reveal="right">
+          <div class="certStage">
+            <span class="certGhost ghostA" aria-hidden="true"></span>
+            <span class="certGhost ghostB" aria-hidden="true"></span>
+            <span class="certGhost ghostC" aria-hidden="true"></span>
+            <figure class="certFrame">
+              <img
+                src="/images/nicle-plc-certificate.webp"
+                width="698"
+                height="808"
+                alt="Nicle PLC certificate of incorporation from the Corporate Affairs Commission, company registration number 9906392"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="certScan" aria-hidden="true"></span>
+            </figure>
+          </div>
+          <p class="certCaption">Signature, QR code and tax details are hidden for security.</p>
         </div>
       </div>
     </section>
@@ -844,6 +894,273 @@ const leaders = [
     font-family: var(--fontDisplay);
     font-size: 1.05rem;
     color: var(--colorInk);
+  }
+
+  .registrySection {
+    position: relative;
+    padding: 6rem 2rem;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 50% 60% at 78% 55%, rgba(58, 120, 255, 0.16), transparent 70%),
+      radial-gradient(ellipse 40% 50% at 92% 20%, rgba(139, 108, 255, 0.14), transparent 70%),
+      var(--colorSurface);
+  }
+
+  .registryInner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .registryLead {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--colorText);
+    margin: 1rem 0 2rem;
+    max-width: 520px;
+  }
+
+  .registryFacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .registryRow {
+    padding: 1rem 1.1rem;
+    background: var(--colorCard);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radiusMd);
+    min-width: 0;
+  }
+
+  .registryRow dt {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--colorTextMuted);
+    margin-bottom: 0.3rem;
+  }
+
+  .registryRow dd {
+    font-family: var(--fontDisplay);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--colorInk);
+    overflow-wrap: break-word;
+  }
+
+  /* The reveal animation leaves clip-path: inset(0), which would cut off the glow and ghost panels. */
+  .registryVisual,
+  .registryVisual.scrollRevealed {
+    clip-path: none;
+  }
+
+  .registryVisual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+
+  /* The certificate floats like a holographic panel, tilted and cropped. */
+  .certStage {
+    position: relative;
+    width: min(100%, 420px);
+    perspective: 1400px;
+    padding: 2rem 1.5rem;
+  }
+
+  .certFrame {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 698 / 600;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(120, 165, 255, 0.55);
+    box-shadow:
+      0 0 0 1px rgba(139, 108, 255, 0.25),
+      0 0 28px rgba(70, 130, 255, 0.35),
+      0 0 80px rgba(139, 108, 255, 0.22),
+      0 30px 60px rgba(0, 0, 0, 0.55);
+    transform: rotateY(-16deg) rotateX(7deg) rotateZ(1deg);
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: certFloat 7s ease-in-out infinite;
+  }
+
+  .certFrame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    -webkit-mask-image: linear-gradient(180deg, #000 62%, rgba(0, 0, 0, 0.35) 88%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 62%, rgba(0, 0, 0, 0.35) 88%, transparent 100%);
+  }
+
+  /* Blue tint and corner brackets, like a projected screen. */
+  .certFrame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(160deg, rgba(80, 140, 255, 0.14), transparent 40%, rgba(139, 108, 255, 0.18));
+    pointer-events: none;
+  }
+
+  .certFrame::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(#8fb4ff, #8fb4ff) top left / 18px 2px no-repeat,
+      linear-gradient(#8fb4ff, #8fb4ff) top left / 2px 18px no-repeat,
+      linear-gradient(#8fb4ff, #8fb4ff) top right / 18px 2px no-repeat,
+      linear-gradient(#8fb4ff, #8fb4ff) top right / 2px 18px no-repeat,
+      linear-gradient(#b49cff, #b49cff) bottom left / 18px 2px no-repeat,
+      linear-gradient(#b49cff, #b49cff) bottom left / 2px 18px no-repeat,
+      linear-gradient(#b49cff, #b49cff) bottom right / 18px 2px no-repeat,
+      linear-gradient(#b49cff, #b49cff) bottom right / 2px 18px no-repeat;
+    filter: drop-shadow(0 0 4px rgba(143, 180, 255, 0.8));
+  }
+
+  .certScan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -30%;
+    height: 30%;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent, rgba(120, 170, 255, 0.18), transparent);
+    animation: certScan 5.5s linear infinite;
+    pointer-events: none;
+  }
+
+  .certStage:hover .certFrame {
+    transform: rotateY(-6deg) rotateX(3deg) rotateZ(0deg);
+  }
+
+  /* Out-of-focus panels behind the certificate. */
+  .certGhost {
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid rgba(120, 165, 255, 0.45);
+    background:
+      repeating-linear-gradient(180deg, rgba(150, 185, 255, 0.4) 0 2px, transparent 2px 9px) 14px 16px / 55% 60% no-repeat,
+      rgba(25, 40, 90, 0.35);
+    box-shadow: 0 0 24px rgba(70, 130, 255, 0.3);
+    filter: blur(2.5px);
+    opacity: 0.75;
+    animation: certFloat 9s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .ghostA {
+    width: 44%;
+    height: 30%;
+    left: -18%;
+    top: 4%;
+    transform: rotate(-8deg);
+    animation-delay: -2s;
+  }
+
+  .ghostB {
+    width: 38%;
+    height: 26%;
+    right: -16%;
+    top: 30%;
+    transform: rotate(7deg);
+    filter: blur(4px);
+    opacity: 0.55;
+    animation-delay: -4s;
+  }
+
+  .ghostC {
+    width: 34%;
+    height: 22%;
+    left: -10%;
+    bottom: 2%;
+    transform: rotate(5deg);
+    filter: blur(5px);
+    opacity: 0.45;
+    border-color: rgba(180, 156, 255, 0.45);
+    animation-delay: -6s;
+  }
+
+  .certCaption {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--colorTextMuted);
+    text-align: center;
+  }
+
+  @keyframes certFloat {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -10px;
+    }
+  }
+
+  @keyframes certScan {
+    to {
+      top: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .certFrame,
+    .certGhost,
+    .certScan {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .registrySection {
+      padding: 4.5rem 1.25rem;
+    }
+
+    .registryInner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+    }
+
+    .certFrame {
+      transform: rotateY(-10deg) rotateX(5deg);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .registryFacts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .certStage {
+      width: min(100%, 320px);
+      padding: 1.5rem 1rem;
+    }
+
+    .ghostA {
+      left: -6%;
+    }
+
+    .ghostB {
+      right: -6%;
+    }
+
+    .ghostC {
+      left: -4%;
+    }
   }
 
   .leadershipSection {
