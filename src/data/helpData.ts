@@ -30,9 +30,9 @@ export const helpProducts: HelpProduct[] = [
         id: 'create-account',
         category: 'Getting Started',
         title: 'How to create a nicerwave account',
-        description: 'Complete registration walkthrough on iOS, Android, and web with initial profile setup.',
+        description: 'Complete registration walkthrough on iPhone and iPad with initial profile setup.',
         steps: [
-          'Download nicerwave from the App Store or Google Play, or open the app on your device.',
+          'Download nicerwave free from the App Store on your iPhone or iPad. Android is coming soon.',
           'Click or tap "Sign Up" and provide your mobile number, email, or Nicer number to register.',
           'Verify your account via the one-time code sent to your phone or inbox.',
           'Choose your unique @username, upload a profile photo, and add your bio.',
@@ -50,7 +50,7 @@ export const helpProducts: HelpProduct[] = [
         title: 'How to delete or deactivate your nicerwave account',
         description: 'Understand the difference between temporary deactivation and permanent account deletion.',
         steps: [
-          'Open nicerwave on mobile or web and tap your profile avatar.',
+          'Open nicerwave and tap your profile avatar.',
           'Go to Settings > Account & Security.',
           'Scroll down to "Deactivate or Delete Account".',
           'Choose "Deactivate" to pause your profile or "Delete" to permanently remove all data.',

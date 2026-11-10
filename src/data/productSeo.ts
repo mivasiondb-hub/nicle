@@ -23,6 +23,10 @@ export type ProductSeo = {
   related: string[];
   /** False until platforms, pricing, and availability are confirmed; omits those claims from the schema. */
   publiclyListed?: boolean;
+  /** Platforms the app is actually available on (defaults to web, iOS and Android). */
+  operatingSystem?: string;
+  /** Store listing, when there is one. */
+  downloadUrl?: string;
 };
 
 const byId = Object.fromEntries(products.map((p) => [p.id, p]));
@@ -67,7 +71,8 @@ export const productSeo: ProductSeo[] = [
     accent: byId.nicerwave.accent,
     features: byId.nicerwave.features,
     related: ['nicerapp', 'nicer-ai-plus', 'social'],
-    publiclyListed: false,
+    operatingSystem: 'iOS',
+    downloadUrl: 'https://apps.apple.com/app/id6818673106',
   },
   {
     id: 'nicerapp',
@@ -167,7 +172,8 @@ export function buildProductSchema(product: ProductSeo) {
     ...(product.publiclyListed === false
       ? {}
       : {
-          operatingSystem: 'Web, iOS, Android',
+          operatingSystem: product.operatingSystem ?? 'Web, iOS, Android',
+          ...(product.downloadUrl ? { downloadUrl: product.downloadUrl } : {}),
           offers: {
             '@type': 'Offer',
             price: '0',
