@@ -77,6 +77,8 @@ export const productSeo: ProductSeo[] = [
   {
     id: 'nicerapp',
     slug: 'nicerapp',
+    operatingSystem: 'iOS, Android, Windows, Web',
+    downloadUrl: 'https://play.google.com/store/apps/details?id=com.nicerapps.nicle',
     path: '/nicerapp',
     name: 'nicerapp',
     title: 'nicerapp | End to End Encrypted Messaging by Nicle Inc',
