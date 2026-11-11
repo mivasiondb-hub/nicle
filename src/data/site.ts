@@ -43,7 +43,7 @@ export const newsItems = [
     category: 'AI',
   },
   {
-    date: '2024',
+    date: '2026',
     title: 'nicerapp doubles down on encryption without compromise',
     excerpt:
       'A new transparency report and architecture update reinforce our promise: no backdoors, no hidden access, full ownership of conversations.',

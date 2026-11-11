@@ -47,10 +47,11 @@ const searchIndex = [
     </div>
 
     <h1 class="heroTitle">
-      <span class="brandWord" aria-label="Nicle">
-        <span class="brandWordWater" aria-hidden="true">Nicle</span>
-        <span class="brandWordShine" aria-hidden="true">Nicle</span>
+      <span class="brandWord">
+        <span class="brandWordWater">Nicle</span>
+        <span class="brandWordShine" aria-hidden="true"></span>
       </span>
+      <span class="titleSeparator"> — </span>
       <span class="titleLine">Building the future of <span class="titleAccent">human connection</span></span>
     </h1>
 
@@ -82,9 +83,6 @@ const searchIndex = [
       <!-- Elevated Google Autocomplete Panel -->
       <div id="heroSearchSuggestions" class="heroSuggestionsPanel" style="display: none;">
         <div id="heroSuggestionsList"></div>
-        <div class="searchDropdownFooter">
-          <span>Click a prediction to jump to page</span>
-        </div>
       </div>
     </div>
 
@@ -412,6 +410,21 @@ const searchIndex = [
     position: absolute;
     inset: 0;
     pointer-events: none;
+  }
+
+  /* The shine copy of the word is CSS-generated so the page text says "Nicle" only once. */
+  .brandWordShine::before {
+    content: 'Nicle';
+  }
+
+  /* Read by screen readers and text extractors; the layout already puts the word on its own line. */
+  .titleSeparator {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .brandWordWater {

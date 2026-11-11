@@ -65,7 +65,7 @@ const navItems = [
 </header>
 
 <!-- Mobile Navigation Drawer Overlay (Strictly hidden on desktop) -->
-<div class="mobileDrawer" id="mobileNavOverlay" data-mobile-drawer aria-hidden="true">
+<div class="mobileDrawer" id="mobileNavOverlay" data-mobile-drawer aria-hidden="true" inert>
   <div class="drawerBackdrop" data-drawer-close></div>
   <div class="drawerPanel">
     <div class="drawerHeader">
@@ -107,7 +107,7 @@ const navItems = [
         </svg>
       </a>
       <p class="drawerMeta">
-        &copy; {new Date().getFullYear()} Nicle Inc &middot; All Things Web Technology
+        &copy; {new Date().getFullYear()} Nicle Inc, a brand of Nicle PLC (RC 9906392)
       </p>
     </div>
   </div>
@@ -140,12 +140,14 @@ const navItems = [
         toggleBtn.classList.add('isActive');
         toggleBtn.setAttribute('aria-expanded', 'true');
         drawer.setAttribute('aria-hidden', 'false');
+        drawer.inert = false;
         document.body.style.overflow = 'hidden';
       } else {
         drawer.classList.remove('isOpen');
         toggleBtn.classList.remove('isActive');
         toggleBtn.setAttribute('aria-expanded', 'false');
         drawer.setAttribute('aria-hidden', 'true');
+        drawer.inert = true;
         document.body.style.overflow = '';
       }
     };

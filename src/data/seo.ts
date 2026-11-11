@@ -6,7 +6,7 @@ export const siteName = 'Nicle Inc';
 export const defaultSeo = {
   title: 'Nicle Inc | AI Software, Social Platforms & the Nicer Ecosystem',
   description:
-    'Nicle Inc builds next-generation AI models and intelligent software — including nicerwave, nicerapp, and nicer ai plus — as a subsidiary of All Things Web Technology Inc.',
+    'Nicle Inc builds AI and communication software: social, secure messaging and connected intelligence.',
   image: '/og-default.png',
   imageAlt: 'Nicle Inc — building the future of artificial intelligence and human connection',
   type: 'website' as const,
