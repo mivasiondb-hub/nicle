@@ -49,6 +49,11 @@ const leaders = [
     role: 'Project Manager & Software Engineer',
     text: 'Coordinates product execution across Nicle Inc. and All Things Web Technology Inc. while contributing to software engineering initiatives that drive innovation.',
   },
+  {
+    name: 'Confidence G. Nwigwe Oluebubechi',
+    role: 'Head of Marketing',
+    text: 'Leads brand strategy, product marketing, and communications for Nicle Inc., growing awareness of nicerwave, nicerapp, and nicer ai plus.',
+  },
 ];
 ---
 
@@ -275,7 +280,7 @@ const leaders = [
           <span class="sectionLabel">Leadership</span>
           <h2 class="sectionTitle">The people guiding Nicle</h2>
           <p class="sectionLead">
-            A lean leadership team focused on strategy, engineering, finance, and delivery.
+            A lean leadership team focused on strategy, engineering, finance, delivery, and marketing.
           </p>
         </div>
         <div class="leadershipGrid">
@@ -1183,6 +1188,11 @@ const leaders = [
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+  }
+
+  /* An odd card out spans the full row instead of sitting alone in one column. */
+  .leaderCard:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .leaderCard {

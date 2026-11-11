@@ -324,6 +324,45 @@ export const leadership: LeadershipPerson[] = [
       'Coordinated smooth launches for nicer ai plus and nicerapp updates',
     ],
   },
+  {
+    slug: 'confidence-nwigwe',
+    initials: 'CN',
+    name: 'Confidence G. Nwigwe Oluebubechi',
+    fullName: 'Confidence G. Nwigwe Oluebubechi',
+    role: 'Head of Marketing · Nicle Inc.',
+    headline: 'Head of Marketing, Brand Strategist & Growth Lead',
+    shortBio:
+      'Head of Marketing at Nicle Inc., leading brand strategy, product marketing, communications, and user growth for nicerwave, nicerapp, and nicer ai plus.',
+    bio: [
+      'Confidence G. Nwigwe Oluebubechi serves as the Head of Marketing at Nicle Inc., where she leads how the company and its products are presented to the world. She is responsible for brand strategy, product marketing, communications, and growth across the Nicer Ecosystem.',
+      'In her role, she shapes how nicerwave, nicerapp, and nicer ai plus are introduced to new users, guiding product launches, campaigns, social media, and partnerships. She works closely with product and engineering teams so that every message reflects what the products actually do and the values behind them.',
+      'With a focus on clear storytelling and genuine community building, she helps Nicle Inc. reach people who care about private, secure communication and intelligent software, growing awareness of the Nicer Ecosystem in Nigeria and around the world.',
+    ],
+    tags: ['Brand strategy', 'Product marketing', 'Communications', 'Growth'],
+    featured: false,
+    wide: true,
+    photo: '/images/confidence-nwigwe.jpeg?v=1',
+    gradient: 'linear-gradient(145deg, #2f9bff, #7c5cfc 50%, #ED3542)',
+    gender: 'Female',
+    occupations: ['Head of Marketing', 'Brand Strategist', 'Communications Lead'],
+    knowsAbout: ['Brand Strategy', 'Product Marketing', 'Digital & Social Media Marketing', 'Public Relations', 'User Growth'],
+    sameAs: ['https://nicleinc.com'],
+    keyFacts: [
+      { label: 'Full Name', value: 'Confidence G. Nwigwe Oluebubechi' },
+      { label: 'Role', value: 'Head of Marketing' },
+      { label: 'Expertise', value: 'Brand Strategy, Product Marketing, Communications' },
+      { label: 'Organization', value: 'Nicle Inc.' },
+    ],
+    responsibilities: [
+      'Lead brand strategy and keep the Nicle Inc. identity consistent across every channel',
+      'Plan and run marketing for nicerwave, nicerapp, and nicer ai plus',
+      'Direct product launch campaigns and app store presence',
+      'Manage social media, content, and community engagement',
+      'Oversee press, public relations, and partnership communications',
+      'Work with product and engineering teams on accurate, user-focused messaging',
+      'Track campaign performance, user growth, and audience insights',
+    ],
+  },
 ];
 
 export function getLeaderBySlug(slug: string): LeadershipPerson | undefined {
