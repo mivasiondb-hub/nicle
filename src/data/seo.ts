@@ -29,7 +29,7 @@ export const organizationSchema = {
     addressCountry: 'NG',
   },
   url: siteUrl,
-  logo: `${siteUrl}/icon-512.png`,
+  logo: `${siteUrl}/nicle-n-512.png`,
   foundingDate: '2026-05',
   parentOrganization: {
     '@type': 'Organization',
@@ -59,7 +59,7 @@ export const websiteSchema = {
     name: siteName,
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/icon-512.png`,
+      url: `${siteUrl}/nicle-n-512.png`,
     },
   },
   potentialAction: {
