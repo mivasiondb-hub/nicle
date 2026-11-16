@@ -51,7 +51,7 @@ export const productSeo: ProductSeo[] = [
     sectionTitle: 'The social operating system',
     body: [
       'nicerwave is the first highly customizable public creator platform. It is built to discover new talent and let every voice be heard, even creators with no followers. On nicerwave, followers are called Nicers.',
-      'The Miva AI assistant helps you find your way around and sell on Nicer Market. NicerWorth grows as you take part, and the whole app is designed to encourage positivity and protect mental health.',
+      'The Miva AI assistant helps you find your way around and sell on Nicer Market. NicerWorth grows as you take part, and the whole app is designed to encourage positivity and protect mental health. You can customize the look however you want: move icons, rearrange things and change wallpapers.',
     ],
     why: [
       {

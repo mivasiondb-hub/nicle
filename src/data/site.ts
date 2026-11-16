@@ -4,7 +4,7 @@ export const products = [
     name: 'nicerwave',
     tagline: 'The social operating system',
     description:
-      'The first highly customizable public creator platform, built to discover new talent and let every voice be heard, even creators with no followers. Miva AI helps you sell on Nicer Market, NicerWorth grows as you take part, and you can make the app look and work however you want.',
+      'The first highly customizable public creator platform, built to discover new talent and let every voice be heard, even creators with no followers. Miva AI helps you sell on Nicer Market, NicerWorth grows as you take part, and you can customize the whole look: move icons, rearrange things and change wallpapers.',
     features: ['Every voice heard, no followers needed', 'Miva AI assistant', 'Nicer Market', 'NicerWorth and Trends titles', 'Full customization', 'Designed for positivity and mental health'],
     accent: '#3aa0ff',
     gradient: 'linear-gradient(145deg, #0a2a6c 0%, #2f6bff 40%, #e01fd0 100%)',
