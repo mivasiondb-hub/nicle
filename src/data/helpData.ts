@@ -30,9 +30,9 @@ export const helpProducts: HelpProduct[] = [
         id: 'create-account',
         category: 'Getting Started',
         title: 'How to create a nicerwave account',
-        description: 'Complete registration walkthrough on iPhone and iPad with initial profile setup.',
+        description: 'Complete registration walkthrough on iPhone, iPad and Android with initial profile setup.',
         steps: [
-          'Download nicerwave free from the App Store on your iPhone or iPad. Android is coming soon.',
+          'Download nicerwave free from the App Store on iPhone or iPad, or from Google Play on Android.',
           'Click or tap "Sign Up" and provide your mobile number, email, or Nicer number to register.',
           'Verify your account via the one-time code sent to your phone or inbox.',
           'Choose your unique @username, upload a profile photo, and add your bio.',

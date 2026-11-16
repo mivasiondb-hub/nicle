@@ -71,7 +71,7 @@ export const productSeo: ProductSeo[] = [
     accent: byId.nicerwave.accent,
     features: byId.nicerwave.features,
     related: ['nicerapp', 'nicer-ai-plus', 'social'],
-    operatingSystem: 'iOS',
+    operatingSystem: 'iOS, Android',
     downloadUrl: 'https://apps.apple.com/app/id6818673106',
   },
   {
