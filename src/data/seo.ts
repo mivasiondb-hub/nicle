@@ -6,7 +6,7 @@ export const siteName = 'Nicle Inc';
 export const defaultSeo = {
   title: 'Nicle Inc | AI Software, Social Platforms & the Nicer Ecosystem',
   description:
-    'Nicle Inc builds AI and communication software: social, secure messaging and connected intelligence.',
+    'Nicle Inc builds the Nicer ecosystem: AI-powered communication and social products for positive human connection.',
   image: '/og-default.png',
   imageAlt: 'Nicle Inc — building the future of artificial intelligence and human connection',
   type: 'website' as const,

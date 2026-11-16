@@ -21,7 +21,7 @@ export const helpProducts: HelpProduct[] = [
   {
     id: 'nicerwave',
     name: 'nicerwave',
-    tagline: 'Social app for real friends',
+    tagline: 'The social operating system',
     logoKey: 'nicerwave',
     accent: '#3aa0ff',
     gradient: 'linear-gradient(145deg, #0a2a6c 0%, #2f6bff 40%, #e01fd0 100%)',
@@ -40,7 +40,7 @@ export const helpProducts: HelpProduct[] = [
         ],
         tips: [
           'Already have a Nicer number from nicerapp? You can use it to sign in to nicerwave instantly.',
-          'Your feed is friends-first: start by following the people you know and love.',
+          'You don’t need followers to be heard: post your first Vin or photo and new people can discover you.',
           'You can update your display name and profile picture at any time in Settings.'
         ]
       },
@@ -71,7 +71,7 @@ export const helpProducts: HelpProduct[] = [
           'Select "Story" for 24-hour disappearing photos with stickers and music.',
           'Select "Vin" to record or upload short video clips with sounds, trimming, and captions.',
           'Select "Post" to share single photos or multi-image swipeable albums with captions.',
-          'Tap "Share" to publish to your friends-first feed.'
+          'Tap "Share" to publish it for everyone to discover.'
         ],
         tips: [
           'Use Vins Duet to collaborate creatively with other creators you follow.',
@@ -115,7 +115,7 @@ export const helpProducts: HelpProduct[] = [
   {
     id: 'nicerapp',
     name: 'nicerapp',
-    tagline: 'Encrypted private messaging',
+    tagline: 'AI voice messaging',
     logoKey: 'nicerapp',
     accent: '#ED3542',
     gradient: 'linear-gradient(145deg, #3a0a10 0%, #ED3542 45%, #7c5cfc 100%)',
@@ -209,7 +209,7 @@ export const helpProducts: HelpProduct[] = [
   {
     id: 'niceraiplus',
     name: 'nicer ai plus',
-    tagline: 'Conversational AI assistant',
+    tagline: 'Our own AI assistant',
     logoKey: 'niceraiplus',
     accent: '#7c5cfc',
     gradient: 'linear-gradient(145deg, #1a0f3d 0%, #7c5cfc 40%, #5b7cfa 100%)',

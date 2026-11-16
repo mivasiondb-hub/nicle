@@ -11,22 +11,24 @@ const ai = products.find((p) => p.id === 'niceraiplus')!;
 const aiSeo = getProductSeo('nicer-ai-plus')!;
 const hub = serviceHubSeo.intelligence;
 
+const models = ['Miva 2.5', 'Miva 3.5 Flash', 'Miva 4.5', 'Divi 1B', 'HC Ultra 1'];
+
 const useCases = [
   {
-    title: 'Build with code',
-    text: 'Generate, explain, and refine software across languages — from scripts to full features.',
+    title: 'Chat, talk and code',
+    text: 'Chat or talk by voice, and get help writing and fixing code.',
   },
   {
-    title: 'Ship documents faster',
-    text: 'Draft briefs, summarize long files, and create polished documents from a single prompt.',
+    title: 'Documents and files',
+    text: 'Analyze documents and uploaded files, and write new documents.',
   },
   {
-    title: 'Create visuals',
-    text: 'Turn ideas into images for product, marketing, and creative storytelling.',
+    title: 'Images and music',
+    text: 'Create images, edit photos and make music.',
   },
   {
-    title: 'Talk naturally',
-    text: 'Type or speak. nicer ai plus responds with fluent, human like conversation.',
+    title: 'A companion for life',
+    text: 'A life coach, creative partner, best friend, mood tracker or dream interpreter.',
   },
 ];
 ---
@@ -44,9 +46,9 @@ const useCases = [
   <Header active="products" />
   <main>
     <PageHero
-      label="Intelligence"
-      title='AI that <span class="accent">creates with you</span>'
-      subtitle="nicer ai plus is Nicle’s advanced assistant for conversation, code, documents, and image generation — built for people and teams who ship."
+      label="Nicer AI"
+      title='Our own AI, <span class="accent">built to help you</span>'
+      subtitle="Nicer AI is Nicle’s family of AI models. nicer ai plus is the assistant built on them, available inside nicerapp and nicerwave."
       primaryCta={{ label: 'See nicer ai plus', href: '/nicer-ai-plus' }}
       secondaryCta={{ label: 'Social platforms', href: '/social' }}
     />
@@ -66,15 +68,21 @@ const useCases = [
           <strong>{ai.features.length} core modes</strong>
         </div>
       </div>
+      <div class="aiModels" data-scroll-reveal>
+        <span class="aiModelsLabel">The Nicer AI model family</span>
+        <ul>
+          {models.map((m) => <li>{m}</li>)}
+        </ul>
+      </div>
     </section>
 
     <section class="useSection">
       <div class="useInner">
         <div class="useHeader" data-scroll-reveal>
           <span class="sectionLabel">What you can do</span>
-          <h2 class="sectionTitle">Different from social. Built for intelligence.</h2>
+          <h2 class="sectionTitle">One assistant, many ways to help</h2>
           <p class="sectionLead">
-            This hub is only about AI. Explore how nicer ai plus helps you create — then jump into the live showcase.
+            nicer ai plus runs on the Nicer AI models and lives inside nicerapp and nicerwave. Here is what it can do.
           </p>
         </div>
         <div class="useGrid">
@@ -94,7 +102,7 @@ const useCases = [
 
     <section class="aiCta" data-scroll-reveal>
       <h2>Want the full product map?</h2>
-      <p>See every platform in the Nicle ecosystem, or explore secure messaging next.</p>
+      <p>See every platform in the Nicer ecosystem, or try nicerapp voice messaging next.</p>
       <div class="aiCtaActions">
         <a href="/nicer-ai-plus" class="btnPrimary">nicer ai plus</a>
         <a href="/security" class="btnOutline darkOutline">Security hub</a>
@@ -109,6 +117,42 @@ const useCases = [
   .aiMeta {
     padding: 0 2rem 2rem;
     background: var(--colorCard);
+  }
+
+  .aiModels {
+    max-width: 1000px;
+    margin: 1.25rem auto 0;
+    text-align: center;
+  }
+
+  .aiModelsLabel {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--colorTextMuted);
+  }
+
+  .aiModels ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  .aiModels li {
+    padding: 0.45rem 0.95rem;
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    background: var(--colorSurfaceElevated);
+    color: var(--colorInk);
+    font-weight: 600;
+    font-size: 0.9rem;
   }
 
   .aiMetaInner {
