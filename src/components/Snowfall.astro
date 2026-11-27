@@ -1,0 +1,147 @@
+---
+// Gentle snowfall over every page. Drawn on one canvas, paused when the tab is hidden,
+// and switched off for visitors who ask their device for reduced motion.
+---
+
+<canvas class="snowfall" data-snowfall aria-hidden="true"></canvas>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-snowfall]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  type Flake = {
+    x: number;
+    y: number;
+    r: number;
+    speed: number;
+    sway: number;
+    phase: number;
+    alpha: number;
+    crystal: boolean;
+    spin: number;
+    angle: number;
+  };
+
+  if (canvas && !reduceMotion.matches) {
+    const ctx = canvas.getContext('2d')!;
+    let width = 0;
+    let height = 0;
+    let flakes: Flake[] = [];
+    let frame = 0;
+    let last = performance.now();
+
+    const makeFlake = (anywhere: boolean): Flake => {
+      const crystal = Math.random() < 0.06;
+      const r = crystal ? 3 + Math.random() * 3 : 0.6 + Math.random() ** 2 * 2.4;
+      return {
+        x: Math.random() * width,
+        y: anywhere ? Math.random() * height : -10 - Math.random() * 40,
+        r,
+        // Bigger flakes are closer, so they fall faster.
+        speed: 18 + r * 14 + Math.random() * 12,
+        sway: 8 + Math.random() * 22,
+        phase: Math.random() * Math.PI * 2,
+        alpha: crystal ? 0.75 : 0.35 + Math.random() * 0.55,
+        crystal,
+        spin: (Math.random() - 0.5) * 0.8,
+        angle: Math.random() * Math.PI,
+      };
+    };
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.round(Math.min(150, Math.max(45, width / 10)));
+      while (flakes.length < target) flakes.push(makeFlake(true));
+      flakes.length = target;
+    };
+
+    const drawCrystal = (f: Flake) => {
+      ctx.save();
+      ctx.translate(f.x, f.y);
+      ctx.rotate(f.angle);
+      ctx.strokeStyle = `rgba(235, 245, 255, ${f.alpha})`;
+      ctx.lineWidth = 1;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const a = (Math.PI / 3) * i;
+        const cx = Math.cos(a);
+        const sy = Math.sin(a);
+        ctx.moveTo(0, 0);
+        ctx.lineTo(cx * f.r * 2, sy * f.r * 2);
+        // Small side branches on each arm.
+        const bx = cx * f.r * 1.2;
+        const by = sy * f.r * 1.2;
+        ctx.moveTo(bx, by);
+        ctx.lineTo(bx + Math.cos(a + 0.7) * f.r * 0.6, by + Math.sin(a + 0.7) * f.r * 0.6);
+        ctx.moveTo(bx, by);
+        ctx.lineTo(bx + Math.cos(a - 0.7) * f.r * 0.6, by + Math.sin(a - 0.7) * f.r * 0.6);
+      }
+      ctx.stroke();
+      ctx.restore();
+    };
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+      const t = now / 1000;
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < flakes.length; i++) {
+        const f = flakes[i];
+        f.y += f.speed * dt;
+        f.x += Math.sin(t * 0.6 + f.phase) * f.sway * dt + 6 * dt;
+        f.angle += f.spin * dt;
+        if (f.y > height + 10 || f.x > width + 20) {
+          flakes[i] = makeFlake(false);
+          continue;
+        }
+        if (f.crystal) {
+          drawCrystal(f);
+        } else {
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(240, 248, 255, ${f.alpha})`;
+          ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      frame = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      cancelAnimationFrame(frame);
+      last = performance.now();
+      frame = requestAnimationFrame(tick);
+    };
+
+    resize();
+    start();
+    window.addEventListener('resize', resize, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(frame);
+      else start();
+    });
+  }
+</script>
+
+<style>
+  .snowfall {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .snowfall {
+      display: none;
+    }
+  }
+</style>

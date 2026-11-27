@@ -38,64 +38,21 @@ const searchIndex = [
     <div class="heroOrb heroOrbAccent" data-parallax="0.18"></div>
     <div class="heroOrb heroOrbBrand" data-parallax="0.12"></div>
     <div class="heroGrid"></div>
-    <svg class="liquidTop" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <svg class="heroRidge" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient id="liquidBody" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="290">
-          <stop offset="0" stop-color="#ee5d6d" />
-          <stop offset="0.5" stop-color="#D52E40" />
-          <stop offset="1" stop-color="#8a1622" />
+        <linearGradient id="ridgeFar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#dbeafe" stop-opacity="0.55" />
+          <stop offset="0.18" stop-color="#1e2c46" stop-opacity="0.9" />
+          <stop offset="1" stop-color="#0d1526" />
         </linearGradient>
-        <filter id="liquidSoft" x="-20%" y="-50%" width="140%" height="200%">
-          <feGaussianBlur stdDeviation="2.2" />
-        </filter>
-        <filter id="liquidBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="7" />
-        </filter>
+        <linearGradient id="ridgeNear" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#f8fbff" stop-opacity="0.8" />
+          <stop offset="0.16" stop-color="#16223a" />
+          <stop offset="1" stop-color="#06070b" />
+        </linearGradient>
       </defs>
-      <path d="M0,0 L1440,0 L1440,160 C1380,200 1320,215 1250,190 C1180,165 1120,120 1040,118 C960,116 900,150 820,140 C740,130 690,82 620,80 C540,78 500,110 430,118 C360,126 300,190 220,200 C150,210 70,175 0,185 Z" fill="url(#liquidBody)">
-        <animate attributeName="d" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M0,0 L1440,0 L1440,160 C1380,200 1320,215 1250,190 C1180,165 1120,120 1040,118 C960,116 900,150 820,140 C740,130 690,82 620,80 C540,78 500,110 430,118 C360,126 300,190 220,200 C150,210 70,175 0,185 Z;M0,0 L1440,0 L1440,170 C1380,210 1320,205 1250,200 C1180,155 1120,130 1040,108 C960,126 900,140 820,150 C740,120 690,92 620,70 C540,88 500,100 430,128 C360,116 300,200 220,190 C150,220 70,165 0,175 Z;M0,0 L1440,0 L1440,160 C1380,200 1320,215 1250,190 C1180,165 1120,120 1040,118 C960,116 900,150 820,140 C740,130 690,82 620,80 C540,78 500,110 430,118 C360,126 300,190 220,200 C150,210 70,175 0,185 Z" />
-      </path>
-      <path class="liquidRim" d="M1440,146 C1380,186 1320,229 1250,176 C1180,179 1120,106 1040,132 C960,102 900,164 820,126 C740,144 690,68 620,94 C540,64 500,124 430,104 C360,140 300,176 220,214 C150,196 70,189 0,199" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" filter="url(#liquidSoft)">
-        <animate attributeName="d" dur="9s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M1440,146 C1380,186 1320,229 1250,176 C1180,179 1120,106 1040,132 C960,102 900,164 820,126 C740,144 690,68 620,94 C540,64 500,124 430,104 C360,140 300,176 220,214 C150,196 70,189 0,199;M1440,156 C1380,196 1320,219 1250,186 C1180,169 1120,116 1040,122 C960,112 900,154 820,136 C740,134 690,78 620,84 C540,74 500,114 430,114 C360,130 300,186 220,204 C150,206 70,179 0,189;M1440,146 C1380,186 1320,229 1250,176 C1180,179 1120,106 1040,132 C960,102 900,164 820,126 C740,144 690,68 620,94 C540,64 500,124 430,104 C360,140 300,176 220,214 C150,196 70,189 0,199" />
-      </path>
-      <ellipse cx="330" cy="122" rx="150" ry="9" fill="#fff" opacity="0.16" transform="rotate(-6 330 122)" filter="url(#liquidBlur)" />
-      <ellipse cx="1130" cy="104" rx="170" ry="8" fill="#fff" opacity="0.14" transform="rotate(4 1130 104)" filter="url(#liquidBlur)" />
-      <ellipse cx="700" cy="40" rx="260" ry="10" fill="#fff" opacity="0.1" filter="url(#liquidBlur)" />
-          <g class="liquidDrip" style="--d: 0s">
-            <path d="M1287,154 L1313,154 C1313,202 1305,206 1305,218 L1305,257 C1305,260 1309,263 1309,270 A9,9 0 0 1 1291,270 C1291,263 1295,260 1295,257 L1295,218 C1295,206 1287,202 1287,154 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="1296.5" cy="268" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 0s" cx="1300" cy="282" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 1.3s">
-            <path d="M1242,140 L1268,140 C1268,188 1260,192 1260,204 L1260,215 C1260,218 1264,221 1264,228 A9,9 0 0 1 1246,228 C1246,221 1250,218 1250,215 L1250,204 C1250,192 1242,188 1242,140 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="1251.5" cy="226" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 1.3s" cx="1255" cy="240" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 2.1s">
-            <path d="M1379,132 L1405,132 C1405,180 1397,184 1397,196 L1397,201 C1397,204 1401,207 1401,214 A9,9 0 0 1 1383,214 C1383,207 1387,204 1387,201 L1387,196 C1387,184 1379,180 1379,132 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="1388.5" cy="212" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 2.1s" cx="1392" cy="226" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 0.6s">
-            <path d="M239,150 L265,150 C265,198 257,202 257,214 L257,261 C257,264 261,267 261,274 A9,9 0 0 1 243,274 C243,267 247,264 247,261 L247,214 C247,202 239,198 239,150 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="248.5" cy="272" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 0.6s" cx="252" cy="286" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 1.9s">
-            <path d="M169,154 L195,154 C195,202 187,206 187,218 L187,231 C187,234 191,237 191,244 A9,9 0 0 1 173,244 C173,237 177,234 177,231 L177,218 C177,206 169,202 169,154 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="178.5" cy="242" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 1.9s" cx="182" cy="256" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 2.6s">
-            <path d="M49,134 L75,134 C75,182 67,186 67,198 L67,219 C67,222 71,225 71,232 A9,9 0 0 1 53,232 C53,225 57,222 57,219 L57,198 C57,186 49,182 49,134 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="58.5" cy="230" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 2.6s" cx="62" cy="244" r="5" fill="#D52E40" />
-          <g class="liquidDrip" style="--d: 3.2s">
-            <path d="M867,100 L893,100 C893,148 885,152 885,164 L885,163 C885,166 889,169 889,176 A9,9 0 0 1 871,176 C871,169 875,166 875,163 L875,164 C875,152 867,148 867,100 Z" fill="url(#liquidBody)" />
-            <ellipse class="liquidSpark" cx="876.5" cy="174" rx="2" ry="3.2" fill="#fff" />
-          </g>
-          <circle class="liquidDrop" style="--d: 3.2s" cx="880" cy="188" r="5" fill="#D52E40" />
+      <path d="M0,150 L90,108 L150,126 L250,62 L330,104 L410,80 L520,128 L610,70 L690,96 L780,40 L880,104 L960,86 L1060,120 L1150,58 L1230,92 L1320,74 L1440,112 L1440,220 L0,220 Z" fill="url(#ridgeFar)" />
+      <path d="M0,182 L120,140 L210,166 L330,118 L430,158 L540,132 L650,170 L760,126 L870,160 L990,136 L1100,172 L1210,130 L1330,160 L1440,142 L1440,220 L0,220 Z" fill="url(#ridgeNear)" />
     </svg>
   </div>
 
@@ -156,28 +113,7 @@ const searchIndex = [
     </div>
   </div>
 
-  <svg class="liquidPool" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id="liquidPoolBody" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#e4485a" />
-        <stop offset="0.32" stop-color="#D52E40" />
-        <stop offset="0.72" stop-color="#43101a" />
-        <stop offset="1" stop-color="#06070b" />
-      </linearGradient>
-      <filter id="poolSoft" x="-10%" y="-60%" width="120%" height="220%">
-        <feGaussianBlur stdDeviation="2" />
-      </filter>
-    </defs>
-    <path d="M0,160 L0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70 L1440,160 Z" fill="url(#liquidPoolBody)">
-      <animate attributeName="d" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M0,160 L0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70 L1440,160 Z;M0,160 L0,91 C120,53 200,121 330,87 C460,89 520,23 660,51 C800,43 860,115 1000,91 C1140,103 1240,31 1440,79 L1440,160 Z;M0,160 L0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70 L1440,160 Z" />
-    </path>
-    <path d="M0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70" transform="translate(0 7)" fill="none" stroke="#fff" stroke-opacity="0.22" stroke-width="2.5" filter="url(#poolSoft)">
-      <animate attributeName="d" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70;M0,91 C120,53 200,121 330,87 C460,89 520,23 660,51 C800,43 860,115 1000,91 C1140,103 1240,31 1440,79;M0,82 C120,62 200,112 330,96 C460,80 520,32 660,42 C800,52 860,106 1000,100 C1140,94 1240,40 1440,70" />
-    </path>
-    <circle class="poolBead b1" cx="420" cy="58" r="6" fill="#D52E40" />
-    <circle class="poolBead b2" cx="905" cy="62" r="4" fill="#D52E40" />
-    <circle class="poolBead b3" cx="1190" cy="30" r="5" fill="#D52E40" />
-  </svg>
+  <div class="heroMist" aria-hidden="true"></div>
 
 </section>
 
@@ -328,9 +264,12 @@ const searchIndex = [
     align-items: center;
     justify-content: center;
     min-height: auto;
-    padding: calc(var(--headerHeight) + clamp(6rem, 12vw, 9.5rem)) 1.25rem clamp(7rem, 11vw, 10rem);
+    padding: calc(var(--headerHeight) + clamp(4.5rem, 9vw, 7rem)) 1.25rem clamp(8rem, 13vw, 12rem);
     background:
-      radial-gradient(ellipse 70% 60% at 50% 55%, #ffffff 0%, #f6f6f8 60%, #ececef 100%);
+      radial-gradient(ellipse 75% 55% at 50% -12%, rgba(125, 211, 252, 0.24), transparent 62%),
+      radial-gradient(ellipse 45% 45% at 88% 18%, rgba(165, 180, 252, 0.14), transparent 62%),
+      radial-gradient(ellipse 45% 40% at 10% 28%, rgba(186, 230, 253, 0.1), transparent 62%),
+      linear-gradient(180deg, #0b1528 0%, #080d1a 55%, #06070b 100%);
     overflow: visible !important;
   }
 
@@ -342,80 +281,32 @@ const searchIndex = [
     z-index: 1;
   }
 
-  /* The white hero has no colour orbs or grid: the black liquid carries it. */
-  .heroOrb,
-  .heroGrid {
+  /* Winter night: no colour orbs, just cold light, distant snowy ridges and mist. */
+  .heroOrb {
     display: none;
   }
 
-  .liquidTop {
-    position: absolute;
-    top: var(--headerHeight);
-    left: 0;
-    width: 100%;
-    height: clamp(120px, 19vw, 270px);
-    overflow: visible;
+  .heroGrid {
+    opacity: 0.6;
   }
 
-  .liquidPool {
+  .heroRidge {
     position: absolute;
     left: 0;
-    bottom: -1px;
+    bottom: 0;
     width: 100%;
-    height: clamp(70px, 10vw, 150px);
+    height: clamp(90px, 15vw, 210px);
+  }
+
+  .heroMist {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    background: linear-gradient(180deg, transparent, rgba(6, 7, 11, 0.85) 70%, var(--colorBg));
     z-index: 2;
     pointer-events: none;
-    overflow: visible;
-  }
-
-  .liquidDrip {
-    transform-box: fill-box;
-    transform-origin: 50% 0;
-    animation: liquidStretch 4.2s ease-in-out infinite;
-    animation-delay: var(--d);
-  }
-
-  .liquidSpark {
-    opacity: 0.55;
-  }
-
-  .liquidDrop {
-    transform-box: fill-box;
-    opacity: 0;
-    animation: liquidFall 4.2s ease-in infinite;
-    animation-delay: var(--d);
-  }
-
-  .poolBead {
-    transform-box: fill-box;
-    animation: poolBob 5s ease-in-out infinite;
-  }
-
-  .poolBead.b2 { animation-delay: -1.7s; }
-  .poolBead.b3 { animation-delay: -3.1s; }
-
-  @keyframes liquidStretch {
-    0%, 100% { transform: scaleY(0.82); }
-    55% { transform: scaleY(1.12); }
-  }
-
-  @keyframes liquidFall {
-    0%, 52% { transform: translateY(0) scale(0.6); opacity: 0; }
-    58% { opacity: 1; transform: translateY(4px) scale(1); }
-    100% { transform: translateY(150px) scale(0.9); opacity: 0; }
-  }
-
-  @keyframes poolBob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-7px); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .liquidDrip,
-    .liquidDrop,
-    .poolBead {
-      animation: none;
-    }
   }
 
   .heroOrb {
@@ -491,19 +382,21 @@ const searchIndex = [
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #2b2c32;
-    background: linear-gradient(180deg, #ffffff, #f0f0f3);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(226, 236, 248, 0.88);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(186, 230, 253, 0.22);
     border-radius: 999px;
-    box-shadow: 0 1px 0 #fff inset, 0 6px 16px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset;
   }
 
   .badgeDot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #D52E40;
-    opacity: 0.9;
+    background: #7dd3fc;
+    box-shadow: 0 0 10px rgba(125, 211, 252, 0.9);
+    opacity: 0.95;
   }
 
   .heroTitle {
@@ -512,7 +405,7 @@ const searchIndex = [
     font-weight: 500;
     line-height: 1.15;
     letter-spacing: -0.02em;
-    color: #0b0b0e;
+    color: #f4f7fb;
     margin: 0;
   }
 
@@ -610,25 +503,26 @@ const searchIndex = [
   .titleLine {
     display: inline-block;
     font-weight: 400;
-    color: rgba(11, 11, 14, 0.88);
+    color: rgba(235, 242, 250, 0.9);
   }
 
-  /* Glossy #D52E40 lettering, lit like the liquid above. */
+  /* Frosted lettering: white into ice blue. */
   .titleAccent {
     font-weight: 600;
     letter-spacing: -0.02em;
-    background: linear-gradient(180deg, #ee5d6d 0%, #D52E40 45%, #9c1a2a 60%, #e04052 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #dff1ff 40%, #8fcdf6 75%, #e8f5ff 100%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.25));
   }
 
   .heroSubtitle {
     font-family: var(--fontBody);
     font-size: clamp(0.82rem, 1.25vw, 0.92rem);
     font-weight: 400;
-    color: #4b4d56;
+    color: rgba(203, 213, 225, 0.82);
     max-width: 480px;
     line-height: 1.5;
     margin: 0;
@@ -648,18 +542,18 @@ const searchIndex = [
     display: flex;
     align-items: center;
     width: 100%;
-    background: linear-gradient(180deg, #ffffff, #f7f7f9);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(186, 230, 253, 0.2);
     border-radius: 999px;
     padding: 0 1rem 0 1.15rem;
-    box-shadow: 0 1px 0 #fff inset, 0 12px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 14px 36px rgba(0, 0, 0, 0.35);
     transition: all 0.25s ease;
   }
 
   .heroSearchBox:focus-within {
-    box-shadow: 0 0 0 4px rgba(213, 46, 64, 0.14), 0 14px 40px rgba(213, 46, 64, 0.16);
-    border-color: rgba(213, 46, 64, 0.55);
+    box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.16), 0 14px 40px rgba(125, 211, 252, 0.14);
+    border-color: rgba(125, 211, 252, 0.6);
   }
 
   .heroSearchIcon {
@@ -675,12 +569,12 @@ const searchIndex = [
     font-family: var(--fontBody);
     font-size: 0.95rem;
     font-weight: 500;
-    color: #0b0b0e !important;
+    color: #f1f5f9 !important;
     background: transparent;
   }
 
   .heroSearchBox input::placeholder {
-    color: #8a8c95;
+    color: #94a3b8;
   }
 
   .heroSearchClearBtn {
@@ -837,33 +731,6 @@ const searchIndex = [
     z-index: 5;
   }
 
-  .heroSection .btnPrimary {
-    color: #fff;
-    background: linear-gradient(180deg, #ea5a69 0%, #D52E40 48%, #b0202f 52%, #cc2b3c 100%);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.3) inset,
-      0 14px 30px rgba(213, 46, 64, 0.35);
-  }
-
-  .heroSection .btnPrimary:hover {
-    background: linear-gradient(180deg, #f06b79 0%, #dd3446 48%, #bf2434 52%, #d93b4c 100%);
-    box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.36) inset,
-      0 18px 40px rgba(213, 46, 64, 0.45);
-  }
-
-  .heroSection .btnOutline {
-    color: #0b0b0e;
-    background: linear-gradient(180deg, #ffffff, #f1f1f4);
-    border-color: rgba(0, 0, 0, 0.16);
-    box-shadow: 0 1px 0 #fff inset, 0 8px 20px rgba(0, 0, 0, 0.06);
-  }
-
-  .heroSection .btnOutline:hover {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.4);
-  }
-
   .heroCta svg {
     transition: transform 0.3s var(--easeOutExpo);
   }
@@ -876,7 +743,7 @@ const searchIndex = [
 
   @media (max-width: 640px) {
     .heroSection {
-      padding: calc(var(--headerHeight) + 6.5rem) 1rem 6rem;
+      padding: calc(var(--headerHeight) + 3rem) 1rem 7rem;
       min-height: auto;
     }
 

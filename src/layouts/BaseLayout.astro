@@ -1,5 +1,6 @@
 ---
 import { siteUrl, siteName, defaultSeo, organizationSchema, websiteSchema } from '../data/seo';
+import Snowfall from '../components/Snowfall.astro';
 
 interface Props {
   title?: string;
@@ -101,6 +102,7 @@ const structuredData = [
     <div class="grainOverlay" aria-hidden="true"></div>
     <div class="scrollProgress" data-scroll-progress aria-hidden="true"></div>
     <slot />
+    <Snowfall />
     {import.meta.env.PROD && (
       <script is:inline>
         if ('serviceWorker' in navigator) {
