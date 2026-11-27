@@ -94,7 +94,7 @@ const leaders = [
 
 <BaseLayout
   title="About Nicle Inc | Building the Future of Artificial Intelligence"
-  description="Nicle Inc is a subsidiary of All Things Web Technology Inc. Founded in May 2026 by Mr. Highness HC and Mr. Justice Friday. Learn our mission, culture, and Nicer Ecosystem vision."
+  description="Nicle is a worldwide AI company: Nicle, Inc. is incorporated in Delaware, USA, and Nicle PLC is registered in Nigeria. Founded in May 2026 by Mr. Highness HC and Mr. Justice Friday, a subsidiary of All Things Web Technology Inc."
   activeNav="about"
   image="/og-default.png"
   canonical="/about"
@@ -105,7 +105,7 @@ const leaders = [
     <PageHero
       label="About Nicle"
       title='Building the future of <span class="accent">artificial intelligence</span>'
-      subtitle="Nicle Inc is an artificial intelligence and software company dedicated to creating next-generation AI models and intelligent software for individuals, businesses, and developers around the world."
+      subtitle="Nicle is a worldwide artificial intelligence and software company, registered in the USA and Nigeria, creating next-generation AI models and intelligent software for individuals, businesses, and developers around the world."
       primaryCta={{ label: 'View products', href: '/products' }}
       secondaryCta={{ label: 'Meet the team', href: '/team' }}
     />
@@ -268,6 +268,19 @@ const leaders = [
     </section>
 
     <section class="registrySection" id="registration">
+      <div class="registryIntro" data-scroll-reveal>
+        <span class="sectionLabel">A worldwide company</span>
+        <h2 class="sectionTitle">Registered in the USA and Nigeria, built for the world</h2>
+        <p class="registryLead">
+          Nicle is two registered companies: Nicle, Inc. in Delaware, USA, and Nicle PLC in Nigeria.
+          Together they build the Nicer ecosystem for people everywhere.
+        </p>
+        <ul class="registryFlags">
+          <li><svg class="flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0.00" width="20" height="1.08" fill="#b22234"/><rect y="2.15" width="20" height="1.08" fill="#b22234"/><rect y="4.31" width="20" height="1.08" fill="#b22234"/><rect y="6.46" width="20" height="1.08" fill="#b22234"/><rect y="8.62" width="20" height="1.08" fill="#b22234"/><rect y="10.77" width="20" height="1.08" fill="#b22234"/><rect y="12.92" width="20" height="1.08" fill="#b22234"/><rect width="8.5" height="7.54" fill="#3c3b6e"/></svg> Nicle, Inc. · Delaware, USA</li>
+          <li><svg class="flag" width="20" height="14" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#008751"/><rect x="13.33" width="6.67" height="14" fill="#008751"/></svg> Nicle PLC · Port Harcourt, Nigeria</li>
+          <li><span aria-hidden="true">🌍</span> Serving users worldwide</li>
+        </ul>
+      </div>
       {registries.map((reg, i) => (
         <div class:list={['registryInner', { registryReverse: i % 2 === 1 }]} id={reg.id}>
           <div class="registryCopy" data-scroll-reveal={i % 2 === 1 ? 'right' : 'left'}>
@@ -952,6 +965,46 @@ const leaders = [
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 4rem;
     align-items: center;
+  }
+
+  .registryIntro {
+    max-width: 760px;
+    margin: 0 auto 4.5rem;
+    text-align: center;
+  }
+
+  .registryIntro .registryLead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .registryFlags {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .registryFlags li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    background: var(--colorCard);
+    color: var(--colorInk);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .registryFlags .flag {
+    flex: none;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25);
   }
 
   .registryInner + .registryInner {

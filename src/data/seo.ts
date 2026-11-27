@@ -30,11 +30,20 @@ export const organizationSchema = {
       value: '9906392',
     },
   ],
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Port Harcourt',
-    addressCountry: 'NG',
-  },
+  address: [
+    {
+      '@type': 'PostalAddress',
+      addressLocality: 'Port Harcourt',
+      addressRegion: 'Rivers',
+      addressCountry: 'NG',
+    },
+    {
+      '@type': 'PostalAddress',
+      addressRegion: 'DE',
+      addressCountry: 'US',
+    },
+  ],
+  areaServed: 'Worldwide',
   url: siteUrl,
   logo: `${siteUrl}/nicle-n-512.png`,
   foundingDate: '2026-05',

@@ -38,7 +38,7 @@ const careerAreas = [
   },
   {
     title: 'Operations & growth',
-    text: 'Help Nicle scale responsibly across Canada, Africa, Australia, and beyond.',
+    text: 'Help Nicle scale responsibly across the USA, Nigeria, Canada, Africa, Australia, and beyond.',
   },
 ];
 
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: 'Where is Nicle based?',
-    a: 'Nicle Inc is a subsidiary of All Things Web Technology Inc., with presence across Ontario (Canada), Africa, and Australia.',
+    a: 'Nicle is a worldwide company. Nicle, Inc. is incorporated in Delaware, USA, and Nicle PLC is registered in Port Harcourt, Nigeria. As a subsidiary of All Things Web Technology Inc., Nicle also has presence across Ontario (Canada), Africa, and Australia.',
   },
 ];
 
@@ -253,11 +253,19 @@ const productLinks = productSeo.map((p) => ({
     <section class="regionsSection" data-scroll-reveal>
       <div class="regionsInner">
         <span class="sectionLabel">Where we work</span>
-        <h2 class="sectionTitle">A global team, one company</h2>
+        <h2 class="sectionTitle">A worldwide team, one company</h2>
         <p class="sectionLead">
-          Nicle Inc is a subsidiary of All Things Web Technology Inc., founded to build technology for real human connection.
+          Registered in the USA and Nigeria, and a subsidiary of All Things Web Technology Inc., Nicle builds technology for real human connection everywhere.
         </p>
         <div class="regionsRow">
+          <article>
+            <strong>United States</strong>
+            <p>Nicle, Inc. is incorporated in Delaware.</p>
+          </article>
+          <article>
+            <strong>Nigeria</strong>
+            <p>Nicle PLC is registered in Port Harcourt.</p>
+          </article>
           <article>
             <strong>Ontario, Canada</strong>
             <p>Company home base and leadership operations.</p>
@@ -463,7 +471,7 @@ const productLinks = productSeo.map((p) => ({
   .emailMeta {
     margin-top: 2.5rem;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
     gap: 1rem;
     text-align: left;
   }

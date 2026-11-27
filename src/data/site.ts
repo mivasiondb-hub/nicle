@@ -80,6 +80,6 @@ export const values = [
   },
   {
     title: 'Global ambition',
-    text: 'Headquartered in Ontario with branches across Africa and Australia, serving communities worldwide.',
+    text: 'Registered in the USA (Nicle, Inc., Delaware) and Nigeria (Nicle PLC), headquartered in Ontario, with branches across Africa and Australia, serving communities worldwide.',
   },
 ];
