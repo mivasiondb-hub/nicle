@@ -379,7 +379,7 @@ const coFounder = leadership[1];
 
   .companyList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 1rem;
   }
 
@@ -428,7 +428,7 @@ const coFounder = leadership[1];
 
   .bulletList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 0.6rem 1.5rem;
     padding-left: 1.25rem;
     color: var(--colorText);
