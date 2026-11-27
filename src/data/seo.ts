@@ -17,12 +17,19 @@ export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Nicle Inc',
-  legalName: 'Nicle PLC',
-  identifier: {
-    '@type': 'PropertyValue',
-    propertyID: 'CAC RC Number (Nigeria)',
-    value: '9906392',
-  },
+  legalName: 'Nicle, Inc.',
+  identifier: [
+    {
+      '@type': 'PropertyValue',
+      propertyID: 'Delaware Division of Corporations File Number',
+      value: '10843843',
+    },
+    {
+      '@type': 'PropertyValue',
+      propertyID: 'CAC RC Number (Nigeria), Nicle PLC',
+      value: '9906392',
+    },
+  ],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Port Harcourt',

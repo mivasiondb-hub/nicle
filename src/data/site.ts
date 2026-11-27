@@ -36,6 +36,13 @@ export const products = [
 
 export const newsItems = [
   {
+    date: 'November 2026',
+    title: 'Nicle, Inc. incorporates in Delaware',
+    excerpt:
+      'Nicle, Inc. filed its Certificate of Incorporation with the Delaware Division of Corporations on 17 November 2026 (file number 10843843), joining Nicle PLC, registered in Nigeria.',
+    category: 'Company',
+  },
+  {
     date: '2026',
     title: 'nicer ai plus expands multimodal intelligence',
     excerpt:

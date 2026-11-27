@@ -4,6 +4,40 @@ import Header from '../components/Header.astro';
 import PageHero from '../components/PageHero.astro';
 import Footer from '../components/Footer.astro';
 
+const registries = [
+  {
+    id: 'delaware',
+    label: 'Registered in the USA',
+    title: 'Nicle, Inc., a Delaware corporation',
+    lead: 'Nicle, Inc. is incorporated in the State of Delaware, USA, under the Delaware General Corporation Law. Its Certificate of Incorporation was filed with the Delaware Division of Corporations on 17 November 2026.',
+    facts: [
+      { label: 'Legal name', value: 'Nicle, Inc.' },
+      { label: 'Delaware file number', value: '10843843' },
+      { label: 'Company type', value: 'Corporation' },
+      { label: 'Incorporated', value: '17 November 2026' },
+      { label: 'Registered with', value: 'Delaware Division of Corporations, USA' },
+      { label: 'Registered agent', value: 'Legalinc Corporate Services Inc., 131 Continental Dr, Suite 305, Newark, DE 19713' },
+    ],
+    image: '/images/nicle-inc-delaware-certificate.webp',
+    width: 698,
+    height: 636,
+    alt: 'Delaware Secretary of State certificate for the Certificate of Incorporation of Nicle, Inc., filed 17 November 2026',
+    caption: 'Seal, signature and authentication details are hidden for security.',
+  },
+  {
+    id: 'nigeria',
+    label: 'Registered in Nigeria',
+    title: 'Nicle PLC, incorporated in Nigeria',
+    lead: 'Nicle PLC is registered with the Corporate Affairs Commission (CAC) of Nigeria as a public company limited by shares under the Companies and Allied Matters Act 2020.',
+    facts: [] as { label: string; value: string }[],
+    image: '/images/nicle-plc-certificate.webp',
+    width: 698,
+    height: 808,
+    alt: 'Nicle PLC certificate of incorporation from the Corporate Affairs Commission, company registration number 9906392',
+    caption: 'Signature, QR code and tax details are hidden for security.',
+  },
+];
+
 const registryFacts = [
   { label: 'Legal name', value: 'Nicle PLC' },
   { label: 'RC number', value: '9906392' },
@@ -12,6 +46,7 @@ const registryFacts = [
   { label: 'Registered with', value: 'Corporate Affairs Commission, Nigeria' },
   { label: 'Registered office', value: 'Port Harcourt, Nigeria' },
 ];
+registries[1].facts = registryFacts;
 
 const principles = [
   {
@@ -233,45 +268,43 @@ const leaders = [
     </section>
 
     <section class="registrySection" id="registration">
-      <div class="registryInner">
-        <div class="registryCopy" data-scroll-reveal="left">
-          <span class="sectionLabel">Registered company</span>
-          <h2 class="sectionTitle">Nicle PLC, incorporated in Nigeria</h2>
-          <p class="registryLead">
-            Nicle Inc is a brand of Nicle PLC. Nicle PLC is registered with the Corporate Affairs
-            Commission (CAC) of Nigeria as a public company limited by shares under the Companies and
-            Allied Matters Act 2020.
-          </p>
-          <dl class="registryFacts">
-            {registryFacts.map((fact) => (
-              <div class="registryRow">
-                <dt>{fact.label}</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div class="registryVisual" data-scroll-reveal="right">
-          <div class="certStage">
-            <span class="certGhost ghostA" aria-hidden="true"></span>
-            <span class="certGhost ghostB" aria-hidden="true"></span>
-            <span class="certGhost ghostC" aria-hidden="true"></span>
-            <figure class="certFrame">
-              <img
-                src="/images/nicle-plc-certificate.webp"
-                width="698"
-                height="808"
-                alt="Nicle PLC certificate of incorporation from the Corporate Affairs Commission, company registration number 9906392"
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="certScan" aria-hidden="true"></span>
-            </figure>
+      {registries.map((reg, i) => (
+        <div class:list={['registryInner', { registryReverse: i % 2 === 1 }]} id={reg.id}>
+          <div class="registryCopy" data-scroll-reveal={i % 2 === 1 ? 'right' : 'left'}>
+            <span class="sectionLabel">{reg.label}</span>
+            <h2 class="sectionTitle">{reg.title}</h2>
+            <p class="registryLead">{reg.lead}</p>
+            <dl class="registryFacts">
+              {reg.facts.map((fact) => (
+                <div class="registryRow">
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <p class="certCaption">Signature, QR code and tax details are hidden for security.</p>
+
+          <div class="registryVisual" data-scroll-reveal={i % 2 === 1 ? 'left' : 'right'}>
+            <div class="certStage">
+              <span class="certGhost ghostA" aria-hidden="true"></span>
+              <span class="certGhost ghostB" aria-hidden="true"></span>
+              <span class="certGhost ghostC" aria-hidden="true"></span>
+              <figure class="certFrame">
+                <img
+                  src={reg.image}
+                  width={reg.width}
+                  height={reg.height}
+                  alt={reg.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="certScan" aria-hidden="true"></span>
+              </figure>
+            </div>
+            <p class="certCaption">{reg.caption}</p>
+          </div>
         </div>
-      </div>
+      ))}
     </section>
 
     <section class="leadershipSection">
@@ -921,6 +954,14 @@ const leaders = [
     align-items: center;
   }
 
+  .registryInner + .registryInner {
+    margin-top: 6rem;
+  }
+
+  .registryReverse .registryCopy {
+    order: 2;
+  }
+
   .registryLead {
     font-size: 1.05rem;
     line-height: 1.7;
@@ -1134,6 +1175,14 @@ const leaders = [
   @media (max-width: 900px) {
     .registrySection {
       padding: 4.5rem 1.25rem;
+    }
+
+    .registryInner + .registryInner {
+      margin-top: 4rem;
+    }
+
+    .registryReverse .registryCopy {
+      order: 0;
     }
 
     .registryInner {

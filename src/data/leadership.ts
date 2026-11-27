@@ -106,7 +106,7 @@ export const leadership: LeadershipPerson[] = [
         name: 'Nicle Inc.',
         title: 'Founder & CEO',
         founded: 'May 2026',
-        detail: 'Wholly owned AI subsidiary building proprietary neural models, encrypted messaging, and social computing platforms for the Nicer Ecosystem.',
+        detail: 'Wholly owned AI subsidiary building proprietary neural models, encrypted messaging, and social computing platforms for the Nicer Ecosystem. Incorporated in Delaware on November 17, 2026, with him as its director and secretary.',
       },
       {
         name: 'Hc Music',
