@@ -1,33 +1,43 @@
 ---
 import { Image } from 'astro:assets';
 import { products } from '../data/site';
-import cardSocial from '../assets/images/card-social.webp';
-import cardAi from '../assets/images/card-ai.webp';
-import cardSecurity from '../assets/images/card-security.webp';
+import nicerwaveLogo from '../assets/images/nicerwave-fit.jpeg';
+import nicerAiLogo from '../assets/images/nicer-ai-plus-fit.jpeg';
+import nicerappLogo from '../assets/images/nicerapp-fit.jpeg';
 
+// Each card shows a small, coded scene of the product itself instead of a stock photo.
 const highlights = [
   {
-    title: 'Social & creative platforms',
-    text: 'nicerwave is the social operating system: a creator platform where every voice is heard, even with no followers.',
+    kind: 'wave',
+    eyebrow: 'Social operating system',
+    title: 'nicerwave',
+    text: 'A creator platform where every voice is heard, even with no followers. Grow your NicerWorth and make the app your own.',
     href: '/nicerwave',
-    image: cardSocial,
-    alt: 'Creators collaborating around phones and tablets in a bright modern workspace',
+    logo: nicerwaveLogo,
+    accent: '#3aa0ff',
   },
   {
-    title: 'Our own AI',
-    text: 'Nicer AI is our own family of models, and nicer ai plus is the assistant built on them.',
+    kind: 'ai',
+    eyebrow: 'Our own AI',
+    title: 'Nicer AI & nicer ai plus',
+    text: 'Our own family of AI models, and the assistant built on them: chat, code, documents, images and music.',
     href: '/nicer-ai-plus',
-    image: cardAi,
-    alt: 'Futuristic AI assistant interface glowing above a laptop with violet light trails',
+    logo: nicerAiLogo,
+    accent: '#8b6cff',
   },
   {
-    title: 'AI voice messaging',
-    text: 'Say "Hey Nicer" to message and call hands-free with nicerapp, even on 2G and in your own language.',
+    kind: 'voice',
+    eyebrow: 'AI voice messaging',
+    title: 'nicerapp',
+    text: 'Say “Hey Nicer” to message and call hands-free, even on 2G and in your own language.',
     href: '/nicerapp',
-    image: cardSecurity,
-    alt: 'Hands holding a smartphone with a secure encrypted messaging glow',
+    logo: nicerappLogo,
+    accent: '#ff4d6d',
   },
 ];
+
+const models = ['Miva 2.5', 'Miva 3.5 Flash', 'Miva 4.5', 'Divi 1B', 'HC Ultra 1'];
+const bars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 0.75, 0.45];
 ---
 
 <section class="cardsSection">
@@ -42,27 +52,76 @@ const highlights = [
 
   <div class="cardsGrid" data-scroll-reveal data-stagger>
     {highlights.map((card, index) => (
-      <article
-        class="featureCard"
-        style={`--revealDelay: ${0.05 + index * 0.04}s`}
-      >
+      <article class="featureCard" style={`--revealDelay: ${0.05 + index * 0.04}s; --cardAccent: ${card.accent}`}>
         <a href={card.href} class="cardLink">
-          <div class="cardVisual">
-            <Image
-              src={card.image}
-              alt={card.alt}
-              class="cardImage"
-              widths={[360, 540, 720]}
-              sizes="(max-width: 1024px) 100vw, 400px"
-              formats={['avif', 'webp']}
-              quality={72}
-              loading="eager"
-              decoding="sync"
-            />
-            <div class="cardShade" aria-hidden="true"></div>
+          <div class:list={['cardVisual', `scene-${card.kind}`]} aria-hidden="true">
+            <span class="sceneGlow"></span>
+
+            {card.kind === 'wave' && (
+              <div class="waveScene">
+                <div class="creatorCard">
+                  <div class="creatorTop">
+                    <span class="creatorAvatar">A</span>
+                    <div>
+                      <strong>@newvoice</strong>
+                      <span>0 Nicers · just joined</span>
+                    </div>
+                  </div>
+                  <div class="creatorPost">
+                    <span class="postLine w80"></span>
+                    <span class="postLine w55"></span>
+                    <span class="postMedia"></span>
+                  </div>
+                  <span class="discovered">✦ Discovered by 12.4K people</span>
+                </div>
+                <span class="floatChip chipWorth">NicerWorth <b>1,240 ▲</b></span>
+                <span class="floatChip chipIcon">👑 Icon level</span>
+                <span class="floatChip chipMiva">Miva AI</span>
+              </div>
+            )}
+
+            {card.kind === 'ai' && (
+              <div class="aiScene">
+                <div class="aiChat">
+                  <span class="bubble bubbleUser">Write a song about Lagos at night</span>
+                  <span class="bubble bubbleAi">
+                    <span class="typing"><i></i><i></i><i></i></span>
+                  </span>
+                </div>
+                <ul class="modelRail">
+                  {models.map((m, i) => <li style={`--m: ${i}`}>{m}</li>)}
+                </ul>
+              </div>
+            )}
+
+            {card.kind === 'voice' && (
+              <div class="voiceScene">
+                <span class="heyNicer">“Hey Nicer, text Mum I’m on my way”</span>
+                <div class="micWrap">
+                  <span class="micRing r1"></span>
+                  <span class="micRing r2"></span>
+                  <span class="micButton">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8" /></svg>
+                  </span>
+                </div>
+                <div class="waveform">
+                  {bars.map((h, i) => <span style={`--h: ${h}; --b: ${i}`}></span>)}
+                </div>
+                <div class="voiceMeta">
+                  <span class="sentTag">✓ Sent on 2G</span>
+                  <span class="langTag">Pidgin · Igbo · Hausa · Yoruba</span>
+                </div>
+              </div>
+            )}
+
+            <span class="sceneLogo">
+              <Image src={card.logo} alt="" width={96} height={96} widths={[48, 96]} sizes="44px" formats={['avif', 'webp']} quality={80} loading="lazy" />
+            </span>
           </div>
+
           <div class="cardBody">
             <div>
+              <span class="cardEyebrow">{card.eyebrow}</span>
               <h3 class="cardTitle">{card.title}</h3>
               <p class="cardText">{card.text}</p>
             </div>
@@ -100,13 +159,15 @@ const highlights = [
 
   .cardsGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.35rem;
     max-width: 1280px;
     margin: 0 auto;
   }
 
+  /* ---------- Card shell ---------- */
   .cardLink {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -114,68 +175,396 @@ const highlights = [
     border-radius: var(--radiusLg);
     overflow: hidden;
     border: 1px solid var(--colorBorder);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    isolation: isolate;
     transition:
       transform 0.5s var(--easeOutExpo),
-      box-shadow 0.5s var(--easeOutQuart),
+      box-shadow 0.5s ease,
       border-color 0.35s ease;
   }
 
-  .cardLink:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 24px 50px rgba(237, 53, 66, 0.12);
-    border-color: rgba(237, 53, 66, 0.18);
+  /* Accent-coloured edge that lights up on hover. */
+  .cardLink::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, var(--cardAccent), transparent 45%, transparent 60%, var(--cardAccent));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
   }
 
+  .cardLink:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 60px -18px color-mix(in srgb, var(--cardAccent) 45%, transparent);
+    border-color: transparent;
+  }
+
+  .cardLink:hover::after,
+  .cardLink:focus-visible::after {
+    opacity: 1;
+  }
+
+  .cardLink:focus-visible {
+    outline: 2px solid var(--cardAccent);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Scene canvas ---------- */
   .cardVisual {
     position: relative;
-    height: 240px;
+    height: 250px;
     overflow: hidden;
-    background: #10141f;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--cardAccent) 26%, transparent), transparent 70%),
+      linear-gradient(180deg, #121527, #0b0c14);
   }
 
-  .cardImage {
+  .cardVisual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+
+  .sceneGlow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: var(--cardAccent);
+    filter: blur(70px);
+    opacity: 0.28;
+    transition: opacity 0.5s ease, transform 0.8s var(--easeOutExpo);
+  }
+
+  .cardLink:hover .sceneGlow {
+    opacity: 0.45;
+    transform: scale(1.15);
+  }
+
+  .sceneLogo {
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    z-index: 2;
+  }
+
+  .sceneLogo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    transform: scale(1.02);
-    transition: transform 0.7s var(--easeOutExpo), filter 0.5s ease;
   }
 
-  .cardShade {
+  .floatChip,
+  .bubble,
+  .heyNicer,
+  .sentTag,
+  .langTag,
+  .modelRail li {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #eef0f8;
+    white-space: nowrap;
+  }
+
+  /* ---------- nicerwave ---------- */
+  .waveScene {
+    position: relative;
+    width: min(300px, 86%);
+    z-index: 1;
+  }
+
+  .creatorCard {
+    padding: 0.85rem 0.95rem;
+    border-radius: 16px;
+    background: rgba(18, 22, 42, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    transform: rotate(-2deg);
+    transition: transform 0.6s var(--easeOutExpo);
+  }
+
+  .cardLink:hover .creatorCard {
+    transform: rotate(0deg) translateY(-4px);
+  }
+
+  .creatorTop {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .creatorTop strong {
+    display: block;
+    font-size: 0.8rem;
+    color: #fff;
+  }
+
+  .creatorTop span:not(.creatorAvatar) {
+    font-size: 0.68rem;
+    color: rgba(230, 233, 245, 0.6);
+  }
+
+  .creatorAvatar {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #2f6bff, #e01fd0);
+  }
+
+  .creatorPost {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .postLine {
+    height: 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  .w80 { width: 80%; }
+  .w55 { width: 55%; }
+
+  .postMedia {
+    height: 52px;
+    margin-top: 0.2rem;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #1d4ed8, #7c3aed 50%, #db2777);
+  }
+
+  .discovered {
+    display: inline-block;
+    margin-top: 0.65rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #b7f7d4;
+    background: rgba(34, 197, 94, 0.14);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+  }
+
+  .floatChip {
+    position: absolute;
+    padding: 0.38rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(14, 17, 32, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    animation: chipFloat 5s ease-in-out infinite;
+  }
+
+  .floatChip b {
+    color: #7dd3a8;
+  }
+
+  .chipWorth { top: -14px; right: -18px; }
+  .chipIcon { bottom: 22px; right: -26px; animation-delay: -1.6s; }
+  .chipMiva { top: 38%; left: -30px; animation-delay: -3.1s; color: #c4b5fd; }
+
+  /* ---------- Nicer AI ---------- */
+  .aiScene {
+    position: relative;
+    width: min(310px, 88%);
+    display: grid;
+    gap: 1rem;
+    z-index: 1;
+  }
+
+  .aiChat {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .bubble {
+    padding: 0.55rem 0.8rem;
+    border-radius: 14px;
+    max-width: 85%;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .bubbleUser {
+    justify-self: end;
+    background: linear-gradient(135deg, #6d4dff, #8b6cff);
+    border-bottom-right-radius: 4px;
+  }
+
+  .bubbleAi {
+    justify-self: start;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom-left-radius: 4px;
+  }
+
+  .typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 0.15rem 0;
+  }
+
+  .typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #c4b5fd;
+    animation: typingDot 1.2s ease-in-out infinite;
+  }
+
+  .typing i:nth-child(2) { animation-delay: 0.15s; }
+  .typing i:nth-child(3) { animation-delay: 0.3s; }
+
+  .modelRail {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .modelRail li {
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(139, 108, 255, 0.14);
+    border: 1px solid rgba(139, 108, 255, 0.35);
+    animation: modelPulse 5s ease-in-out infinite;
+    animation-delay: calc(var(--m) * 1s);
+  }
+
+  /* ---------- nicerapp ---------- */
+  .voiceScene {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+    width: min(320px, 90%);
+    z-index: 1;
+  }
+
+  .heyNicer {
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 77, 109, 0.14);
+    border: 1px solid rgba(255, 77, 109, 0.35);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .micWrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 76px;
+    height: 76px;
+  }
+
+  .micButton {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    color: #fff;
+    background: linear-gradient(135deg, #ff4d6d, #c026d3);
+    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.45);
+    z-index: 1;
+  }
+
+  .micRing {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      transparent 45%,
-      rgba(10, 10, 11, 0.18) 100%
-    );
-    pointer-events: none;
-    opacity: 0.65;
-    transition: opacity 0.4s ease;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 77, 109, 0.55);
+    animation: micRing 2.4s ease-out infinite;
   }
 
-  .cardLink:hover .cardImage {
-    transform: scale(1.1);
-    filter: saturate(1.08) contrast(1.04);
+  .micRing.r2 { animation-delay: 1.2s; }
+
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 30px;
   }
 
-  .cardLink:hover .cardShade {
-    opacity: 0.35;
+  .waveform span {
+    width: 4px;
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #ff8fa3, #c026d3);
+    transform: scaleY(var(--h));
+    animation: waveBar 1.1s ease-in-out infinite;
+    animation-delay: calc(var(--b) * -0.09s);
   }
 
+  .voiceMeta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .sentTag,
+  .langTag {
+    padding: 0.28rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .sentTag { color: #b7f7d4; }
+
+  /* ---------- Card text ---------- */
   .cardBody {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.5rem 1.5rem 1.75rem;
+    padding: 1.4rem 1.5rem 1.65rem;
     flex: 1;
   }
 
+  .cardEyebrow {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cardAccent);
+  }
+
   .cardTitle {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     margin-bottom: 0.45rem;
   }
 
@@ -191,15 +580,15 @@ const highlights = [
     place-items: center;
     width: 40px;
     height: 40px;
-    color: var(--colorBrand);
-    background: var(--colorBrandSoft);
+    color: var(--cardAccent);
+    background: color-mix(in srgb, var(--cardAccent) 14%, transparent);
     border-radius: 50%;
     transition: transform 0.35s var(--easeOutExpo), background 0.3s ease;
   }
 
   .cardLink:hover .cardArrow {
-    transform: translate(2px, -2px);
-    background: rgba(237, 53, 66, 0.18);
+    transform: translate(2px, -2px) rotate(8deg);
+    background: color-mix(in srgb, var(--cardAccent) 26%, transparent);
   }
 
   .cardsCta {
@@ -208,14 +597,56 @@ const highlights = [
     margin-top: 2.5rem;
   }
 
+  /* ---------- Motion ---------- */
+  @keyframes chipFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  @keyframes modelPulse {
+    0%, 80%, 100% { background: rgba(139, 108, 255, 0.14); }
+    10% { background: rgba(139, 108, 255, 0.4); }
+  }
+
+  @keyframes micRing {
+    0% { transform: scale(0.8); opacity: 0.9; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+
+  @keyframes waveBar {
+    0%, 100% { transform: scaleY(var(--h)); }
+    50% { transform: scaleY(calc(var(--h) * 0.35)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floatChip,
+    .typing i,
+    .modelRail li,
+    .micRing,
+    .waveform span {
+      animation: none;
+    }
+  }
+
   @media (max-width: 1024px) {
     .cardsGrid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       max-width: 520px;
     }
+  }
 
-    .cardVisual {
-      height: 220px;
+  @media (max-width: 420px) {
+    .cardsSection {
+      padding: 1rem 1rem 4rem;
     }
+
+    .chipMiva { left: -10px; }
+    .chipWorth { right: -6px; }
+    .chipIcon { right: -8px; }
   }
 </style>

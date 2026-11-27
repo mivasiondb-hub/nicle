@@ -48,8 +48,8 @@ const searchIndex = [
 
     <h1 class="heroTitle">
       <span class="brandWord">
-        <span class="brandWordWater">Nicle</span>
-        <span class="brandWordShine" aria-hidden="true"></span>
+        <span class="brandWordGlow" aria-hidden="true"></span>
+        <span class="brandWordAurora">Nicle</span>
       </span>
       <span class="titleSeparator"> — </span>
       <span class="titleLine">Building the future of <span class="titleAccent">human connection</span></span>
@@ -99,31 +99,6 @@ const searchIndex = [
 
   <div class="heroCurve" aria-hidden="true"></div>
 
-  <svg class="waterFilterSvg" aria-hidden="true" focusable="false">
-    <filter id="nicleWaterRipple" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.012 0.03"
-        numOctaves="2"
-        seed="3"
-        result="noise"
-      >
-        <animate
-          attributeName="baseFrequency"
-          dur="9s"
-          values="0.012 0.03;0.02 0.045;0.012 0.03"
-          repeatCount="indefinite"
-        />
-      </feTurbulence>
-      <feDisplacementMap
-        in="SourceGraphic"
-        in2="noise"
-        scale="5"
-        xChannelSelector="R"
-        yChannelSelector="G"
-      />
-    </filter>
-  </svg>
 </section>
 
 <script define:vars={{ searchIndex }}>
@@ -383,38 +358,85 @@ const searchIndex = [
     margin: 0;
   }
 
+  /* Lets the gradient angle animate, so the colours orbit the word instead of sliding. */
+  @property --nicleSpin {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+
   .brandWord {
+    --nicleSpin: 0deg;
+    --nicleAurora: conic-gradient(
+      from var(--nicleSpin) at 50% 55%,
+      #2f9bff,
+      #4285f4,
+      #7c5cfc,
+      #c026d3,
+      #ED3542,
+      #ff5a45,
+      #c026d3,
+      #7c5cfc,
+      #2f9bff
+    );
     position: relative;
     display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     font-size: clamp(1.8rem, 4.5vw, 2.75rem);
     font-weight: 600;
     letter-spacing: -0.04em;
     margin-bottom: 0.02em;
     line-height: 1;
-    filter: url(#nicleWaterRipple);
+    isolation: isolate;
+    animation: nicleSpin 6s linear infinite;
   }
 
-  .waterFilterSvg {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .brandWordWater,
-  .brandWordShine {
+  .brandWordAurora,
+  .brandWordGlow {
     display: block;
+    background-image: var(--nicleAurora);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
 
-  .brandWordShine {
+  .brandWordAurora {
+    position: relative;
+    filter: saturate(1.12);
+  }
+
+  /* A blurred copy of the same colours breathes behind the letters. */
+  .brandWordGlow {
     position: absolute;
     inset: 0;
+    z-index: -1;
+    filter: blur(14px) saturate(1.3);
+    opacity: 0.55;
     pointer-events: none;
+    animation: nicleBreathe 3s ease-in-out infinite;
   }
 
-  /* The shine copy of the word is CSS-generated so the page text says "Nicle" only once. */
-  .brandWordShine::before {
+  .brandWordGlow::before {
     content: 'Nicle';
+  }
+
+  @keyframes nicleSpin {
+    to { --nicleSpin: 360deg; }
+  }
+
+  @keyframes nicleBreathe {
+    0%, 100% { opacity: 0.35; transform: scale(0.98); }
+    50% { opacity: 0.7; transform: scale(1.04); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brandWord,
+    .brandWordGlow {
+      animation: none;
+    }
   }
 
   /* Read by screen readers and text extractors; the layout already puts the word on its own line. */
@@ -425,61 +447,6 @@ const searchIndex = [
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
-  }
-
-  .brandWordWater {
-    background-image: linear-gradient(
-      115deg,
-      #2f9bff 0%,
-      #4285f4 12%,
-      #7c5cfc 28%,
-      #c026d3 42%,
-      #ED3542 58%,
-      #ff5a45 72%,
-      #7c5cfc 86%,
-      #2f9bff 100%
-    );
-    background-size: 280% 280%;
-    background-position: 0% 50%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: nicleWaterFlow 7s ease-in-out infinite;
-    filter: saturate(1.08);
-  }
-
-  .brandWordShine {
-    background-image: linear-gradient(
-      105deg,
-      transparent 0%,
-      transparent 38%,
-      rgba(255, 255, 255, 0.55) 48%,
-      rgba(255, 255, 255, 0.85) 50%,
-      rgba(255, 255, 255, 0.55) 52%,
-      transparent 62%,
-      transparent 100%
-    );
-    background-size: 220% 100%;
-    background-position: 120% 0;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    mix-blend-mode: soft-light;
-    animation: nicleWaterShine 4.5s ease-in-out infinite;
-  }
-
-  @keyframes nicleWaterFlow {
-    0% { background-position: 0% 40%; }
-    50% { background-position: 100% 45%; }
-    100% { background-position: 0% 40%; }
-  }
-
-  @keyframes nicleWaterShine {
-    0% { background-position: 140% 0; opacity: 0.35; }
-    40% { opacity: 0.85; }
-    100% { background-position: -60% 0; opacity: 0.35; }
   }
 
   .titleLine {
@@ -737,13 +704,8 @@ const searchIndex = [
       display: none;
     }
 
-    .brandWordShine {
-      display: none;
-    }
-
-    .brandWordWater {
-      animation: none;
-      background-size: 100% 100%;
+    .brandWordGlow {
+      filter: blur(10px) saturate(1.3);
     }
 
     .heroTitle {
