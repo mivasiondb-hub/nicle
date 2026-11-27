@@ -38,7 +38,7 @@ const highlights = [
 
 // Static waveform shapes: a voice note on nicerwave, live dictation on nicerapp.
 const noteBars = [0.3, 0.55, 0.8, 0.45, 0.95, 0.6, 0.35, 0.7, 1, 0.5, 0.65, 0.3, 0.85, 0.55, 0.4, 0.75, 0.5, 0.3, 0.6, 0.45, 0.25, 0.4];
-const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 0.75, 0.45, 0.65, 0.4];
+const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5];
 ---
 
 <section class="cardsSection">
@@ -114,7 +114,6 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
                         96
                       </span>
                     </div>
-                    <p class="reach">12.4K reached through discovery, not followers</p>
                   </div>
                 </div>
               </div>
@@ -173,7 +172,7 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
                   </div>
 
                   <div class="thread">
-                    <p class="bubbleIn">Where you dey? Food don ready.</p>
+                    <p class="bubbleIn">Where you dey? Food don ready</p>
                     <p class="bubbleOut">I dey come, I go reach in 20 minutes.</p>
                     <span class="sentMeta">
                       Sent by voice · 9:41
@@ -280,12 +279,12 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
   /* ---------- Scene canvas ---------- */
   .cardVisual {
     position: relative;
-    height: 290px;
+    height: 316px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 30px;
+    padding-top: 26px;
     border-bottom: 1px solid var(--colorBorder);
     background:
       linear-gradient(180deg, color-mix(in srgb, var(--cardAccent) 9%, #0d0f15) 0%, #0b0c11 100%);
@@ -302,7 +301,7 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
     left: 0;
     right: 0;
     bottom: 0;
-    height: 56px;
+    height: 34px;
     background: linear-gradient(180deg, transparent, #0b0c11);
     pointer-events: none;
     z-index: 2;
@@ -527,12 +526,6 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
     gap: 5px;
   }
 
-  .cardVisual .reach {
-    margin-top: 9px;
-    font-size: 10px;
-    color: #6b6f7a;
-  }
-
   /* ---------- Nicer AI ---------- */
   .appWindow {
     width: min(340px, 86%);
@@ -698,12 +691,12 @@ const liveBars = [0.35, 0.6, 0.9, 0.55, 1, 0.7, 0.4, 0.85, 0.5, 0.95, 0.6, 0.3, 
   .thread {
     display: grid;
     gap: 6px;
-    padding: 12px 0 10px;
+    padding: 10px 0 8px;
   }
 
   .cardVisual .bubbleIn,
   .cardVisual .bubbleOut {
-    max-width: 78%;
+    max-width: 82%;
     padding: 7px 11px;
     border-radius: 16px;
     font-size: 11.5px;
