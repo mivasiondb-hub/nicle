@@ -190,17 +190,18 @@ const navItems = [
     right: 0;
     z-index: 1000;
     height: var(--headerHeight);
-    background: rgba(6, 7, 11, 0.6);
+    background: linear-gradient(180deg, rgba(34, 35, 40, 0.86) 0%, rgba(8, 8, 10, 0.9) 55%, rgba(2, 2, 3, 0.92) 100%);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    border-bottom: 1px solid var(--colorBorder);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset;
     transition:
       background 0.3s ease,
       box-shadow 0.3s ease;
   }
 
   .siteHeader.headerScrolled {
-    background: rgba(6, 7, 11, 0.85);
+    background: linear-gradient(180deg, rgba(30, 31, 36, 0.94) 0%, rgba(4, 4, 6, 0.96) 100%);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
   }
 
@@ -263,7 +264,7 @@ const navItems = [
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--colorBrand);
+    background: linear-gradient(90deg, transparent, #fff, transparent);
     border-radius: 2px;
     transform: scaleX(0);
     transform-origin: center;
@@ -289,10 +290,10 @@ const navItems = [
     padding: 0.55rem 1.25rem;
     font-size: 0.84rem;
     font-weight: 700;
-    color: var(--colorWhite);
-    background: var(--colorBrand);
+    color: #0b0b0e;
+    background: linear-gradient(180deg, #ffffff 0%, #ececef 55%, #d9dade 100%);
     border-radius: 999px;
-    box-shadow: 0 4px 14px var(--colorBrandSoft);
+    box-shadow: 0 1px 0 #fff inset, 0 6px 18px rgba(255, 255, 255, 0.12);
     transition:
       background 0.25s ease,
       transform 0.25s var(--easeOutExpo),
@@ -300,9 +301,9 @@ const navItems = [
   }
 
   .headerCta:hover {
-    background: var(--colorBrandHover);
+    background: linear-gradient(180deg, #ffffff 0%, #f4f4f6 55%, #e3e4e8 100%);
     transform: translateY(-1px);
-    box-shadow: 0 8px 22px var(--colorBrandGlow);
+    box-shadow: 0 1px 0 #fff inset, 0 10px 26px rgba(255, 255, 255, 0.2);
   }
 
   /* NEVER display mobile elements on desktop */

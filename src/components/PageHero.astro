@@ -157,7 +157,7 @@ const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, s
     right: -5%;
     width: 480px;
     height: 480px;
-    background: radial-gradient(circle, rgba(237, 53, 66, 0.22), transparent 65%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 65%);
     animation: floatOrb 11s ease-in-out infinite alternate;
   }
 
@@ -166,7 +166,7 @@ const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, s
     left: -8%;
     width: 380px;
     height: 380px;
-    background: radial-gradient(circle, rgba(91, 124, 250, 0.2), transparent 65%);
+    background: radial-gradient(circle, rgba(190, 194, 205, 0.08), transparent 65%);
     animation: floatOrb 9s ease-in-out infinite alternate-reverse;
   }
 
@@ -175,7 +175,7 @@ const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, s
     left: 45%;
     width: 260px;
     height: 260px;
-    background: radial-gradient(circle, rgba(124, 92, 252, 0.16), transparent 65%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 65%);
   }
 
   @keyframes floatOrb {
@@ -223,8 +223,8 @@ const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, s
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--colorBrand);
-    box-shadow: 0 0 12px var(--colorBrandGlow);
+    background: #ffffff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     animation: pulse 2.2s ease-in-out infinite;
   }
 
@@ -261,7 +261,8 @@ const { label, title, subtitle, rotatingTitles, rotatingSubtitles, primaryCta, s
   }
 
   .pageTitle :global(.accent) {
-    background: linear-gradient(120deg, #fff 10%, #ED3542 55%, #5b7cfa 100%);
+    /* Chrome: a light band sliding across glossy silver. */
+    background: linear-gradient(110deg, #ffffff 8%, #9ea2ad 30%, #ffffff 46%, #6f737e 64%, #e9eaee 82%, #ffffff 100%);
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;

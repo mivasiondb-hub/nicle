@@ -83,24 +83,24 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(237, 53, 66, 0.55), rgba(139, 108, 255, 0.55));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(150, 154, 166, 0.45));
   border-radius: 10px;
   border: 2px solid var(--colorBgDeep);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ED3542, #8b6cff);
+  background: linear-gradient(180deg, #ffffff, #9a9eaa);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(237, 53, 66, 0.5) var(--colorBgDeep);
+  scrollbar-color: rgba(255, 255, 255, 0.4) var(--colorBgDeep);
 }
 
 /* Custom Text Selection */
 ::selection {
-  background-color: rgba(237, 53, 66, 0.35);
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #0b0b0e;
 }
 
 body {
@@ -122,9 +122,9 @@ body {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 60% 45% at 12% 8%, rgba(237, 53, 66, 0.13), transparent 60%),
-    radial-gradient(ellipse 55% 45% at 92% 18%, rgba(139, 108, 255, 0.12), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(109, 140, 255, 0.1), transparent 65%),
+    radial-gradient(ellipse 60% 45% at 12% 8%, rgba(255, 255, 255, 0.06), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 92% 18%, rgba(255, 255, 255, 0.045), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(255, 255, 255, 0.04), transparent 65%),
     var(--colorBg);
 }
 
@@ -133,8 +133,8 @@ body {
   position: absolute;
   inset: -20%;
   background:
-    radial-gradient(circle at 30% 40%, rgba(237, 53, 66, 0.09), transparent 30%),
-    radial-gradient(circle at 70% 60%, rgba(139, 108, 255, 0.09), transparent 32%);
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 70% 60%, rgba(200, 204, 214, 0.05), transparent 32%);
   animation: auroraDrift 26s ease-in-out infinite alternate;
   filter: blur(40px);
 }
@@ -241,20 +241,23 @@ h1, h2, h3, h4 {
     box-shadow 0.35s var(--easeOutQuart);
 }
 
+/* Glossy white pill on the black pages (the white hero restyles it to glossy black). */
 .btnPrimary {
-  background: linear-gradient(135deg, #ff4f5c 0%, var(--colorBrand) 45%, #c4202d 100%);
+  color: #0b0b0e;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f1f4 48%, #dcdde2 52%, #eeeef1 100%);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
-    0 10px 30px rgba(237, 53, 66, 0.28);
+    0 1px 0 #fff inset,
+    0 -1px 0 rgba(0, 0, 0, 0.08) inset,
+    0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
 .btnPrimary:hover {
-  background: linear-gradient(135deg, #ff6470 0%, var(--colorBrandHover) 45%, #d82734 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f9 48%, #e6e7eb 52%, #f6f6f8 100%);
   transform: translateY(-2px);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.14) inset,
-    0 16px 40px var(--colorBrandGlow),
-    0 0 60px rgba(237, 53, 66, 0.25);
+    0 1px 0 #fff inset,
+    0 16px 40px rgba(255, 255, 255, 0.16),
+    0 0 50px rgba(255, 255, 255, 0.1);
 }
 
 .btnPrimary.hasShine::after,
@@ -336,7 +339,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--colorBrandText);
+  color: #d4d6dd;
   margin-bottom: 0.85rem;
   position: relative;
   text-shadow: 0 0 18px rgba(237, 53, 66, 0.45);
