@@ -57,10 +57,9 @@
       >All Things Web Technology Inc.</a>
     </p>
     <address class="footerAddress">
-      <span class="footerAddressLabel">USA:</span> 131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713
-    </address>
-    <address class="footerAddress">
-      <span class="footerAddressLabel">Nigeria:</span> 1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria
+      <span><span class="footerAddressLabel">USA:</span> 131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713</span>
+      <span class="footerAddressSep" aria-hidden="true">&middot;</span>
+      <span><span class="footerAddressLabel">Nigeria:</span> 1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria</span>
     </address>
   </div>
 </footer>
@@ -205,11 +204,20 @@
     font-weight: 600;
   }
 
+  /* Both addresses share one line, and wrap on narrow screens. */
   .footerAddress {
     flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.75rem;
     font-style: normal;
     font-size: 0.82rem;
     color: var(--colorTextMuted);
+  }
+
+  .footerAddressSep {
+    color: rgba(255, 255, 255, 0.3);
   }
 
   .footerAddressLabel {
@@ -244,6 +252,15 @@
       flex-direction: column;
       text-align: center;
       gap: 0.75rem;
+    }
+
+    .footerAddress {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footerAddressSep {
+      display: none;
     }
   }
 
