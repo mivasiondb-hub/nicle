@@ -47,7 +47,7 @@
   </div>
 
   <div class="footerBottom">
-    <p>
+    <p class="footerLegal">
       &copy; {new Date().getFullYear()} Nicle, Inc., a Delaware corporation <span class="footerRc">(Reg. No. 10843843)</span>, and Nicle PLC <span class="footerRc">(RC 9906392)</span>. A subsidiary of
       <a
         href="https://www.allthingswebtechnology.com/"
@@ -55,12 +55,11 @@
         rel="noopener noreferrer"
         class="footerParentLink"
       >All Things Web Technology Inc.</a>
-    </p>
-    <address class="footerAddress">
-      <span><span class="footerAddressLabel">USA:</span> 131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713</span>
       <span class="footerAddressSep" aria-hidden="true">&middot;</span>
-      <span><span class="footerAddressLabel">Nigeria:</span> 1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria</span>
-    </address>
+      <span class="footerAddress"><span class="footerAddressLabel">USA:</span> 131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713</span>
+      <span class="footerAddressSep" aria-hidden="true">&middot;</span>
+      <span class="footerAddress"><span class="footerAddressLabel">Nigeria:</span> 1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria</span>
+    </p>
   </div>
 </footer>
 
@@ -204,19 +203,19 @@
     font-weight: 600;
   }
 
-  /* Both addresses share one line, and wrap on narrow screens. */
+  /* Copyright and both addresses read as one line, wrapping only when the screen is too narrow. */
+  .footerLegal {
+    line-height: 1.9;
+  }
+
   .footerAddress {
-    flex-basis: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem 0.75rem;
+    display: inline;
     font-style: normal;
-    font-size: 0.82rem;
     color: var(--colorTextMuted);
   }
 
   .footerAddressSep {
+    margin: 0 0.55rem;
     color: rgba(255, 255, 255, 0.3);
   }
 
@@ -252,15 +251,6 @@
       flex-direction: column;
       text-align: center;
       gap: 0.75rem;
-    }
-
-    .footerAddress {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .footerAddressSep {
-      display: none;
     }
   }
 
