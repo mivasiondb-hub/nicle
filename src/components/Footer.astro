@@ -48,18 +48,30 @@
 
   <div class="footerBottom">
     <p class="footerLegal">
-      &copy; {new Date().getFullYear()} Nicle, Inc., a Delaware corporation <span class="footerRc">(Reg. No. 10843843)</span>, and Nicle PLC <span class="footerRc">(RC 9906392)</span>. A subsidiary of
-      <a
-        href="https://www.allthingswebtechnology.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="footerParentLink"
-      >All Things Web Technology Inc.</a>
-      <span class="footerAddressSep" aria-hidden="true">&middot;</span>
-      <span class="footerAddress"><span class="footerAddressLabel">USA:</span> 131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713</span>
-      <span class="footerAddressSep" aria-hidden="true">&middot;</span>
-      <span class="footerAddress"><span class="footerAddressLabel">Nigeria:</span> 1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria</span>
+      &copy; {new Date().getFullYear()} Nicle, Inc., a Delaware corporation <span class="footerRc">(Reg. No. 10843843)</span>, and Nicle PLC <span class="footerRc">(RC 9906392)</span>.
     </p>
+    <ul class="footerOffices" aria-label="Offices">
+      <li>
+        <svg class="officeFlag" width="18" height="13" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect y="0.00" width="20" height="1.08" fill="#b22234"/><rect y="2.15" width="20" height="1.08" fill="#b22234"/><rect y="4.31" width="20" height="1.08" fill="#b22234"/><rect y="6.46" width="20" height="1.08" fill="#b22234"/><rect y="8.62" width="20" height="1.08" fill="#b22234"/><rect y="10.77" width="20" height="1.08" fill="#b22234"/><rect y="12.92" width="20" height="1.08" fill="#b22234"/><rect width="8.5" height="7.54" fill="#3c3b6e"/></svg>
+        <span class="officeLabel">USA</span>
+        <address>131 Continental Drive, Suite 305, Newark, New Castle County, Delaware 19713</address>
+      </li>
+      <li>
+        <svg class="officeFlag" width="18" height="13" viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><rect width="6.67" height="14" fill="#008751"/><rect x="13.33" width="6.67" height="14" fill="#008751"/></svg>
+        <span class="officeLabel">Nigeria</span>
+        <address>1 Nicle Way, Port Harcourt 500101, Rivers, Nigeria</address>
+      </li>
+    </ul>
+    <a
+      href="https://www.allthingswebtechnology.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="footerParent"
+    >
+      <span>A subsidiary of</span>
+      <span class="parentName"><strong>All Things Web Technology Inc.</strong>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg></span>
+    </a>
   </div>
 </footer>
 
@@ -168,28 +180,114 @@
     transform: translateX(3px);
   }
 
+  /* Legal block: copyright, the two offices, then the parent company link, in one tight centred stack. */
   .footerBottom {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.6rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
     max-width: 1280px;
     margin: 0 auto;
-    padding-top: 2rem;
+    padding-top: 1.6rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 0.8125rem;
+    text-align: center;
   }
 
-  .footerParentLink {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 2px;
+  .footerLegal {
+    color: var(--colorTextMuted);
+    line-height: 1.6;
+  }
+
+  .footerOffices {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem 0.55rem;
+  }
+
+  .footerOffices li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.8rem 0.32rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: var(--colorTextMuted);
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .footerOffices address {
+    font-style: normal;
+  }
+
+  .officeFlag {
+    flex: none;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  .officeLabel {
+    flex: none;
+    font-weight: 700;
+    color: var(--colorInk);
+  }
+
+  .footerParent {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem 0.35rem;
+    font-size: 0.78rem;
+    color: var(--colorTextMuted);
     transition: color 0.25s ease;
   }
 
-  .footerParentLink:hover {
-    color: var(--colorBrand);
+  .parentName {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    white-space: nowrap;
   }
+
+  .footerParent strong {
+    font-weight: 600;
+    color: var(--colorInk);
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    padding-bottom: 1px;
+    transition: background-size 0.3s ease;
+  }
+
+  .footerParent svg {
+    color: var(--colorInk);
+    transition: transform 0.3s var(--easeOutExpo);
+  }
+
+  .footerParent:hover {
+    color: var(--colorText);
+  }
+
+  .footerParent:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  .footerParent:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+
+
 
   .footerSocial {
     display: inline-flex;
@@ -203,26 +301,9 @@
     font-weight: 600;
   }
 
-  /* Copyright and both addresses read as one line, wrapping only when the screen is too narrow. */
-  .footerLegal {
-    line-height: 1.9;
-  }
 
-  .footerAddress {
-    display: inline;
-    font-style: normal;
-    color: var(--colorTextMuted);
-  }
 
-  .footerAddressSep {
-    margin: 0 0.55rem;
-    color: rgba(255, 255, 255, 0.3);
-  }
 
-  .footerAddressLabel {
-    font-weight: 700;
-    color: var(--colorInk);
-  }
 
   @media (max-width: 900px) {
     .siteFooter {
@@ -247,10 +328,8 @@
       gap: 2rem 1.5rem;
     }
 
-    .footerBottom {
-      flex-direction: column;
-      text-align: center;
-      gap: 0.75rem;
+    .footerOffices li {
+      border-radius: 14px;
     }
   }
 
