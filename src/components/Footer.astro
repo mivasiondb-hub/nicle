@@ -206,20 +206,26 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.45rem 0.55rem;
+    align-items: center;
+    gap: 0.4rem 0;
   }
 
+  /* Plain text on one straight line, split by a thin rule. */
   .footerOffices li {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    padding: 0.32rem 0.8rem 0.32rem 0.6rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.09);
     color: var(--colorTextMuted);
     line-height: 1.4;
     text-align: left;
+  }
+
+  .footerOffices li + li::before {
+    content: '';
+    width: 1px;
+    height: 0.95rem;
+    margin: 0 1.1rem;
+    background: rgba(255, 255, 255, 0.18);
   }
 
   .footerOffices address {
@@ -328,8 +334,29 @@
       gap: 2rem 1.5rem;
     }
 
+    .footerOffices {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.4rem;
+      width: 100%;
+      max-width: 360px;
+    }
+
     .footerOffices li {
-      border-radius: 14px;
+      align-items: flex-start;
+    }
+
+    .officeFlag {
+      margin-top: 0.2rem;
+    }
+
+    /* Same label width, so both addresses start on one straight line. */
+    .officeLabel {
+      min-width: 3.6rem;
+    }
+
+    .footerOffices li + li::before {
+      display: none;
     }
   }
 
